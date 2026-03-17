@@ -6,7 +6,7 @@ I've successfully extracted all code from your **13 Jupyter notebooks** and crea
 
 ## 📍 Location
 
-**Package Directory**: `/Volumes/LLModels/Projects/ABC2VEC/abc2vec_package/`
+**Package Directory**: `/Volumes/LLModels/Projects/ABC2VEC/abc2vec/`
 
 ## 📊 What Was Created
 
@@ -23,7 +23,7 @@ I've successfully extracted all code from your **13 Jupyter notebooks** and crea
 ### 🗂️ Package Structure
 
 ```
-abc2vec_package/
+abc2vec/
 │
 ├── 📦 abc2vec/              [Core Library - 17 modules]
 │   ├── tokenizer/           Character vocab, bar patchifier, transposer

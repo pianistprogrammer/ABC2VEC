@@ -12,7 +12,7 @@ ABC2Vec learns dense vector representations of folk music tunes from ABC notatio
 ## Project Structure
 
 ```
-abc2vec_package/
+abc2vec/
 ├── abc2vec/              # Core library
 │   ├── __init__.py
 │   ├── data/             # Data processing and loading
