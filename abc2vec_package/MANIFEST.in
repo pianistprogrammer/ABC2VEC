@@ -1,0 +1,19 @@
+include README.md
+include LICENSE
+include CHANGELOG.md
+include QUICKSTART.md
+include DEVELOPMENT.md
+include CONTRIBUTING.md
+# requirements.txt removed - dependencies in pyproject.toml
+include config.yaml
+include setup.cfg
+include pyproject.toml
+
+recursive-include abc2vec *.py
+recursive-include scripts *.py
+recursive-include tests *.py
+
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude .DS_Store
+global-exclude *.so

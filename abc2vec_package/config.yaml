@@ -1,0 +1,78 @@
+# ABC2Vec Configuration File
+# Copy this to config.yaml and customize
+
+# Model Architecture
+model:
+  vocab_size: 98              # Auto-set from vocabulary
+  d_char: 64                  # Character embedding dimension
+  d_model: 256                # Model hidden dimension
+  n_heads: 8                  # Number of attention heads
+  n_layers: 6                 # Number of Transformer layers
+  d_ff: 1024                  # Feed-forward dimension
+  d_embed: 128                # Final tune embedding dimension
+  dropout: 0.1                # Dropout rate
+
+  # Patching
+  max_bar_length: 64          # Max characters per bar
+  max_bars: 64                # Max bars per tune
+
+# Training
+training:
+  epochs: 50
+  batch_size: 64
+  learning_rate: 0.0001
+  warmup_steps: 5000
+  weight_decay: 0.01
+  grad_clip: 1.0
+
+  # Loss weights
+  lambda_mmm: 1.0             # Masked Music Modeling
+  lambda_scl: 0.5             # Section Contrastive Loss
+  lambda_ti: 0.5              # Transposition Invariance
+  lambda_vac: 0.5             # Variant-Aware Contrastive
+
+  # Masking
+  mask_ratio: 0.15            # Fraction of bars to mask
+
+  # Contrastive learning
+  temperature: 0.07           # Temperature for InfoNCE loss
+
+# Data
+data:
+  data_dir: "./data/processed"
+  num_workers: 4              # DataLoader workers
+  pin_memory: true            # Pin memory for GPU
+
+  # Data augmentation
+  augment_transpose: true     # Random transposition
+  transpose_range: [-5, 7]    # Semitone range
+
+# Logging
+logging:
+  log_dir: "./logs"
+  log_interval: 100           # Log every N steps
+  save_interval: 5            # Save checkpoint every N epochs
+  use_wandb: false            # Use Weights & Biases
+  wandb_project: "abc2vec"
+  wandb_entity: null
+
+# Evaluation
+evaluation:
+  batch_size: 128
+  k_values: [1, 5, 10, 20, 50]  # Recall@k values
+
+# Paths
+paths:
+  checkpoint_dir: "./checkpoints"
+  output_dir: "./outputs"
+  vocab_path: "./data/processed/vocab.json"
+
+# Hardware
+hardware:
+  device: "auto"              # "auto", "cpu", "cuda", "mps"
+  mixed_precision: false      # Use automatic mixed precision (AMP)
+  compile: false              # Use torch.compile() (PyTorch 2.0+)
+
+# Reproducibility
+seed: 42
+deterministic: false          # Deterministic mode (slower but reproducible)

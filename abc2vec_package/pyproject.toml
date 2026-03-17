@@ -1,0 +1,99 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "abc2vec"
+version = "0.1.0"
+description = "Self-supervised learning for folk music representation from ABC notation"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "ABC2Vec Team"}
+]
+keywords = ["music", "representation-learning", "abc-notation", "transformer", "self-supervised"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = [
+    "torch>=2.0.0",
+    "transformers>=4.30.0",
+    "datasets>=2.14.0",
+    "tokenizers>=0.13.0",
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "scikit-learn>=1.3.0",
+    "scipy>=1.10.0",
+    "tqdm>=4.65.0",
+    "pyyaml>=6.0",
+    "pyarrow>=12.0.0",
+    "Levenshtein>=0.21.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.3.0",
+    "pytest-cov>=4.1.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "flake8>=6.0.0",
+    "mypy>=1.3.0",
+]
+viz = [
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "plotly>=5.14.0",
+]
+extra = [
+    "music21>=9.1.0",
+    "faiss-cpu>=1.7.4",
+    "umap-learn>=0.5.3",
+    "einops>=0.6.1",
+    "rich>=13.0.0",
+    "accelerate>=0.20.0",
+    "wandb>=0.15.0",
+]
+all = [
+    "abc2vec[viz,extra]",
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/abc2vec"
+Documentation = "https://github.com/yourusername/abc2vec/blob/main/README.md"
+Repository = "https://github.com/yourusername/abc2vec"
+Changelog = "https://github.com/yourusername/abc2vec/blob/main/CHANGELOG.md"
+
+[project.scripts]
+abc2vec-train = "scripts.run_training:main"
+abc2vec-eval = "scripts.run_evaluation:main"
+abc2vec-process = "scripts.run_data_pipeline:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["abc2vec*"]
+exclude = ["tests*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-v --strict-markers"
