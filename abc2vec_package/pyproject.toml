@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
-    {name = "ABC2Vec Team"}
+    {name = "Jeremiah Author"}
 ]
 keywords = ["music", "representation-learning", "abc-notation", "transformer", "self-supervised"]
 classifiers = [
@@ -69,10 +69,10 @@ all = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/abc2vec"
-Documentation = "https://github.com/yourusername/abc2vec/blob/main/README.md"
-Repository = "https://github.com/yourusername/abc2vec"
-Changelog = "https://github.com/yourusername/abc2vec/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/pianistprogrammer/ABC2VEC"
+Documentation = "https://github.com/pianistprogrammer/ABC2VEC/blob/main/README.md"
+Repository = "https://github.com/pianistprogrammer/ABC2VEC"
+Changelog = "https://github.com/pianistprogrammer/ABC2VEC/blob/main/CHANGELOG.md"
 
 [project.scripts]
 abc2vec-train = "scripts.run_training:main"

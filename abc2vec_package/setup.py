@@ -14,12 +14,12 @@ requirements = []
 setup(
     name="abc2vec",
     version="0.1.0",
-    author="ABC2Vec Team",
+    author="Jeremiah Author",
     author_email="",
     description="Self-supervised learning for folk music representation from ABC notation",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/abc2vec",
+    url="https://github.com/pianistprogrammer/ABC2VEC",
     packages=find_packages(exclude=["tests", "scripts"]),
     classifiers=[
         "Development Status :: 3 - Alpha",
