@@ -212,7 +212,7 @@ If you use this code in your research, please cite:
 ```bibtex
 @software{abc2vec2026,
   title={ABC2Vec: Self-Supervised Learning for Folk Music Representation},
-  author={Jeremiah Author},
+  author={Jeremiah Abimbola},
   year={2026},
   url={https://github.com/pianistprogrammer/ABC2VEC}
 }
