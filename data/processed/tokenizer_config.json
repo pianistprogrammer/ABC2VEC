@@ -1,0 +1,11 @@
+{
+  "vocab_size": 98,
+  "max_bar_length": 64,
+  "max_bars": 64,
+  "d_char": 64,
+  "d_model": 256,
+  "pad_idx": 0,
+  "mask_idx": 4,
+  "cls_idx": 2,
+  "sep_idx": 3
+}

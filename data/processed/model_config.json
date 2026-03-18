@@ -1,0 +1,16 @@
+{
+  "vocab_size": 98,
+  "max_bar_length": 64,
+  "max_bars": 64,
+  "pad_idx": 0,
+  "mask_idx": 4,
+  "d_char": 64,
+  "d_model": 256,
+  "n_heads": 8,
+  "n_layers": 6,
+  "d_ff": 1024,
+  "dropout": 0.1,
+  "d_embed": 128,
+  "mask_ratio": 0.15,
+  "temperature": 0.07
+}
