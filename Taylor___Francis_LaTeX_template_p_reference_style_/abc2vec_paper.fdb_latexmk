@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex abc2vec_paper"] 1773924599.29901 "abc2vec_paper.aux" "abc2vec_paper.bbl" "abc2vec_paper" 1773924608.92004 0
+["bibtex abc2vec_paper"] 1773925662.30811 "abc2vec_paper.aux" "abc2vec_paper.bbl" "abc2vec_paper" 1773925665.47501 0
   "./abc2vec.bib" 1773829619.80883 7399 744d4cce99e047fac5089478bca1bff6 ""
   "./tfp.bst" 1773820718.95679 37649 9b6a2250fe26d149dd06f9fb1b2a9ab4 ""
-  "abc2vec_paper.aux" 1773924608.53675 7654 716599b017c028243f5d788fd62b9e85 "pdflatex"
+  "abc2vec_paper.aux" 1773925665.06978 7603 b60ed5923fc0220cb2efef53fae6724b "pdflatex"
   (generated)
   "abc2vec_paper.bbl"
   "abc2vec_paper.blg"
   (rewritten before read)
-["pdflatex"] 1773924607.64501 "/Volumes/LLModels/Projects/ABC2VEC/Taylor___Francis_LaTeX_template_p_reference_style_/abc2vec_paper.tex" "abc2vec_paper.pdf" "abc2vec_paper" 1773924608.92016 0
-  "/Volumes/LLModels/Projects/ABC2VEC/Taylor___Francis_LaTeX_template_p_reference_style_/abc2vec_paper.tex" 1773924606.09751 104663 f9b51ea093a967ab8d4ca5fe21500e63 ""
+["pdflatex"] 1773925663.23524 "/Volumes/LLModels/Projects/ABC2VEC/Taylor___Francis_LaTeX_template_p_reference_style_/abc2vec_paper.tex" "abc2vec_paper.pdf" "abc2vec_paper" 1773925665.4751 0
+  "/Volumes/LLModels/Projects/ABC2VEC/Taylor___Francis_LaTeX_template_p_reference_style_/abc2vec_paper.tex" 1773925660.08721 103252 12bdfdfaea99e6be9ea94d4eaa6fcd10 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/tcrm0800.tfm" 1136768653 1536 05df9db6aeccc4eea94fec15c9024f79 ""
@@ -115,12 +115,12 @@
   "/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1773831732 5541377 04880c840ca220163a28f1a3af0ee662 ""
   "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1773831718 3636762 11611dce089160af9d6104d910a89675 ""
   "/usr/local/texlive/2026/texmf.cnf" 1772409725 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "abc2vec_paper.aux" 1773924608.53675 7654 716599b017c028243f5d788fd62b9e85 "pdflatex"
-  "abc2vec_paper.bbl" 1773924599.39144 3750 74f5a08ca930365c1a11921fc64179ec "bibtex abc2vec_paper"
-  "abc2vec_paper.tex" 1773924606.09751 104663 f9b51ea093a967ab8d4ca5fe21500e63 ""
+  "abc2vec_paper.aux" 1773925665.06978 7603 b60ed5923fc0220cb2efef53fae6724b "pdflatex"
+  "abc2vec_paper.bbl" 1773925662.39948 3750 74f5a08ca930365c1a11921fc64179ec "bibtex abc2vec_paper"
+  "abc2vec_paper.tex" 1773925660.08721 103252 12bdfdfaea99e6be9ea94d4eaa6fcd10 ""
   "ablation_architecture.pdf" 1773851972.63339 38319 af51ca5ba22ec256059e0ee8f7776ec8 ""
-  "ablation_interaction.pdf" 1773851972.67293 38186 ae17eebf001d953346e22e281401acd3 ""
-  "ablation_objectives.pdf" 1773851972.70294 60551 38b801275f62caf7a919f965bbd478d4 ""
+  "ablation_interaction.pdf" 1773925618.10334 37887 1733594808fb64cfed510e1cfdbca30b ""
+  "ablation_objectives.pdf" 1773925035.63221 59660 ac25a0415b2429447780f8433ac6183b ""
   "architecture_diagram.pdf" 1773852662.83296 73748 ac0effc09e8c0737634ea1ca4d6fa55f ""
   "bar_patching_stats.pdf" 1773852218.16389 61827 8584f8b563475ee357589c19c959c7ff ""
   "dataset_statistics.pdf" 1773852218.12427 44232 54c228494c7b1c65589ab0bec6f63747 ""
@@ -128,8 +128,7 @@
   "key_mode_distribution.pdf" 1773851791.8548 37153 f9cdcb1cdd6a383df5e9653851446b99 ""
   "training_curves_hq.pdf" 1773915015.99656 37456 17a0402c5528655e36da0b4849555013 ""
   "tune_type_confusion.png" 1773829798.86165 70834 a336ea6cda6d8663f696044198cdf9bf ""
-  "umap_mode_hq.png" 1773915940.32729 499765 190e4398cb0bf608fac4c526ff93adf5 ""
-  "umap_tune_type_hq.png" 1773915940.32499 512687 5f7108b9808e3421079e8e838b9c20f6 ""
+  "umap_combined.png" 1773924676.50856 4048181 5811dc9a85e8684a01560a9207180ae1 ""
   (generated)
   "abc2vec_paper.aux"
   "abc2vec_paper.log"

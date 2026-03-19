@@ -133,8 +133,10 @@ def plot_objective_ablation(output_path):
     # Add text annotations
     for i in range(len(metric_names)):
         for j in range(len(models)):
+            # Use black text for mid-range (yellow) and high values, white for low (red)
+            text_color = "white" if metrics_data[i, j] < 0.35 else "black"
             text = ax4.text(j, i, f'{metrics_data[i, j]:.2f}',
-                          ha="center", va="center", color="black" if metrics_data[i, j] > 0.5 else "white",
+                          ha="center", va="center", color=text_color,
                           fontsize=7)
 
     # Add colorbar
@@ -377,7 +379,6 @@ def plot_component_interaction(output_path):
                   fontweight='bold', pad=15, fontsize=11)
     ax2.set_ylim(0, 85)
     ax2.axhline(y=16.7, color='gray', linestyle='--', linewidth=1, alpha=0.5, label='Chance')
-    ax2.grid(axis='y', alpha=0.3)
 
     # Add value labels on bars
     for i, (bar_container, val) in enumerate(zip(bars_list, cumulative_acc)):

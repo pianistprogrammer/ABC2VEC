@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.18)  19 MAR 2026 13:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.18)  19 MAR 2026 14:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -475,53 +475,42 @@ Package pdftex.def Info: tune_type_confusion.png  used on input line 418.
 LaTeX Warning: Reference `fig:umap_mode' on page 20 undefined on input line 431
 .
 
-[20 <./tune_type_confusion.png>] [21] [22]
-
-LaTeX Warning: Reference `fig:dimension_importance' on page 23 undefined on inp
-ut line 488.
-
-
-LaTeX Warning: Reference `fig:dimension_importance' on page 23 undefined on inp
-ut line 506.
-
-[23]
+[20 <./tune_type_confusion.png>] [21] [22] [23]
 <umap_combined.png, id=643, 1289.0559pt x 496.9767pt>
 File: umap_combined.png Graphic file (type png)
 <use umap_combined.png>
-Package pdftex.def Info: umap_combined.png  used on input line 536.
+Package pdftex.def Info: umap_combined.png  used on input line 532.
 (pdftex.def)             Requested size: 408.0pt x 157.29922pt.
-<ablation_objectives.pdf, id=644, 967.2623pt x 725.31139pt>
+ [24 <./umap_combined.png>]
+<ablation_objectives.pdf, id=648, 967.2623pt x 725.31139pt>
 File: ablation_objectives.pdf Graphic file (type pdf)
 <use ablation_objectives.pdf>
-Package pdftex.def Info: ablation_objectives.pdf  used on input line 588.
+Package pdftex.def Info: ablation_objectives.pdf  used on input line 584.
 (pdftex.def)             Requested size: 408.0pt x 305.94572pt.
- [24] [25 <./umap_combined.png>]
+
+[25]
 <ablation_architecture.pdf, id=653, 943.09267pt x 556.76569pt>
 File: ablation_architecture.pdf Graphic file (type pdf)
 <use ablation_architecture.pdf>
-Package pdftex.def Info: ablation_architecture.pdf  used on input line 649.
+Package pdftex.def Info: ablation_architecture.pdf  used on input line 645.
 (pdftex.def)             Requested size: 408.0pt x 240.8743pt.
- [26 <./ablation_objectives.pdf>] [27]
-Underfull \hbox (badness 1264) in paragraph at lines 665--666
+ [26 <./ablation_objectives.pdf>]
+Underfull \hbox (badness 1264) in paragraph at lines 661--662
 []\OT1/cmr/bx/n/10.95 Tokenization crit-i-cal-ity\OT1/cmr/m/n/10.95 : Bar patch
 i-fi-ca-tion with po-si-tional em-bed-dings
  []
 
-<ablation_interaction.pdf, id=756, 905.53027pt x 428.83975pt>
+<ablation_interaction.pdf, id=753, 905.53027pt x 428.83975pt>
 File: ablation_interaction.pdf Graphic file (type pdf)
 <use ablation_interaction.pdf>
-Package pdftex.def Info: ablation_interaction.pdf  used on input line 674.
+Package pdftex.def Info: ablation_interaction.pdf  used on input line 670.
 (pdftex.def)             Requested size: 408.0pt x 193.22475pt.
-[28 <./ablation_architecture.pdf>] [29 <./ablation_interaction.pdf>]
-
-LaTeX Warning: Reference `fig:dimension_importance' on page 30 undefined on inp
-ut line 735.
-
-[30] [31] [32] [33] (./abc2vec_paper.bbl [34])
+[27] [28 <./ablation_architecture.pdf>] [29 <./ablation_interaction.pdf>]
+[30] [31] [32] [33] (./abc2vec_paper.bbl)
 
 Package natbib Warning: There were undefined citations.
 
-[35] (./abc2vec_paper.aux)
+[34] (./abc2vec_paper.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -539,13 +528,13 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5265 strings out of 467525
- 80437 string characters out of 5418982
- 504336 words of memory out of 5000000
- 34074 multiletter control sequences out of 15000+600000
+ 5264 strings out of 467525
+ 80411 string characters out of 5418982
+ 496875 words of memory out of 5000000
+ 34073 multiletter control sequences out of 15000+600000
  640915 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,12n,93p,5064b,312s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,12n,93p,4989b,299s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
@@ -569,10 +558,10 @@ st/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dis
 t/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2026/texmf-dist
 /fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2026/texmf-
 dist/fonts/type1/public/cm-super/sfrm0800.pfb>
-Output written on abc2vec_paper.pdf (35 pages, 4024038 bytes).
+Output written on abc2vec_paper.pdf (34 pages, 4021909 bytes).
 PDF statistics:
- 1071 PDF objects out of 1200 (max. 8388607)
- 243 compressed objects within 3 object streams
+ 1068 PDF objects out of 1200 (max. 8388607)
+ 241 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
