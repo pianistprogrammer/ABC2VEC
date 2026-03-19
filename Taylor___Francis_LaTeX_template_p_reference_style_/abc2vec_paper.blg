@@ -4,45 +4,45 @@ The top-level auxiliary file: abc2vec_paper.aux
 The style file: tfp.bst
 Database file #1: abc2vec.bib
 Warning--I didn't find a database entry for "von2023tunesformer"
-You've used 21 entries,
+You've used 17 entries,
             2892 wiz_defined-function locations,
-            1194 strings with 13099 characters,
-and the built_in function-call counts, 9063 in all, are:
-= -- 678
-> -- 292
+            1172 strings with 12427 characters,
+and the built_in function-call counts, 7401 in all, are:
+= -- 558
+> -- 232
 < -- 0
-+ -- 250
-- -- 73
-* -- 561
-:= -- 942
-add.period$ -- 43
-call.type$ -- 21
++ -- 198
+- -- 58
+* -- 463
+:= -- 770
+add.period$ -- 35
+call.type$ -- 17
 change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 1004
-empty$ -- 884
-format.name$ -- 91
-if$ -- 1955
+cite$ -- 17
+duplicate$ -- 815
+empty$ -- 725
+format.name$ -- 72
+if$ -- 1597
 int.to.chr$ -- 0
-int.to.str$ -- 21
-missing$ -- 215
-newline$ -- 68
-num.names$ -- 21
-pop$ -- 529
+int.to.str$ -- 17
+missing$ -- 175
+newline$ -- 56
+num.names$ -- 17
+pop$ -- 423
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 157
+skip$ -- 126
 stack$ -- 0
-substring$ -- 513
-swap$ -- 458
+substring$ -- 434
+swap$ -- 376
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 62
-width$ -- 23
-write$ -- 179
+while$ -- 52
+width$ -- 19
+write$ -- 147
 (There was 1 warning)

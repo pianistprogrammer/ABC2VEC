@@ -24,7 +24,7 @@ plt.rcParams['ytick.labelsize'] = 9
 plt.rcParams['legend.fontsize'] = 9
 plt.rcParams['figure.titlesize'] = 13
 
-sns.set_style("whitegrid")
+sns.set_style("white")
 sns.set_context("paper")
 
 
@@ -62,7 +62,6 @@ def plot_objective_ablation(output_path):
     ax1.set_title('(a) Tune Type Classification', fontweight='bold', loc='left', fontsize=11)
     ax1.axhline(y=16.7, color='gray', linestyle='--', linewidth=1, alpha=0.5, label='Chance')
     ax1.set_ylim(0, 90)
-    ax1.grid(axis='y', alpha=0.3)
 
     # Add value labels
     for bar, val in zip(bars, tune_type_acc):
@@ -85,7 +84,6 @@ def plot_objective_ablation(output_path):
     ax2.set_title('(b) Mode Classification', fontweight='bold', loc='left', fontsize=11)
     ax2.axhline(y=25.0, color='gray', linestyle='--', linewidth=1, alpha=0.5, label='Chance')
     ax2.set_ylim(0, 90)
-    ax2.grid(axis='y', alpha=0.3)
 
     for bar, val in zip(bars, mode_acc):
         height = bar.get_height()
@@ -104,7 +102,6 @@ def plot_objective_ablation(output_path):
     ax3.set_ylabel('Cosine Similarity (%)', fontsize=10)
     ax3.set_title('(c) Variant Detection (Similarity)', fontweight='bold', loc='left', fontsize=11)
     ax3.set_ylim(0, 75)
-    ax3.grid(axis='y', alpha=0.3)
 
     for bar, val in zip(bars, variant_sim):
         height = bar.get_height()

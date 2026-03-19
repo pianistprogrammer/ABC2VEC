@@ -3,106 +3,54 @@
 \providecommand{\urlprefix}{}
 
 \bibitem{Word2Vec2013}
-Mikolov, T.; Chen, K.; Corrado, G.; Dean, J. Efficient Estimation of Word
-  Representations in Vector Space, \emph{Proceedings of ICLR}  \textbf{2013}.
+Mikolov, T.; Chen, K.; Corrado, G.; Dean, J. Efficient Estimation of Word Representations in Vector Space, \emph{Proceedings of ICLR}  \textbf{2013}.
 
 \bibitem{BERT2019}
-Devlin, J.; Chang, M.W.; Lee, K.; Toutanova, K. {BERT}: Pre-training of Deep
-  Bidirectional Transformers for Language Understanding, \emph{Proceedings of
-  NAACL-HLT}  \textbf{2019}, 4171--4186.
+Devlin, J.; Chang, M.W.; Lee, K.; Toutanova, K. {BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding, \emph{Proceedings of NAACL-HLT}  \textbf{2019}, 4171--4186.
 
 \bibitem{Transformer2017}
-Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.;
-  Kaiser, L.; Polosukhin, I. Attention is All You Need, \emph{Advances in
-  Neural Information Processing Systems}  \textbf{2017}, \emph{30}, 5998--6008.
+Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.; Kaiser, L.; Polosukhin, I. Attention is All You Need, \emph{Advances in Neural Information Processing Systems}  \textbf{2017}, \emph{30}, 5998--6008.
 
 \bibitem{MusicBERT2022}
-Zeng, M.; Tan, X.; Wang, R.; Ju, Z.; Qin, T.; Liu, T.Y. {MusicBERT}: Symbolic
-  Music Understanding with Large-Scale Pre-Training, \emph{Findings of ACL}
-  \textbf{2022}, 791--800.
+Zeng, M.; Tan, X.; Wang, R.; Ju, Z.; Qin, T.; Liu, T.Y. {MusicBERT}: Symbolic Music Understanding with Large-Scale Pre-Training, \emph{Findings of ACL}  \textbf{2022}, 791--800.
 
 \bibitem{MidiBERT2021}
-Chou, Y.H.; Chen, I.C.; Chang, C.J.; Ching, J.; Yang, Y.H. {MidiBERT-Piano}:
-  Large-scale Pre-training for Symbolic Music Understanding, \emph{arXiv
-  preprint arXiv:2107.05223}  \textbf{2021}.
+Chou, Y.H.; Chen, I.C.; Chang, C.J.; Ching, J.; Yang, Y.H. {MidiBERT-Piano}: Large-scale Pre-training for Symbolic Music Understanding, \emph{arXiv preprint arXiv:2107.05223}  \textbf{2021}.
 
 \bibitem{CLaMP2023}
-Wu, S.; Liang, D.; Chen, X.; Yang, Y.; Liu, J. {CLaMP}: Contrastive
-  Language-Music Pre-training for Cross-Modal Symbolic Music Information
-  Retrieval, \emph{Proceedings of the 24th International Society for Music
-  Information Retrieval Conference (ISMIR)}  \textbf{2023}. Best Student Paper
-  Award.
+Wu, S.; Liang, D.; Chen, X.; Yang, Y.; Liu, J. {CLaMP}: Contrastive Language-Music Pre-training for Cross-Modal Symbolic Music Information Retrieval, \emph{Proceedings of the 24th International Society for Music Information Retrieval Conference (ISMIR)}  \textbf{2023}. Best Student Paper Award.
 
 \bibitem{ABCNotation2011}
-Walshaw, C. \emph{{ABC} Notation: The De-Facto Standard for Folk and
-  Traditional Music Notation}; Self-published, 2011;
-  \urlprefix\url{http://abcnotation.com/wiki/abc:standard:v2.1}.
+Walshaw, C. \emph{{ABC} Notation: The De-Facto Standard for Folk and Traditional Music Notation}; Self-published, 2011; \urlprefix\url{http://abcnotation.com/wiki/abc:standard:v2.1}.
 
 \bibitem{FolkMusicVariation2017}
-van Kranenburg, P.; Karsdorp, F.; Mandemakers, M. Quantifying Melodic
-  Similarity Using Kernel Methods, \emph{Proceedings of the International
-  Workshop on Folk Music Analysis}  \textbf{2017}, 32--37.
+van Kranenburg, P.; Karsdorp, F.; Mandemakers, M. Quantifying Melodic Similarity Using Kernel Methods, \emph{Proceedings of the International Workshop on Folk Music Analysis}  \textbf{2017}, 32--37.
 
 \bibitem{FolkMusicAnalysis2020}
-Mcleod, A.; Ens, J.; Steedman, M. Computational Analysis of Folk Music Corpora,
-  \emph{Transactions of the International Society for Music Information
-  Retrieval}  \textbf{2020}, \emph{3}~(1), 1--13.
-
-\bibitem{FolkRNN2016}
-Sturm, B.L.T.; Santos, J.F.; Ben-Tal, O.; Korshunova, I. Music Transcription
-  Modelling and Composition Using Deep Learning, \emph{Proceedings of the 1st
-  Conference on Computer Simulation of Musical Creativity}  \textbf{2016}.
-
-\bibitem{TunesFormer2023}
-Wood, S.; Gururaja, C.; Birsak, M.; Doshi, R. {TunesFormer}: A Benchmark and
-  Baselines for Folk Music Generation, \emph{arXiv preprint arXiv:2301.12221}
-  \textbf{2023}.
-
-\bibitem{MelodyT5_2024}
-Chen, S.; Zhao, Y.; Liu, Z.; Wang, Y. {MelodyT5}: A Unified Score-to-Score
-  Transformer for Symbolic Music Processing, \emph{Proceedings of the 25th
-  International Society for Music Information Retrieval Conference (ISMIR)}
-  \textbf{2024}.
-
-\bibitem{SimCLR2020}
-Chen, T.; Kornblith, S.; Norouzi, M.; Hinton, G. A Simple Framework for
-  Contrastive Learning of Visual Representations, \emph{Proceedings of ICML}
-  \textbf{2020}, 1597--1607.
-
-\bibitem{MoCo2020}
-He, K.; Fan, H.; Wu, Y.; Xie, S.; Girshick, R. Momentum Contrast for
-  Unsupervised Visual Representation Learning, \emph{Proceedings of CVPR}
-  \textbf{2020}, 9729--9738.
-
-\bibitem{LinearProbing2020}
-Alain, G.; Bengio, Y. Understanding Intermediate Layers Using Linear Classifier
-  Probes, \emph{ICLR Workshop Track}  \textbf{2020}.
-
-\bibitem{SilhouetteScore1987}
-Rousseeuw, P.J. Silhouettes: A Graphical Aid to the Interpretation and
-  Validation of Cluster Analysis, \emph{Journal of Computational and Applied
-  Mathematics}  \textbf{1987}, \emph{20}, 53--65.
-
-\bibitem{NMI2002}
-Strehl, A.; Ghosh, J. Cluster Ensembles -- A Knowledge Reuse Framework for
-  Combining Multiple Partitions, \emph{Journal of Machine Learning Research}
-  \textbf{2002}, \emph{3}, 583--617.
-
-\bibitem{UMAP2018}
-McInnes, L.; Healy, J.; Melville, J. {UMAP}: Uniform Manifold Approximation and
-  Projection for Dimension Reduction, \emph{arXiv preprint arXiv:1802.03426}
-  \textbf{2018}.
-
-\bibitem{tSNE2008}
-van~der Maaten, L.; Hinton, G. Visualizing Data using t-{SNE}, \emph{Journal of
-  Machine Learning Research}  \textbf{2008}, \emph{9}, 2579--2605.
+Mcleod, A.; Ens, J.; Steedman, M. Computational Analysis of Folk Music Corpora, \emph{Transactions of the International Society for Music Information Retrieval}  \textbf{2020}, \emph{3}~(1), 1--13.
 
 \bibitem{IrishMAN2023}
-Wood, S. {IrishMAN}: A Large-Scale Dataset for Irish Traditional Music,
-  \emph{Proceedings of NeurIPS Datasets and Benchmarks Track}  \textbf{2023}.
+Wood, S. {IrishMAN}: A Large-Scale Dataset for Irish Traditional Music, \emph{Proceedings of NeurIPS Datasets and Benchmarks Track}  \textbf{2023}.
 
-\bibitem{Adam2015}
-Kingma, D.P.; Ba, J. Adam: A Method for Stochastic Optimization,
-  \emph{Proceedings of ICLR}  \textbf{2015}.
+\bibitem{MelodyT5_2024}
+Chen, S.; Zhao, Y.; Liu, Z.; Wang, Y. {MelodyT5}: A Unified Score-to-Score Transformer for Symbolic Music Processing, \emph{Proceedings of the 25th International Society for Music Information Retrieval Conference (ISMIR)}  \textbf{2024}.
+
+\bibitem{SimCLR2020}
+Chen, T.; Kornblith, S.; Norouzi, M.; Hinton, G. A Simple Framework for Contrastive Learning of Visual Representations, \emph{Proceedings of ICML}  \textbf{2020}, 1597--1607.
+
+\bibitem{LinearProbing2020}
+Alain, G.; Bengio, Y. Understanding Intermediate Layers Using Linear Classifier Probes, \emph{ICLR Workshop Track}  \textbf{2020}.
+
+\bibitem{SilhouetteScore1987}
+Rousseeuw, P.J. Silhouettes: A Graphical Aid to the Interpretation and Validation of Cluster Analysis, \emph{Journal of Computational and Applied Mathematics}  \textbf{1987}, \emph{20}, 53--65.
+
+\bibitem{NMI2002}
+Strehl, A.; Ghosh, J. Cluster Ensembles -- A Knowledge Reuse Framework for Combining Multiple Partitions, \emph{Journal of Machine Learning Research}  \textbf{2002}, \emph{3}, 583--617.
+
+\bibitem{UMAP2018}
+McInnes, L.; Healy, J.; Melville, J. {UMAP}: Uniform Manifold Approximation and Projection for Dimension Reduction, \emph{arXiv preprint arXiv:1802.03426}  \textbf{2018}.
+
+\bibitem{tSNE2008}
+van~der Maaten, L.; Hinton, G. Visualizing Data using t-{SNE}, \emph{Journal of Machine Learning Research}  \textbf{2008}, \emph{9}, 2579--2605.
 
 \end{thebibliography}
