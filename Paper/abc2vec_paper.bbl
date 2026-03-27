@@ -1,0 +1,146 @@
+\begin{thebibliography}{10}
+\providecommand{\url}[1]{\normalfont{#1}}
+\providecommand{\urlprefix}{}
+
+\bibitem{li2012music}
+Li, T.; Ogihara, M.; Tzanetakis, G. \emph{Music data mining}; CRC Press Boca Raton, 2012; Vol.~20.
+
+\bibitem{typke2021survey}
+Typke, R. A survey of music information retrieval systems, In \emph{Proc 6th International Conference on Music Information Retrieval}, 2021.
+
+\bibitem{pereira2019representation}
+Pereira, R.M.; Costa, Y.M.; Aguiar, R.L.; Britto, A.S.; Oliveira, L.E.; Silla, C.N. Representation learning vs. handcrafted features for music genre classification, In \emph{2019 international joint conference on neural networks (ijcnn)}, IEEE, 2019; pp 1--8.
+
+\bibitem{da2023robust}
+da~Silva~Muniz, V.H.; de~Oliveira~e Souza~Filho, J.B. Robust handcrafted features for music genre classification, \emph{Neural Computing and Applications}  \textbf{2023}, \emph{35}~(13), 9335--9348.
+
+\bibitem{gupta2013feature}
+Gupta, S.; Jaafar, J.; Ahmad, W.; Bansal, A. Feature extraction using MFCC, \emph{Signal \& Image Processing: An International Journal}  \textbf{2013}, \emph{4}~(4), 101--108.
+
+\bibitem{humphrey2012moving}
+Humphrey, E.J.; Bello, J.P.; LeCun, Y. Moving beyond feature design: Deep architectures and automatic feature learning in music informatics., In \emph{ISMIR}, 2012; pp 403--408.
+
+\bibitem{Word2Vec2013}
+Mikolov, T.; Chen, K.; Corrado, G.; Dean, J. Efficient Estimation of Word Representations in Vector Space, \emph{Proceedings of ICLR}  \textbf{2013}.
+
+\bibitem{BERT2019}
+Devlin, J.; Chang, M.W.; Lee, K.; Toutanova, K. {BERT}: Pre-training of Deep Bidirectional Transformers for Language Understanding, \emph{Proceedings of NAACL-HLT}  \textbf{2019}, 4171--4186.
+
+\bibitem{Transformer2017}
+Vaswani, A.; Shazeer, N.; Parmar, N.; Uszkoreit, J.; Jones, L.; Gomez, A.N.; Kaiser, L.; Polosukhin, I. Attention is All You Need, \emph{Advances in Neural Information Processing Systems}  \textbf{2017}, \emph{30}, 5998--6008.
+
+\bibitem{ABCNotation2011}
+Walshaw, C. \emph{{ABC} Notation: The De-Facto Standard for Folk and Traditional Music Notation}; Self-published, 2011; \urlprefix\url{http://abcnotation.com/wiki/abc:standard:v2.1}.
+
+\bibitem{MusicBERT2022}
+Zeng, M.; Tan, X.; Wang, R.; Ju, Z.; Qin, T.; Liu, T.Y. {MusicBERT}: Symbolic Music Understanding with Large-Scale Pre-Training, \emph{Findings of ACL}  \textbf{2022}, 791--800.
+
+\bibitem{MidiBERT2021}
+Chou, Y.H.; Chen, I.C.; Chang, C.J.; Ching, J.; Yang, Y.H. {MidiBERT-Piano}: Large-scale Pre-training for Symbolic Music Understanding, \emph{arXiv preprint arXiv:2107.05223}  \textbf{2021}.
+
+\bibitem{CLaMP2023}
+Wu, S.; Liang, D.; Chen, X.; Yang, Y.; Liu, J. {CLaMP}: Contrastive Language-Music Pre-training for Cross-Modal Symbolic Music Information Retrieval, \emph{Proceedings of the 24th International Society for Music Information Retrieval Conference (ISMIR)}  \textbf{2023}. Best Student Paper Award.
+
+\bibitem{pfleiderer2019beyond}
+Pfleiderer, M. Beyond Major and Minor? The Tonality of Popular Music after 1960, \emph{SAMPLES}  \textbf{2019}, \emph{17}.
+
+\bibitem{tan2017perception}
+Tan, D.; Temperley, D. Perception and familiarity of diatonic modes, \emph{Music Perception: An Interdisciplinary Journal}  \textbf{2017}, \emph{34}~(3), 352--365.
+
+\bibitem{FolkMusicVariation2017}
+van Kranenburg, P.; Karsdorp, F.; Mandemakers, M. Quantifying Melodic Similarity Using Kernel Methods, \emph{Proceedings of the International Workshop on Folk Music Analysis}  \textbf{2017}, 32--37.
+
+\bibitem{FolkMusicAnalysis2020}
+Mcleod, A.; Ens, J.; Steedman, M. Computational Analysis of Folk Music Corpora, \emph{Transactions of the International Society for Music Information Retrieval}  \textbf{2020}, \emph{3}~(1), 1--13.
+
+\bibitem{garcia2023vampnet}
+Garcia, H.F.; Seetharaman, P.; Kumar, R.; Pardo, B. Vampnet: Music generation via masked acoustic token modeling, \emph{arXiv preprint arXiv:2307.04686}  \textbf{2023}.
+
+\bibitem{muller2007transposition}
+M{\"u}ller, M.; Clausen, M. Transposition-Invariant Self-Similarity Matrices., In \emph{ISMIR}, 2007; pp 47--50.
+
+\bibitem{lattner2018learning}
+Lattner, S.; Grachten, M.; Widmer, G. Learning transposition-invariant interval features from symbolic music and audio, \emph{arXiv preprint arXiv:1806.08236}  \textbf{2018}.
+
+\bibitem{ferreira2023generating}
+Ferreira, P.; Limongi, R.; F{\'a}vero, L.P. Generating music with data: Application of deep learning models for symbolic music composition, \emph{Applied Sciences}  \textbf{2023}, \emph{13}~(7), 4543.
+
+\bibitem{ji2023survey}
+Ji, S.; Yang, X.; Luo, J. A survey on deep learning for symbolic music generation: Representations, algorithms, evaluations, and challenges, \emph{ACM Computing Surveys}  \textbf{2023}, \emph{56}~(1), 1--39.
+
+\bibitem{sturm2016music}
+Sturm, B.L.; Santos, J.F.; Ben-Tal, O.; Korshunova, I. Music transcription modelling and composition using deep learning, \emph{arXiv preprint arXiv:1604.08723}  \textbf{2016}.
+
+\bibitem{wu2023tunesformer}
+Wu, S.; Li, X.; Yu, F.; Sun, M. Tunesformer: Forming irish tunes with control codes by bar patching, \emph{arXiv preprint arXiv:2301.02884}  \textbf{2023}.
+
+\bibitem{wu2024melodyt5}
+Wu, S.; Wang, Y.; Li, X.; Yu, F.; Sun, M. Melodyt5: A unified score-to-score transformer for symbolic music processing, \emph{arXiv preprint arXiv:2407.02277}  \textbf{2024}.
+
+\bibitem{jiang2020speech}
+Jiang, D.; Li, W.; Cao, M.; Zou, W.; Li, X. Speech simclr: Combining contrastive and reconstruction objective for self-supervised speech representation learning, \emph{arXiv preprint arXiv:2010.13991}  \textbf{2020}.
+
+\bibitem{he2020momentum}
+He, K.; Fan, H.; Wu, Y.; Xie, S.; Girshick, R. Momentum contrast for unsupervised visual representation learning, In \emph{Proceedings of the IEEE/CVF conference on computer vision and pattern recognition}, 2020; pp 9729--9738.
+
+\bibitem{zhang2024data}
+Zhang, H.; Xu, Y.; Huang, S.; Li, X. Data augmentation of contrastive learning is estimating positive-incentive noise, \emph{arXiv preprint arXiv:2408.09929}  \textbf{2024}.
+
+\bibitem{zhang2023symbolic}
+Zhang, H.; Karystinaios, E.; Dixon, S.; Widmer, G.; Cancino-Chac{\'o}n, C.E. Symbolic music representations for classification tasks: A systematic evaluation, \emph{arXiv preprint arXiv:2309.02567}  \textbf{2023}.
+
+\bibitem{pagh2007linear}
+Pagh, A.; Pagh, R.; Ruzic, M. Linear probing with constant independence, In \emph{Proceedings of the thirty-ninth annual ACM symposium on Theory of computing}, 2007; pp 318--327.
+
+\bibitem{levy2023probing}
+Levy, T.; Goldman, O.; Tsarfaty, R. Is probing all you need? indicator tasks as an alternative to probing embedding spaces, In \emph{Findings of the Association for Computational Linguistics: EMNLP 2023}, 2023; pp 5243--5254.
+
+\bibitem{shahapure2020cluster}
+Shahapure, K.R.; Nicholas, C. Cluster quality analysis using silhouette score, In \emph{2020 IEEE 7th international conference on data science and advanced analytics (DSAA)}, IEEE, 2020; pp 747--748.
+
+\bibitem{santos2009use}
+Santos, J.M.; Embrechts, M. On the use of the adjusted rand index as a metric for evaluating supervised classification, In \emph{International conference on artificial neural networks}, Springer, 2009; pp 175--184.
+
+\bibitem{blumenthal2019new}
+Blumenthal, D.B. New techniques for graph edit distance computation, \emph{arXiv preprint arXiv:1908.00265}  \textbf{2019}.
+
+\bibitem{tremblay2007marking}
+Tremblay, G.; Champagne, F. Marking musical dictations using the edit distance algorithm, \emph{Software: Practice and Experience}  \textbf{2007}, \emph{37}~(2), 207--230.
+
+\bibitem{schmuckler1999testing}
+Schmuckler, M.A. Testing models of melodic contour similarity, \emph{Music Perception}  \textbf{1999}, \emph{16}~(3), 295--326.
+
+\bibitem{poladian1951melodic}
+Poladian, S. Melodic Contour in Traditional Music, \emph{Journal of the International Folk Music Council}  \textbf{1951}, \emph{3}, 30--35.
+
+\bibitem{IrishMAN2023}
+Wood, S. {IrishMAN}: A Large-Scale Dataset for Irish Traditional Music, \emph{Proceedings of NeurIPS Datasets and Benchmarks Track}  \textbf{2023}.
+
+\bibitem{MelodyT5_2024}
+Chen, S.; Zhao, Y.; Liu, Z.; Wang, Y. {MelodyT5}: A Unified Score-to-Score Transformer for Symbolic Music Processing, \emph{Proceedings of the 25th International Society for Music Information Retrieval Conference (ISMIR)}  \textbf{2024}.
+
+\bibitem{SimCLR2020}
+Chen, T.; Kornblith, S.; Norouzi, M.; Hinton, G. A Simple Framework for Contrastive Learning of Visual Representations, \emph{Proceedings of ICML}  \textbf{2020}, 1597--1607.
+
+\bibitem{LinearProbing2020}
+Alain, G.; Bengio, Y. Understanding Intermediate Layers Using Linear Classifier Probes, \emph{ICLR Workshop Track}  \textbf{2020}.
+
+\bibitem{SilhouetteScore1987}
+Rousseeuw, P.J. Silhouettes: A Graphical Aid to the Interpretation and Validation of Cluster Analysis, \emph{Journal of Computational and Applied Mathematics}  \textbf{1987}, \emph{20}, 53--65.
+
+\bibitem{NMI2002}
+Strehl, A.; Ghosh, J. Cluster Ensembles -- A Knowledge Reuse Framework for Combining Multiple Partitions, \emph{Journal of Machine Learning Research}  \textbf{2002}, \emph{3}, 583--617.
+
+\bibitem{UMAP2018}
+McInnes, L.; Healy, J.; Melville, J. {UMAP}: Uniform Manifold Approximation and Projection for Dimension Reduction, \emph{arXiv preprint arXiv:1802.03426}  \textbf{2018}.
+
+\bibitem{tSNE2008}
+van~der Maaten, L.; Hinton, G. Visualizing Data using t-{SNE}, \emph{Journal of Machine Learning Research}  \textbf{2008}, \emph{9}, 2579--2605.
+
+\bibitem{likhomanenko2021cape}
+Likhomanenko, T.; Xu, Q.; Synnaeve, G.; Collobert, R.; Rogozhnikov, A. Cape: Encoding relative positions with continuous augmented positional embeddings, \emph{Advances in Neural Information Processing Systems}  \textbf{2021}, \emph{34}, 16079--16092.
+
+\bibitem{gajic2021fast}
+Gaji{\'c}, B.; Amato, A.; Gatta, C. Fast hard negative mining for deep metric learning, \emph{Pattern Recognition}  \textbf{2021}, \emph{112}, 107795.
+
+\end{thebibliography}

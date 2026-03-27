@@ -157,10 +157,10 @@ for i, ttype in enumerate(tune_types):
                edgecolors='white',
                linewidths=0.5)
 
-ax1.set_xlabel('UMAP Dimension 1', fontsize=13, fontweight='bold')
-ax1.set_ylabel('UMAP Dimension 2', fontsize=13, fontweight='bold')
-ax1.set_title('(a) Colored by Tune Type', fontsize=14, fontweight='bold', pad=15)
-ax1.legend(loc='upper right', frameon=True, fancybox=True, shadow=True, fontsize=10)
+ax1.set_xlabel('UMAP Dimension 1', fontsize=24, fontweight='bold')
+ax1.set_ylabel('UMAP Dimension 2', fontsize=24, fontweight='bold')
+ax1.set_title('(a) Colored by Tune Type', fontsize=26, fontweight='bold', pad=15)
+ax1.legend(loc='upper right', frameon=True, fancybox=True, shadow=True, fontsize=18)
 ax1.grid(True, alpha=0.2, linestyle='--', linewidth=0.5)
 ax1.set_xticks([])
 ax1.set_yticks([])
@@ -176,16 +176,15 @@ for i, mode in enumerate(modes):
                edgecolors='white',
                linewidths=0.5)
 
-ax2.set_xlabel('UMAP Dimension 1', fontsize=13, fontweight='bold')
-ax2.set_ylabel('UMAP Dimension 2', fontsize=13, fontweight='bold')
-ax2.set_title('(b) Colored by Mode', fontsize=14, fontweight='bold', pad=15)
-ax2.legend(loc='upper right', frameon=True, fancybox=True, shadow=True, fontsize=10)
+ax2.set_xlabel('UMAP Dimension 1', fontsize=24, fontweight='bold')
+ax2.set_ylabel('UMAP Dimension 2', fontsize=24, fontweight='bold')
+ax2.set_title('(b) Colored by Mode', fontsize=26, fontweight='bold', pad=15)
+ax2.legend(loc='upper right', frameon=True, fancybox=True, shadow=True, fontsize=18)
 ax2.grid(True, alpha=0.2, linestyle='--', linewidth=0.5)
 ax2.set_xticks([])
 ax2.set_yticks([])
 
-plt.suptitle('UMAP Projection of ABC2Vec Embeddings', fontsize=18, fontweight='bold', y=0.98)
-plt.tight_layout(rect=[0, 0, 1, 0.96])
+plt.tight_layout()
 
 output_path = '/Volumes/LLModels/Projects/ABC2VEC/figures/umap_combined.png'
 plt.savefig(output_path, dpi=300, bbox_inches='tight', facecolor='white')

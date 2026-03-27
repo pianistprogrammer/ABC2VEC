@@ -176,13 +176,17 @@ def plot_confusion_matrix_clustering(
         xticklabels=class_names,
         yticklabels=class_names,
         ax=ax,
+        annot_kws={"size": 18},
     )
-    ax.set_xlabel("Predicted", fontsize=12)
-    ax.set_ylabel("True", fontsize=12)
-    ax.set_title(title, fontsize=14, pad=20)
+    ax.set_xlabel("Predicted", fontsize=20)
+    ax.set_ylabel("True", fontsize=20)
+    ax.set_title(title, fontsize=22, pad=20)
+    ax.tick_params(axis="both", labelsize=18)
     plt.xticks(rotation=45, ha="right")
     plt.yticks(rotation=0)
     plt.tight_layout()
+    pdf_path = output_path.with_suffix(".pdf")
+    plt.savefig(pdf_path, bbox_inches="tight")
     plt.savefig(output_path, dpi=150, bbox_inches="tight")
     plt.close()
 

@@ -50,16 +50,16 @@ def plot_objective_ablation(output_path):
 
     # Create figure with 2x2 grid
     fig = plt.figure(figsize=(14, 10))
-    gs = fig.add_gridspec(2, 2, hspace=0.35, wspace=0.3, left=0.08, right=0.96, top=0.93, bottom=0.08)
+    gs = fig.add_gridspec(2, 2, hspace=0.5, wspace=0.3, left=0.08, right=0.96, top=0.96, bottom=0.08)
 
     # 1. Tune Type Classification
     ax1 = fig.add_subplot(gs[0, 0])
     colors = ['#95a5a6'] + ['#e74c3c', '#3498db', '#f39c12'] + ['#9b59b6', '#1abc9c', '#e67e22'] + ['#2ecc71']
     bars = ax1.bar(range(len(models)), tune_type_acc, color=colors, alpha=0.85, edgecolor='black', linewidth=0.8)
     ax1.set_xticks(range(len(models)))
-    ax1.set_xticklabels(models, rotation=45, ha='right', fontsize=8)
-    ax1.set_ylabel('Accuracy (%)', fontsize=10)
-    ax1.set_title('(a) Tune Type Classification', fontweight='bold', loc='left', fontsize=11)
+    ax1.set_xticklabels(models, rotation=45, ha='right', fontsize=12)
+    ax1.set_ylabel('Accuracy (%)', fontsize=16)
+    ax1.set_title('(a) Tune Type Classification', fontweight='bold', loc='left', fontsize=18)
     ax1.axhline(y=16.7, color='gray', linestyle='--', linewidth=1, alpha=0.5, label='Chance')
     ax1.set_ylim(0, 90)
 
@@ -67,46 +67,46 @@ def plot_objective_ablation(output_path):
     for bar, val in zip(bars, tune_type_acc):
         height = bar.get_height()
         ax1.text(bar.get_x() + bar.get_width()/2., height + 1,
-                f'{val:.1f}', ha='center', va='bottom', fontsize=7)
+                f'{val:.1f}', ha='center', va='bottom', fontsize=11)
 
     # Highlight best model
     bars[-1].set_linewidth(2.5)
     bars[-1].set_edgecolor('black')
 
-    ax1.legend(loc='upper left', fontsize=8)
+    ax1.legend(loc='upper left', fontsize=12)
 
     # 2. Mode Classification
     ax2 = fig.add_subplot(gs[0, 1])
     bars = ax2.bar(range(len(models)), mode_acc, color=colors, alpha=0.85, edgecolor='black', linewidth=0.8)
     ax2.set_xticks(range(len(models)))
-    ax2.set_xticklabels(models, rotation=45, ha='right', fontsize=8)
-    ax2.set_ylabel('Accuracy (%)', fontsize=10)
-    ax2.set_title('(b) Mode Classification', fontweight='bold', loc='left', fontsize=11)
+    ax2.set_xticklabels(models, rotation=45, ha='right', fontsize=12)
+    ax2.set_ylabel('Accuracy (%)', fontsize=16)
+    ax2.set_title('(b) Mode Classification', fontweight='bold', loc='left', fontsize=18)
     ax2.axhline(y=25.0, color='gray', linestyle='--', linewidth=1, alpha=0.5, label='Chance')
     ax2.set_ylim(0, 90)
 
     for bar, val in zip(bars, mode_acc):
         height = bar.get_height()
         ax2.text(bar.get_x() + bar.get_width()/2., height + 1,
-                f'{val:.1f}', ha='center', va='bottom', fontsize=7)
+                f'{val:.1f}', ha='center', va='bottom', fontsize=11)
 
     bars[-1].set_linewidth(2.5)
     bars[-1].set_edgecolor('black')
-    ax2.legend(loc='upper left', fontsize=8)
+    ax2.legend(loc='upper left', fontsize=12)
 
     # 3. Variant Similarity
     ax3 = fig.add_subplot(gs[1, 0])
     bars = ax3.bar(range(len(models)), [s*100 for s in variant_sim], color=colors, alpha=0.85, edgecolor='black', linewidth=0.8)
     ax3.set_xticks(range(len(models)))
-    ax3.set_xticklabels(models, rotation=45, ha='right', fontsize=8)
-    ax3.set_ylabel('Cosine Similarity (%)', fontsize=10)
-    ax3.set_title('(c) Variant Detection (Similarity)', fontweight='bold', loc='left', fontsize=11)
+    ax3.set_xticklabels(models, rotation=45, ha='right', fontsize=12)
+    ax3.set_ylabel('Cosine Similarity (%)', fontsize=16)
+    ax3.set_title('(c) Variant Detection (Similarity)', fontweight='bold', loc='left', fontsize=18)
     ax3.set_ylim(0, 75)
 
     for bar, val in zip(bars, variant_sim):
         height = bar.get_height()
         ax3.text(bar.get_x() + bar.get_width()/2., height + 1,
-                f'{val:.3f}', ha='center', va='bottom', fontsize=7, rotation=0)
+                f'{val:.3f}', ha='center', va='bottom', fontsize=11, rotation=0)
 
     bars[-1].set_linewidth(2.5)
     bars[-1].set_edgecolor('black')
@@ -125,10 +125,10 @@ def plot_objective_ablation(output_path):
 
     im = ax4.imshow(metrics_data, cmap='RdYlGn', aspect='auto', vmin=0, vmax=1)
     ax4.set_xticks(range(len(models)))
-    ax4.set_xticklabels(models, rotation=45, ha='right', fontsize=8)
+    ax4.set_xticklabels(models, rotation=45, ha='right', fontsize=12)
     ax4.set_yticks(range(len(metric_names)))
-    ax4.set_yticklabels(metric_names, fontsize=9)
-    ax4.set_title('(d) Performance Heatmap (Normalized)', fontweight='bold', loc='left', fontsize=11)
+    ax4.set_yticklabels(metric_names, fontsize=14)
+    ax4.set_title('(d) Performance Heatmap (Normalized)', fontweight='bold', loc='left', fontsize=18)
 
     # Add text annotations
     for i in range(len(metric_names)):
@@ -137,13 +137,11 @@ def plot_objective_ablation(output_path):
             text_color = "white" if metrics_data[i, j] < 0.35 else "black"
             text = ax4.text(j, i, f'{metrics_data[i, j]:.2f}',
                           ha="center", va="center", color=text_color,
-                          fontsize=7)
+                          fontsize=11)
 
     # Add colorbar
     cbar = plt.colorbar(im, ax=ax4, fraction=0.046, pad=0.04)
-    cbar.set_label('Normalized Performance', rotation=270, labelpad=15, fontsize=9)
-
-    plt.suptitle('Training Objective Ablation Study', fontsize=14, fontweight='bold', y=0.98)
+    cbar.set_label('Normalized Performance', rotation=270, labelpad=15, fontsize=14)
 
     plt.savefig(output_path, dpi=300, bbox_inches='tight', format='pdf', pad_inches=0.1)
     plt.savefig(output_path.replace('.pdf', '.png'), dpi=300, bbox_inches='tight')
@@ -155,7 +153,7 @@ def plot_architecture_ablation(output_path):
     """Create architecture ablation figure."""
 
     fig = plt.figure(figsize=(14, 8))
-    gs = fig.add_gridspec(2, 3, hspace=0.4, wspace=0.35, left=0.08, right=0.96, top=0.92, bottom=0.1)
+    gs = fig.add_gridspec(2, 3, hspace=0.5, wspace=0.35, left=0.08, right=0.96, top=0.96, bottom=0.1)
 
     # 1. Number of layers
     ax1 = fig.add_subplot(gs[0, 0])
@@ -165,9 +163,9 @@ def plot_architecture_ablation(output_path):
     bars = ax1.bar(range(len(layers)), acc, color=colors, alpha=0.85, edgecolor='black', linewidth=0.8)
     ax1.set_xticks(range(len(layers)))
     ax1.set_xticklabels(layers)
-    ax1.set_xlabel('Number of Layers', fontsize=10)
-    ax1.set_ylabel('Tune Type Accuracy (%)', fontsize=10)
-    ax1.set_title('(a) Model Depth', fontweight='bold', loc='left', fontsize=11)
+    ax1.set_xlabel('Number of Layers', fontsize=16)
+    ax1.set_ylabel('Tune Type Accuracy (%)', fontsize=16)
+    ax1.set_title('(a) Model Depth', fontweight='bold', loc='left', fontsize=18)
     ax1.set_ylim(65, 82)
     ax1.grid(axis='y', alpha=0.3)
 
@@ -178,7 +176,7 @@ def plot_architecture_ablation(output_path):
     for bar, val in zip(bars, acc):
         height = bar.get_height()
         ax1.text(bar.get_x() + bar.get_width()/2., height + 0.3,
-                f'{val:.1f}', ha='center', va='bottom', fontsize=8)
+                f'{val:.1f}', ha='center', va='bottom', fontsize=11)
 
     # 2. Embedding dimension
     ax2 = fig.add_subplot(gs[0, 1])
@@ -188,9 +186,9 @@ def plot_architecture_ablation(output_path):
     bars = ax2.bar(range(len(dims)), acc, color=colors, alpha=0.85, edgecolor='black', linewidth=0.8)
     ax2.set_xticks(range(len(dims)))
     ax2.set_xticklabels(dims)
-    ax2.set_xlabel('Embedding Dimension', fontsize=10)
-    ax2.set_ylabel('Tune Type Accuracy (%)', fontsize=10)
-    ax2.set_title('(b) Embedding Size', fontweight='bold', loc='left', fontsize=11)
+    ax2.set_xlabel('Embedding Dimension', fontsize=16)
+    ax2.set_ylabel('Tune Type Accuracy (%)', fontsize=16)
+    ax2.set_title('(b) Embedding Size', fontweight='bold', loc='left', fontsize=18)
     ax2.set_ylim(65, 82)
     ax2.grid(axis='y', alpha=0.3)
 
@@ -200,7 +198,7 @@ def plot_architecture_ablation(output_path):
     for bar, val in zip(bars, acc):
         height = bar.get_height()
         ax2.text(bar.get_x() + bar.get_width()/2., height + 0.3,
-                f'{val:.1f}', ha='center', va='bottom', fontsize=8)
+                f'{val:.1f}', ha='center', va='bottom', fontsize=11)
 
     # 3. Pooling strategy
     ax3 = fig.add_subplot(gs[0, 2])
@@ -209,10 +207,10 @@ def plot_architecture_ablation(output_path):
     colors = ['#e74c3c', '#2ecc71', '#3498db', '#f39c12']
     bars = ax3.bar(range(len(pooling)), acc, color=colors, alpha=0.85, edgecolor='black', linewidth=0.8)
     ax3.set_xticks(range(len(pooling)))
-    ax3.set_xticklabels(pooling, fontsize=9)
-    ax3.set_xlabel('Pooling Strategy', fontsize=10)
-    ax3.set_ylabel('Tune Type Accuracy (%)', fontsize=10)
-    ax3.set_title('(c) Sequence Pooling', fontweight='bold', loc='left', fontsize=11)
+    ax3.set_xticklabels(pooling, fontsize=12)
+    ax3.set_xlabel('Pooling Strategy', fontsize=16)
+    ax3.set_ylabel('Tune Type Accuracy (%)', fontsize=16)
+    ax3.set_title('(c) Sequence Pooling', fontweight='bold', loc='left', fontsize=18)
     ax3.set_ylim(65, 82)
     ax3.grid(axis='y', alpha=0.3)
 
@@ -222,7 +220,7 @@ def plot_architecture_ablation(output_path):
     for bar, val in zip(bars, acc):
         height = bar.get_height()
         ax3.text(bar.get_x() + bar.get_width()/2., height + 0.3,
-                f'{val:.1f}', ha='center', va='bottom', fontsize=8)
+                f'{val:.1f}', ha='center', va='bottom', fontsize=11)
 
     # 4. Attention heads
     ax4 = fig.add_subplot(gs[1, 0])
@@ -232,9 +230,9 @@ def plot_architecture_ablation(output_path):
     bars = ax4.bar(range(len(heads)), acc, color=colors, alpha=0.85, edgecolor='black', linewidth=0.8)
     ax4.set_xticks(range(len(heads)))
     ax4.set_xticklabels(heads)
-    ax4.set_xlabel('Number of Attention Heads', fontsize=10)
-    ax4.set_ylabel('Tune Type Accuracy (%)', fontsize=10)
-    ax4.set_title('(d) Multi-Head Attention', fontweight='bold', loc='left', fontsize=11)
+    ax4.set_xlabel('Number of Attention Heads', fontsize=16)
+    ax4.set_ylabel('Tune Type Accuracy (%)', fontsize=16)
+    ax4.set_title('(d) Multi-Head Attention', fontweight='bold', loc='left', fontsize=18)
     ax4.set_ylim(65, 82)
     ax4.grid(axis='y', alpha=0.3)
 
@@ -244,7 +242,7 @@ def plot_architecture_ablation(output_path):
     for bar, val in zip(bars, acc):
         height = bar.get_height()
         ax4.text(bar.get_x() + bar.get_width()/2., height + 0.3,
-                f'{val:.1f}', ha='center', va='bottom', fontsize=8)
+                f'{val:.1f}', ha='center', va='bottom', fontsize=11)
 
     # 5. Bar vs character tokenization
     ax5 = fig.add_subplot(gs[1, 1])
@@ -253,10 +251,10 @@ def plot_architecture_ablation(output_path):
     colors = ['#95a5a6', '#3498db', '#2ecc71']
     bars = ax5.bar(range(len(methods)), acc, color=colors, alpha=0.85, edgecolor='black', linewidth=0.8)
     ax5.set_xticks(range(len(methods)))
-    ax5.set_xticklabels(methods, fontsize=9)
-    ax5.set_xlabel('Tokenization Method', fontsize=10)
-    ax5.set_ylabel('Tune Type Accuracy (%)', fontsize=10)
-    ax5.set_title('(e) Tokenization Strategy', fontweight='bold', loc='left', fontsize=11)
+    ax5.set_xticklabels(methods, fontsize=12)
+    ax5.set_xlabel('Tokenization Method', fontsize=16)
+    ax5.set_ylabel('Tune Type Accuracy (%)', fontsize=16)
+    ax5.set_title('(e) Tokenization Strategy', fontweight='bold', loc='left', fontsize=18)
     ax5.set_ylim(60, 82)
     ax5.grid(axis='y', alpha=0.3)
 
@@ -266,7 +264,7 @@ def plot_architecture_ablation(output_path):
     for bar, val in zip(bars, acc):
         height = bar.get_height()
         ax5.text(bar.get_x() + bar.get_width()/2., height + 0.3,
-                f'{val:.1f}', ha='center', va='bottom', fontsize=8)
+                f'{val:.1f}', ha='center', va='bottom', fontsize=11)
 
     # 6. Computational cost comparison
     ax6 = fig.add_subplot(gs[1, 2])
@@ -287,17 +285,15 @@ def plot_architecture_ablation(output_path):
     for i, (x, y, label) in enumerate(zip(train_time, accuracy, configs)):
         offset = 10 if i != 2 else -15
         ax6.annotate(label, (x, y), xytext=(0, offset), textcoords='offset points',
-                    ha='center', fontsize=8, bbox=dict(boxstyle='round,pad=0.3',
+                    ha='center', fontsize=11, bbox=dict(boxstyle='round,pad=0.3',
                     facecolor='yellow' if i == 2 else 'white', alpha=0.7, edgecolor='black'))
 
-    ax6.set_xlabel('Training Time (hours)', fontsize=10)
-    ax6.set_ylabel('Tune Type Accuracy (%)', fontsize=10)
-    ax6.set_title('(f) Accuracy vs Computational Cost', fontweight='bold', loc='left', fontsize=11)
+    ax6.set_xlabel('Training Time (hours)', fontsize=16)
+    ax6.set_ylabel('Tune Type Accuracy (%)', fontsize=16)
+    ax6.set_title('(f) Accuracy vs Computational Cost', fontweight='bold', loc='left', fontsize=18)
     ax6.set_xscale('log')
     ax6.set_ylim(70, 81)
     ax6.grid(alpha=0.3)
-
-    plt.suptitle('Architecture Ablation Study', fontsize=14, fontweight='bold', y=0.97)
 
     plt.savefig(output_path, dpi=300, bbox_inches='tight', format='pdf', pad_inches=0.1)
     plt.savefig(output_path.replace('.pdf', '.png'), dpi=300, bbox_inches='tight')
@@ -324,10 +320,10 @@ def plot_component_interaction(output_path):
     im = ax1.imshow(interaction_matrix, cmap='YlOrRd', vmin=0, vmax=5)
     ax1.set_xticks(range(len(components)))
     ax1.set_yticks(range(len(components)))
-    ax1.set_xticklabels(components, fontsize=10)
-    ax1.set_yticklabels(components, fontsize=10)
+    ax1.set_xticklabels(components, fontsize=16)
+    ax1.set_yticklabels(components, fontsize=16)
     ax1.set_title('(a) Component Interaction Strength\n(Synergy in % Accuracy)',
-                  fontweight='bold', pad=15, fontsize=11)
+                  fontweight='bold', pad=15, fontsize=18)
 
     # Add text annotations
     for i in range(len(components)):
@@ -335,12 +331,12 @@ def plot_component_interaction(output_path):
             if i != j:
                 text = ax1.text(j, i, f'+{interaction_matrix[i, j]:.1f}%',
                               ha="center", va="center", color="black" if interaction_matrix[i, j] < 3 else "white",
-                              fontsize=11, fontweight='bold')
+                              fontsize=14, fontweight='bold')
             else:
-                ax1.text(j, i, '—', ha="center", va="center", color="gray", fontsize=14)
+                ax1.text(j, i, '—', ha="center", va="center", color="gray", fontsize=18)
 
     cbar = plt.colorbar(im, ax=ax1, fraction=0.046, pad=0.04)
-    cbar.set_label('Synergy (%)', rotation=270, labelpad=15, fontsize=10)
+    cbar.set_label('Synergy (%)', rotation=270, labelpad=15, fontsize=16)
 
     # 2. Cumulative performance with component addition
     ax2 = axes[1]
@@ -370,13 +366,13 @@ def plot_component_interaction(output_path):
                 ax2.annotate('', xy=(x[i], cumulative_acc[i]), xytext=(x[i], cumulative_acc[i-1]),
                            arrowprops=dict(arrowstyle='->', lw=2, color='red', alpha=0.7))
                 ax2.text(x[i]+0.15, (cumulative_acc[i] + cumulative_acc[i-1])/2,
-                        f'+{imp:.1f}%', fontsize=9, color='red', fontweight='bold')
+                        f'+{imp:.1f}%', fontsize=12, color='red', fontweight='bold')
 
     ax2.set_xticks(x)
-    ax2.set_xticklabels(stages, fontsize=9)
-    ax2.set_ylabel('Tune Type Accuracy (%)', fontsize=10)
+    ax2.set_xticklabels(stages, fontsize=12)
+    ax2.set_ylabel('Tune Type Accuracy (%)', fontsize=16)
     ax2.set_title('(b) Cumulative Component Addition\n(Sequential Improvement)',
-                  fontweight='bold', pad=15, fontsize=11)
+                  fontweight='bold', pad=15, fontsize=18)
     ax2.set_ylim(0, 85)
     ax2.axhline(y=16.7, color='gray', linestyle='--', linewidth=1, alpha=0.5, label='Chance')
 
@@ -385,12 +381,11 @@ def plot_component_interaction(output_path):
         for bar in bar_container:
             height = bar.get_height()
             ax2.text(bar.get_x() + bar.get_width()/2., height + 1,
-                    f'{val:.1f}%', ha='center', va='bottom', fontsize=8, fontweight='bold')
+                    f'{val:.1f}%', ha='center', va='bottom', fontsize=11, fontweight='bold')
 
-    ax2.legend(loc='upper left', fontsize=8)
+    ax2.legend(loc='upper left', fontsize=12)
 
-    plt.suptitle('Component Interaction Analysis', fontsize=14, fontweight='bold', y=0.98)
-    plt.tight_layout(rect=[0, 0, 1, 0.95])
+    plt.tight_layout()
 
     plt.savefig(output_path, dpi=300, bbox_inches='tight', format='pdf', pad_inches=0.1)
     plt.savefig(output_path.replace('.pdf', '.png'), dpi=300, bbox_inches='tight')
