@@ -317,7 +317,7 @@ We set $\lambda_{\text{MMM}} = 1.0$ and $\lambda_{\text{TI}} = 0.5$ based on val
 
 \subsection{Implementation Details}
 
-Our training procedure employs the AdamW optimizer with a constant learning rate of $3 \times 10^{-4}$ and weight decay of 0.01, training for 20 epochs (approximately 30,000 steps) with batch size 128. Gradient clipping at norm 1.0 prevents explosion during early training when the randomly initialized decoder produces unstable reconstructions. Training is conducted on a single Apple M4 Mac with 48GB unified memory, completing in 18 hours. We save checkpoints every 5,000 steps and select the best model by validation loss, with the final model typically corresponding to step 15,000--17,000 where validation loss reaches its minimum before mild overfitting onset.
+Our training procedure employs the AdamW optimizer with a constant learning rate of $3 \times 10^{-4}$ and weight decay of 0.01, training for 20 epochs (approximately 35,000 steps) with batch size 128. Gradient clipping at norm 1.0 prevents explosion during early training when the randomly initialized decoder produces unstable reconstructions. Training is conducted on a single Apple M4 Mac with 48GB unified memory, completing in 18 hours. We save checkpoints every 5,000 steps and select the best model by validation loss, with the final model typically corresponding to step 15,000--17,000 where validation loss reaches its minimum before mild overfitting onset.
 
 
 \begin{table}[!htb]
@@ -344,7 +344,7 @@ Our training procedure employs the AdamW optimizer with a constant learning rate
 & Weight decay & 0.01 \\
 & Batch size & 128 \\
 & Number of epochs & 20 \\
-& Total training steps & $\sim$30,000 \\
+& Total training steps & $\sim$35,000 \\
 & Gradient clipping (max norm) & 1.0 \\
 & Learning rate schedule & Constant \\
 & Warmup steps & 0 \\
@@ -388,7 +388,7 @@ The Masked Music Modeling loss (top right panel) decreases substantially from 3.
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{training_curves_hq.pdf}
-\caption{Training loss curves for Masked Music Modeling (MMM), Transposition Invariance (TI), Section Contrastive Loss (SCL), and combined total loss over 20 epochs (30,000 steps). \textbf{Top left}: Total loss (train and validation) decreases from 2.95 to 2.65, with validation loss tracking training closely, indicating minimal overfitting. \textbf{Top right}: MMM loss decreases from 3.2 to 2.4, demonstrating effective bar-level reconstruction learning. \textbf{Bottom left}: TI loss stabilizes around 0.012 after initial decrease, suggesting successful contrastive alignment for transposition invariance. \textbf{Bottom right}: SCL loss decreases from 0.9 to 0.75, capturing section-level structural patterns. Best model selected at step 15,000 by validation loss.}
+\caption{Training loss curves for Masked Music Modeling (MMM), Transposition Invariance (TI), Section Contrastive Loss (SCL), and combined total loss over 20 epochs (35,000 steps). \textbf{Top left}: Total loss (train and validation) decreases from 2.95 to 2.65, with validation loss tracking training closely, indicating minimal overfitting. \textbf{Top right}: MMM loss decreases from 3.2 to 2.4, demonstrating effective bar-level reconstruction learning. \textbf{Bottom left}: TI loss stabilizes around 0.012 after initial decrease, suggesting successful contrastive alignment for transposition invariance. \textbf{Bottom right}: SCL loss decreases from 0.9 to 0.75, capturing section-level structural patterns. Best model selected at step 15,000 by validation loss.}
 \label{fig:training}
 \end{figure}
 

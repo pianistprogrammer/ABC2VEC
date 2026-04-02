@@ -2,165 +2,260 @@
 """
 Generate high-quality training curves for ABC2Vec paper.
 
-This script creates publication-quality training curve visualizations
-with higher resolution and better styling than the original figure.
+Loads real training history from training_history.json (written by run_training.py)
+and produces publication-quality figures. No synthetic data is used.
+
+Usage:
+    python generate_training_curves.py
+    python generate_training_curves.py --history ./checkpoints/training_history.json
+    python generate_training_curves.py --output_dir ./figures
 """
 
 import argparse
+import json
 from pathlib import Path
+
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from matplotlib.ticker import MaxNLocator
 
 
-def generate_curves():
-    """Generate synthetic training data matching the paper's described values."""
-    np.random.seed(42)
-    steps = np.arange(0, 30001, 100)
+# ---------------------------------------------------------------------------
+# Data loading
+# ---------------------------------------------------------------------------
 
-    # Total Loss: decreases from ~2.95 to ~2.65
-    total_loss = 2.95 - (steps / 30000) * 0.3
-    total_loss += np.random.normal(0, 0.02, len(steps))
-    total_loss += 0.03 * np.sin(steps / 2000) * np.exp(-steps / 15000)
+def load_history(history_path: Path) -> dict:
+    """Load and parse training_history.json into numpy arrays."""
+    with open(history_path) as f:
+        raw = json.load(f)
 
-    # Validation Loss
-    val_loss = 2.92 - (steps / 30000) * 0.28
-    val_loss += np.random.normal(0, 0.015, len(steps))
-    val_loss += 0.02 * np.sin(steps / 2500) * np.exp(-steps / 18000)
+    train = raw["train_losses"]   # list of {step, mmm, scl, ti, total}
+    val   = raw["val_losses"]     # list of {step, mmm, ti, total}  (no scl)
 
-    # MMM Loss: decreases from 3.2 to 2.4
-    mmm_loss = 3.2 - (steps / 30000) * 0.8
-    mmm_loss += np.random.normal(0, 0.04, len(steps))
-    mmm_loss += 0.05 * np.sin(steps / 1500) * np.exp(-steps / 12000)
+    def extract(records, key):
+        return (
+            np.array([r["step"] for r in records]),
+            np.array([r[key]    for r in records]),
+        )
 
-    # TI Loss: stabilizes around 0.012 with initial decrease from ~0.015
-    ti_loss = 0.015 - (steps / 30000) * 0.003
-    ti_loss += np.random.normal(0, 0.0015, len(steps))
-    ti_loss = np.clip(ti_loss, 0.006, 0.020)
-    ti_loss += 0.002 * np.sin(steps / 1000) * np.exp(-steps / 10000)
+    tr_steps,  tr_total = extract(train, "total")
+    _,         tr_mmm   = extract(train, "mmm")
+    _,         tr_ti    = extract(train, "ti")
+    _,         tr_scl   = extract(train, "scl")
 
-    # Section Contrastive Loss
-    scl_loss = 0.85 - (steps / 30000) * 0.15
-    scl_loss += np.random.normal(0, 0.03, len(steps))
-    scl_loss = np.clip(scl_loss, 0.65, 1.0)
-    scl_loss += 0.04 * np.sin(steps / 1200) * np.exp(-steps / 11000)
+    val_steps, val_total = extract(val, "total")
+    _,         val_mmm   = extract(val, "mmm")
+    _,         val_ti    = extract(val, "ti")
 
-    return steps, total_loss, val_loss, mmm_loss, ti_loss, scl_loss
+    return {
+        "tr_steps":  tr_steps,
+        "tr_total":  tr_total,
+        "tr_mmm":    tr_mmm,
+        "tr_ti":     tr_ti,
+        "tr_scl":    tr_scl,
+        "val_steps": val_steps,
+        "val_total": val_total,
+        "val_mmm":   val_mmm,
+        "val_ti":    val_ti,
+        "total_steps":    raw.get("total_steps"),
+        "best_val_loss":  raw.get("best_val_loss"),
+    }
 
 
-def smooth(y, window=50):
+# ---------------------------------------------------------------------------
+# Smoothing helper
+# ---------------------------------------------------------------------------
+
+def smooth(y: np.ndarray, window: int = 30) -> np.ndarray:
+    """Apply a centred moving-average with the given window."""
     box = np.ones(window) / window
-    return np.convolve(y, box, mode='same')
+    return np.convolve(y, box, mode="same")
 
 
-def plot_standard(steps, total_loss, val_loss, mmm_loss, ti_loss, scl_loss, output_dir):
-    colors = {'train': '#1f77b4', 'val': '#d62728', 'mmm': '#1f77b4',
-              'ti': '#2ca02c', 'scl': '#ff7f0e'}
+# ---------------------------------------------------------------------------
+# Plotting helpers
+# ---------------------------------------------------------------------------
 
+COLORS = {
+    "train": "#1f77b4",   # blue
+    "val":   "#d62728",   # red
+    "mmm":   "#1f77b4",   # blue
+    "ti":    "#2ca02c",   # green
+    "scl":   "#ff7f0e",   # orange
+}
+
+
+def _style_ax(ax, title: str):
+    ax.set_xlabel("Step")
+    ax.set_ylabel("Loss")
+    ax.set_title(title)
+    ax.grid(True, alpha=0.3, linestyle="--", linewidth=0.5)
+    ax.xaxis.set_major_locator(MaxNLocator(6))
+
+
+def plot_standard(d: dict, output_dir: Path):
+    """2×2 grid, raw traces, train + val where available."""
     fig = plt.figure(figsize=(12, 8))
-    gs = gridspec.GridSpec(2, 2, figure=fig, hspace=0.3, wspace=0.25)
+    gs  = gridspec.GridSpec(2, 2, figure=fig, hspace=0.35, wspace=0.28)
 
+    # ── Total loss ──────────────────────────────────────────────────────────
     ax1 = fig.add_subplot(gs[0, 0])
-    ax1.plot(steps, total_loss, color=colors['train'], linewidth=1.5, label='Train', alpha=0.9)
-    ax1.plot(steps, val_loss, color=colors['val'], linewidth=1.5, label='Val', alpha=0.9)
-    ax1.set_xlabel('Step'); ax1.set_ylabel('Loss'); ax1.set_title('Total Loss')
-    ax1.legend(loc='upper right', frameon=True, fancybox=True, shadow=True)
-    ax1.grid(True, alpha=0.3, linestyle='--', linewidth=0.5)
-    ax1.set_ylim([2.45, 3.05]); ax1.xaxis.set_major_locator(MaxNLocator(6))
+    ax1.plot(d["tr_steps"],  d["tr_total"],  color=COLORS["train"], lw=1.2,
+             label="Train", alpha=0.85)
+    ax1.plot(d["val_steps"], d["val_total"], color=COLORS["val"],   lw=1.5,
+             label="Val",   alpha=0.95, marker="o", markersize=3)
+    ax1.legend(loc="upper right", frameon=True)
+    _style_ax(ax1, "Total Loss")
 
+    # ── MMM loss ─────────────────────────────────────────────────────────────
     ax2 = fig.add_subplot(gs[0, 1])
-    ax2.plot(steps, mmm_loss, color=colors['mmm'], linewidth=1.5, alpha=0.9)
-    ax2.set_xlabel('Step'); ax2.set_ylabel('Loss'); ax2.set_title('Masked Music Modeling Loss')
-    ax2.grid(True, alpha=0.3, linestyle='--', linewidth=0.5)
-    ax2.set_ylim([2.35, 3.3]); ax2.xaxis.set_major_locator(MaxNLocator(6))
+    ax2.plot(d["tr_steps"],  d["tr_mmm"],  color=COLORS["mmm"], lw=1.2,
+             label="Train MMM", alpha=0.85)
+    ax2.plot(d["val_steps"], d["val_mmm"], color=COLORS["val"], lw=1.5,
+             label="Val MMM",   alpha=0.95, marker="o", markersize=3)
+    ax2.legend(loc="upper right", frameon=True)
+    _style_ax(ax2, "Masked Music Modeling Loss")
 
+    # ── TI loss ──────────────────────────────────────────────────────────────
     ax3 = fig.add_subplot(gs[1, 0])
-    ax3.plot(steps, ti_loss, color=colors['ti'], linewidth=1.5, alpha=0.9)
-    ax3.set_xlabel('Step'); ax3.set_ylabel('Loss'); ax3.set_title('Transposition Invariance Loss')
-    ax3.grid(True, alpha=0.3, linestyle='--', linewidth=0.5)
-    ax3.xaxis.set_major_locator(MaxNLocator(6))
+    ax3.plot(d["tr_steps"],  d["tr_ti"],  color=COLORS["ti"], lw=1.2,
+             label="Train TI", alpha=0.85)
+    ax3.plot(d["val_steps"], d["val_ti"], color=COLORS["val"], lw=1.5,
+             label="Val TI",   alpha=0.95, marker="o", markersize=3)
+    ax3.legend(loc="upper right", frameon=True)
+    _style_ax(ax3, "Transposition Invariance Loss")
 
+    # ── SCL loss (train only — not logged at eval) ───────────────────────────
     ax4 = fig.add_subplot(gs[1, 1])
-    ax4.plot(steps, scl_loss, color=colors['scl'], linewidth=1.5, alpha=0.9)
-    ax4.set_xlabel('Step'); ax4.set_ylabel('Loss'); ax4.set_title('Section Contrastive Loss')
-    ax4.grid(True, alpha=0.3, linestyle='--', linewidth=0.5)
-    ax4.xaxis.set_major_locator(MaxNLocator(6))
+    ax4.plot(d["tr_steps"], d["tr_scl"], color=COLORS["scl"], lw=1.2,
+             label="Train SCL", alpha=0.85)
+    ax4.legend(loc="upper right", frameon=True)
+    _style_ax(ax4, "Section Contrastive Loss")
 
-    fig.suptitle('ABC2Vec Training Curves', fontsize=16, fontweight='bold', y=0.98)
-    plt.tight_layout(rect=[0, 0, 1, 0.96])
+    total_steps = d["total_steps"] or int(d["tr_steps"][-1])
+    fig.suptitle(f"ABC2Vec Training Curves  ({total_steps:,} steps)",
+                 fontsize=14, fontweight="bold", y=0.99)
+    plt.tight_layout(rect=[0, 0, 1, 0.97])
 
-    out_png = output_dir / 'training_curves_hq.png'
-    out_pdf = output_dir / 'training_curves_hq.pdf'
-    plt.savefig(out_png, dpi=300, bbox_inches='tight', facecolor='white')
-    plt.savefig(out_pdf, bbox_inches='tight', facecolor='white')
-    print(f"Saved: {out_png}")
-    print(f"Saved: {out_pdf}")
+    for suffix in (".png", ".pdf"):
+        out = output_dir / f"training_curves_hq{suffix}"
+        plt.savefig(out, dpi=300, bbox_inches="tight", facecolor="white")
+        print(f"Saved: {out}")
     plt.close(fig)
 
 
-def plot_smoothed(steps, total_loss, val_loss, mmm_loss, ti_loss, scl_loss, output_dir):
-    colors = {'train': '#1f77b4', 'val': '#d62728', 'mmm': '#1f77b4',
-              'ti': '#2ca02c', 'scl': '#ff7f0e'}
-
+def plot_smoothed(d: dict, output_dir: Path, window: int = 30):
+    """2×2 grid, smoothed traces overlaid on faint raw traces."""
     fig, axes = plt.subplots(2, 2, figsize=(12, 8))
     axes = axes.flatten()
 
-    axes[0].plot(steps, smooth(total_loss), color=colors['train'], linewidth=2, label='Train (smoothed)', alpha=0.9)
-    axes[0].plot(steps, smooth(val_loss), color=colors['val'], linewidth=2, label='Val (smoothed)', alpha=0.9)
-    axes[0].plot(steps, total_loss, color=colors['train'], linewidth=0.5, alpha=0.2, label='Train (raw)')
-    axes[0].plot(steps, val_loss, color=colors['val'], linewidth=0.5, alpha=0.2, label='Val (raw)')
-    axes[0].set_xlabel('Step'); axes[0].set_ylabel('Loss'); axes[0].set_title('Total Loss (Smoothed)')
-    axes[0].legend(loc='upper right', fontsize=8)
-    axes[0].grid(True, alpha=0.3, linestyle='--', linewidth=0.5)
+    panels = [
+        # (ax, tr_x, tr_y,        val_x,        val_y,         color_key, title)
+        (axes[0], d["tr_steps"], d["tr_total"], d["val_steps"], d["val_total"], "train", "val",   "Total Loss"),
+        (axes[1], d["tr_steps"], d["tr_mmm"],   d["val_steps"], d["val_mmm"],   "mmm",   "val",   "Masked Music Modeling Loss"),
+        (axes[2], d["tr_steps"], d["tr_ti"],    d["val_steps"], d["val_ti"],    "ti",    "val",   "Transposition Invariance Loss"),
+        (axes[3], d["tr_steps"], d["tr_scl"],   None,           None,           "scl",   None,    "Section Contrastive Loss"),
+    ]
 
-    for ax, loss, color, title in [
-        (axes[1], mmm_loss, colors['mmm'], 'Masked Music Modeling Loss (Smoothed)'),
-        (axes[2], ti_loss,  colors['ti'],  'Transposition Invariance Loss (Smoothed)'),
-        (axes[3], scl_loss, colors['scl'], 'Section Contrastive Loss (Smoothed)'),
-    ]:
-        ax.plot(steps, smooth(loss), color=color, linewidth=2, alpha=0.9)
-        ax.plot(steps, loss, color=color, linewidth=0.5, alpha=0.2)
-        ax.set_xlabel('Step'); ax.set_ylabel('Loss'); ax.set_title(title)
-        ax.grid(True, alpha=0.3, linestyle='--', linewidth=0.5)
+    for ax, tx, ty, vx, vy, tc, vc, title in panels:
+        # Faint raw train
+        ax.plot(tx, ty, color=COLORS[tc], lw=0.5, alpha=0.2)
+        # Smoothed train
+        ax.plot(tx, smooth(ty, window), color=COLORS[tc], lw=2.0,
+                alpha=0.9, label="Train (smoothed)")
+        if vx is not None:
+            # Val points + smoothed (only if enough points)
+            ax.plot(vx, vy, color=COLORS[vc], lw=0, marker="o",
+                    markersize=3, alpha=0.4)
+            if len(vy) >= window:
+                ax.plot(vx, smooth(vy, max(3, window // 5)), color=COLORS[vc],
+                        lw=2.0, alpha=0.9, label="Val (smoothed)")
+            else:
+                ax.plot(vx, vy, color=COLORS[vc], lw=1.5,
+                        alpha=0.9, label="Val")
+        ax.legend(loc="upper right", fontsize=8)
+        _style_ax(ax, f"{title} (Smoothed)")
 
-    fig.suptitle('ABC2Vec Training Curves (Smoothed)', fontsize=16, fontweight='bold')
+    total_steps = d["total_steps"] or int(d["tr_steps"][-1])
+    fig.suptitle(f"ABC2Vec Training Curves — Smoothed  ({total_steps:,} steps)",
+                 fontsize=14, fontweight="bold")
     plt.tight_layout()
 
-    out_png = output_dir / 'training_curves_smoothed.png'
-    out_pdf = output_dir / 'training_curves_smoothed.pdf'
-    plt.savefig(out_png, dpi=300, bbox_inches='tight', facecolor='white')
-    plt.savefig(out_pdf, bbox_inches='tight', facecolor='white')
-    print(f"Saved: {out_png}")
-    print(f"Saved: {out_pdf}")
+    for suffix in (".png", ".pdf"):
+        out = output_dir / f"training_curves_smoothed{suffix}"
+        plt.savefig(out, dpi=300, bbox_inches="tight", facecolor="white")
+        print(f"Saved: {out}")
     plt.close(fig)
 
 
+# ---------------------------------------------------------------------------
+# Entry point
+# ---------------------------------------------------------------------------
+
 def main():
-    parser = argparse.ArgumentParser(description="Generate HD training curve figures for ABC2Vec paper")
-    parser.add_argument("--output_dir", type=str, default="./figures",
-                        help="Output directory for figures (default: ./figures)")
+    parser = argparse.ArgumentParser(
+        description="Generate publication-quality training curves from real training history."
+    )
+    parser.add_argument(
+        "--history",
+        type=str,
+        default="./checkpoints/training_history.json",
+        help="Path to training_history.json (default: ./checkpoints/training_history.json)",
+    )
+    parser.add_argument(
+        "--output_dir",
+        type=str,
+        default="./figures",
+        help="Output directory for figures (default: ./figures)",
+    )
+    parser.add_argument(
+        "--smooth_window",
+        type=int,
+        default=30,
+        help="Moving-average window for smoothed plots (default: 30)",
+    )
     args = parser.parse_args()
 
-    output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
-    print(f"Output directory: {output_dir}")
+    history_path = Path(args.history)
+    output_dir   = Path(args.output_dir)
 
-    # Set publication-quality style
-    plt.style.use('seaborn-v0_8-paper')
+    if not history_path.exists():
+        raise FileNotFoundError(
+            f"Training history not found: {history_path}\n"
+            "Run run_training.py first to generate it."
+        )
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    print(f"History:      {history_path}")
+    print(f"Output dir:   {output_dir}")
+
+    plt.style.use("seaborn-v0_8-paper")
     plt.rcParams.update({
-        'figure.dpi': 300, 'savefig.dpi': 300,
-        'font.size': 10, 'font.family': 'serif',
-        'axes.labelsize': 11, 'axes.titlesize': 12,
-        'xtick.labelsize': 9, 'ytick.labelsize': 9,
-        'legend.fontsize': 9, 'figure.titlesize': 14,
+        "figure.dpi":    300,
+        "savefig.dpi":   300,
+        "font.size":     10,
+        "font.family":   "serif",
+        "axes.labelsize": 11,
+        "axes.titlesize": 12,
+        "xtick.labelsize": 9,
+        "ytick.labelsize": 9,
+        "legend.fontsize": 9,
+        "figure.titlesize": 14,
     })
 
-    steps, total_loss, val_loss, mmm_loss, ti_loss, scl_loss = generate_curves()
-    plot_standard(steps, total_loss, val_loss, mmm_loss, ti_loss, scl_loss, output_dir)
-    plot_smoothed(steps, total_loss, val_loss, mmm_loss, ti_loss, scl_loss, output_dir)
+    d = load_history(history_path)
+    print(f"\nLoaded {len(d['tr_steps'])} train log entries "
+          f"(steps {d['tr_steps'][0]:,}–{d['tr_steps'][-1]:,})")
+    print(f"Loaded {len(d['val_steps'])} val  log entries "
+          f"(steps {d['val_steps'][0]:,}–{d['val_steps'][-1]:,})")
+    if d["best_val_loss"]:
+        print(f"Best val loss: {d['best_val_loss']:.6f}")
 
-    print("\nGeneration complete! Four files created:")
+    plot_standard(d, output_dir)
+    plot_smoothed(d, output_dir, window=args.smooth_window)
+
+    print("\nDone. Four files written:")
     print("  training_curves_hq.png / .pdf")
     print("  training_curves_smoothed.png / .pdf")
 
