@@ -36,9 +36,9 @@ except ImportError:
     subprocess.check_call(["pip", "install", "faiss-cpu"])
     import faiss
 
-from abc2vec.data import load_processed_data
-from abc2vec.model import ABC2VecModel
-from abc2vec.tokenizer import ABCVocabulary, BarPatchifier
+from core.data import load_processed_data
+from core.model import ABC2VecModel
+from core.tokenizer import ABCVocabulary, BarPatchifier
 
 
 def compute_embeddings(

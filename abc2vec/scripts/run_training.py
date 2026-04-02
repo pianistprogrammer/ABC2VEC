@@ -21,9 +21,9 @@ import torch
 from torch.utils.data import DataLoader
 from tqdm.auto import tqdm
 
-from abc2vec.data import ABC2VecDataset, SectionPairDataset, load_processed_data
-from abc2vec.model import ABC2VecConfig, ABC2VecModel, ABC2VecLoss
-from abc2vec.tokenizer import ABCVocabulary, BarPatchifier
+from core.data import ABC2VecDataset, SectionPairDataset, load_processed_data
+from core.model import ABC2VecConfig, ABC2VecModel, ABC2VecLoss
+from core.tokenizer import ABCVocabulary, BarPatchifier
 
 
 # ---------------------------------------------------------------------------

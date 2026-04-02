@@ -33,8 +33,8 @@ except ImportError:
     subprocess.check_call(["pip", "install", "faiss-cpu"])
     import faiss
 
-from abc2vec.model import ABC2VecModel
-from abc2vec.tokenizer import ABCVocabulary, BarPatchifier
+from core.model import ABC2VecModel
+from core.tokenizer import ABCVocabulary, BarPatchifier
 
 
 def compute_embeddings(
@@ -271,7 +271,7 @@ def main():
         print(f"  {corpus_path}")
         print("\nUsing test set instead...")
 
-        from abc2vec.data import load_processed_data
+        from core.data import load_processed_data
 
         test_df = load_processed_data(args.data_dir, split="test")
         queries_df = test_df.sample(min(500, len(test_df)), random_state=42)

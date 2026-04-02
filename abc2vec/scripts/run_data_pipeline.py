@@ -8,8 +8,8 @@ Downloads IrishMAN dataset, processes ABC notation, and creates train/val/test s
 import argparse
 from pathlib import Path
 
-from abc2vec.data import download_and_process_dataset
-from abc2vec.tokenizer import ABCVocabulary
+from core.data import download_and_process_dataset
+from core.tokenizer import ABCVocabulary
 
 
 def main():

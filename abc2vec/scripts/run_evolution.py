@@ -40,8 +40,8 @@ except ImportError:
     print("Plotly not available - interactive plots will be skipped")
     HAS_PLOTLY = False
 
-from abc2vec.model import ABC2VecModel
-from abc2vec.tokenizer import ABCVocabulary, BarPatchifier
+from core.model import ABC2VecModel
+from core.tokenizer import ABCVocabulary, BarPatchifier
 
 
 def compute_embeddings(

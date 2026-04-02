@@ -7,7 +7,7 @@ name = "abc2vec"
 version = "0.1.0"
 description = "Self-supervised learning for folk music representation from ABC notation"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 license = {text = "MIT"}
 authors = [
     {name = "Jeremiah Author"}
@@ -20,10 +20,10 @@ classifiers = [
     "Topic :: Multimedia :: Sound/Audio :: Analysis",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.8",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
 ]
 
 dependencies = [
@@ -50,6 +50,7 @@ dev = [
     "flake8>=6.0.0",
     "mypy>=1.3.0",
 ]
+
 viz = [
     "matplotlib>=3.7.0",
     "seaborn>=0.12.0",
@@ -81,12 +82,12 @@ abc2vec-process = "scripts.run_data_pipeline:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["abc2vec*"]
+include = ["core*"]
 exclude = ["tests*"]
 
 [tool.black]
 line-length = 88
-target-version = ['py38', 'py39', 'py310', 'py311']
+target-version = ['py310', 'py311', 'py312', 'py313']
 include = '\.pyi?$'
 
 [tool.isort]

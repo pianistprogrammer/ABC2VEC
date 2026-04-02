@@ -13,7 +13,7 @@ import argparse
 import torch
 import torch.nn.functional as F
 
-from abc2vec import ABC2VecModel, ABCVocabulary, BarPatchifier
+from core import ABC2VecModel, ABCVocabulary, BarPatchifier
 
 
 def main():
@@ -55,7 +55,7 @@ def main():
         model = ABC2VecModel.load_pretrained(args.checkpoint)
         print(f"   ✓ Loaded from {args.checkpoint}")
     else:
-        from abc2vec.model import ABC2VecConfig
+        from core.model import ABC2VecConfig
 
         config = ABC2VecConfig(vocab_size=vocab.size)
         model = ABC2VecModel(config)

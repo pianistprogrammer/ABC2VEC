@@ -27,9 +27,9 @@ from sklearn.model_selection import StratifiedKFold, cross_val_score
 from sklearn.preprocessing import LabelEncoder
 from tqdm.auto import tqdm
 
-from abc2vec.data import load_processed_data
-from abc2vec.model import ABC2VecModel
-from abc2vec.tokenizer import ABCVocabulary, BarPatchifier
+from core.data import load_processed_data
+from core.model import ABC2VecModel
+from core.tokenizer import ABCVocabulary, BarPatchifier
 
 
 def compute_embeddings(

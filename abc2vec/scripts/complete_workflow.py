@@ -14,9 +14,9 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
 # Import ABC2Vec components
-from abc2vec import ABC2VecModel, ABCVocabulary, BarPatchifier
-from abc2vec.data import ABC2VecDataset, download_and_process_dataset
-from abc2vec.model import ABC2VecConfig, ABC2VecLoss
+from core import ABC2VecModel, ABCVocabulary, BarPatchifier
+from core.data import ABC2VecDataset, download_and_process_dataset
+from core.model import ABC2VecConfig, ABC2VecLoss
 
 
 def run_complete_workflow(
