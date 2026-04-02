@@ -99,7 +99,7 @@ abc2vec/
 ### Step 1: Navigate to Package
 
 ```bash
-cd /Volumes/LLModels/Projects/ABC2VEC/abc2vec_package
+cd /Volumes/LLModels/Projects/ABC2VEC/abc2vec
 ```
 
 ### Step 2: Run Automated Setup
@@ -347,7 +347,7 @@ You now have a **professional, production-ready Python package** that:
 
 ## 📞 Support
 
-- Read docs in `abc2vec_package/`
+- Read docs in `abc2vec/`
 - Run `make help` for commands
 - Check `START_HERE.md` for overview
 - See `INSTALLATION_GUIDE.txt` for troubleshooting

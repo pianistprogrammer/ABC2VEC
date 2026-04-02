@@ -17,7 +17,7 @@ I've successfully extracted all code from your 13 Jupyter notebooks and created 
 ## 📁 Package Structure
 
 ```
-abc2vec_package/
+abc2vec/
 │
 ├── 📦 abc2vec/              [Core Library - 17 modules]
 │   ├── tokenizer/           3 modules (vocabulary, patchifier, transposer)
@@ -148,7 +148,7 @@ loss_fn.my_custom = MyCustomLoss()
 ### Installation (2 minutes)
 
 ```bash
-cd abc2vec_package
+cd abc2vec
 
 # Option 1: Quick setup script
 ./setup.sh
@@ -272,7 +272,7 @@ make help
 ### GitHub Repository
 
 ```bash
-cd abc2vec_package
+cd abc2vec
 git init
 git add .
 git commit -m "Initial release: ABC2Vec v0.1.0"

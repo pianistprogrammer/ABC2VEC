@@ -25,7 +25,7 @@ pip install uv
 ### 2. Setup ABC2Vec Package
 
 ```bash
-cd abc2vec_package
+cd abc2vec
 
 # Automated setup (recommended)
 ./setup_uv.sh
