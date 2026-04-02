@@ -118,7 +118,7 @@ def main():
     parser.add_argument("--grad_accum",   type=int,   default=4,
                         help="Gradient accumulation steps "
                              "(effective batch = batch_size x grad_accum)")
-    parser.add_argument("--epochs",       type=int,   default=20)
+    parser.add_argument("--epochs",       type=int,   default=30)
     parser.add_argument("--lr",           type=float, default=1e-4)
     parser.add_argument("--weight_decay", type=float, default=0.01)
     parser.add_argument("--warmup_steps", type=int,   default=1000)

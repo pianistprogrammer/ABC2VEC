@@ -307,7 +307,14 @@ class ABC2VecLoss(nn.Module):
             Tuple of (total_loss, loss_dict)
         """
         losses = {}
-        total = torch.tensor(0.0, requires_grad=True, device=self._get_device())
+        # Infer device from the first available input tensor
+        _ref = next(
+            (t for t in [mmm_logits, mmm_targets, scl_emb_a, ti_emb_orig, vac_embeddings]
+             if t is not None),
+            None,
+        )
+        _device = _ref.device if _ref is not None else torch.device("cpu")
+        total = torch.tensor(0.0, requires_grad=True, device=_device)
 
         # MMM
         if all(x is not None for x in [mmm_logits, mmm_targets, mmm_mask]):
@@ -338,5 +345,10 @@ class ABC2VecLoss(nn.Module):
         return total, losses
 
     def _get_device(self) -> torch.device:
-        """Get device from first parameter."""
-        return next(self.parameters()).device
+        """Get device from first parameter (unused; kept for compatibility)."""
+        for module in self.children():
+            try:
+                return next(module.parameters()).device
+            except StopIteration:
+                continue
+        return torch.device("cpu")
