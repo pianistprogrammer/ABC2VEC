@@ -5,7 +5,7 @@ from typing import Dict, List
 
 import torch
 
-from abc2vec.tokenizer.vocabulary import ABCVocabulary
+from core.tokenizer.vocabulary import ABCVocabulary
 
 
 class BarPatchifier:

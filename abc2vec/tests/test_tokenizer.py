@@ -3,7 +3,7 @@
 import pytest
 import torch
 
-from abc2vec.tokenizer import ABCVocabulary, BarPatchifier, ABCTransposer
+from core.tokenizer import ABCVocabulary, BarPatchifier, ABCTransposer
 
 
 class TestABCVocabulary:

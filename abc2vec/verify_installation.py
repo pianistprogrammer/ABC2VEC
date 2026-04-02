@@ -52,7 +52,7 @@ def check_abc2vec_imports():
     print("\nChecking ABC2Vec imports...")
 
     try:
-        from abc2vec import (
+        from core import (
             ABCVocabulary,
             BarPatchifier,
             ABCTransposer,
@@ -61,13 +61,13 @@ def check_abc2vec_imports():
 
         print("  ✓ Core components")
 
-        from abc2vec.data import ABC2VecDataset
+        from core.data import ABC2VecDataset
         print("  ✓ Data components")
 
-        from abc2vec.model import ABC2VecConfig, ABC2VecLoss
+        from core.model import ABC2VecConfig, ABC2VecLoss
         print("  ✓ Model components")
 
-        from abc2vec.training import Trainer
+        from core.training import Trainer
         print("  ✓ Training components")
 
         return True
@@ -102,7 +102,7 @@ def run_basic_test():
     print("\nRunning basic functionality test...")
 
     try:
-        from abc2vec import ABCVocabulary, BarPatchifier
+        from core import ABCVocabulary, BarPatchifier
         import torch
 
         # Create vocabulary
@@ -121,7 +121,7 @@ def run_basic_test():
         print("  ✓ Patchification")
 
         # Test model creation
-        from abc2vec.model import ABC2VecConfig, ABC2VecModel
+        from core.model import ABC2VecConfig, ABC2VecModel
 
         config = ABC2VecConfig(vocab_size=vocab.size, d_model=128, n_layers=2)
         model = ABC2VecModel(config)

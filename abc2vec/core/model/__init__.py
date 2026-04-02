@@ -1,13 +1,13 @@
 """Model module for ABC2Vec."""
 
-from abc2vec.model.embedding import PatchEmbedding
-from abc2vec.model.encoder import (
+from core.model.embedding import PatchEmbedding
+from core.model.encoder import (
     ABC2VecConfig,
     TransformerEncoderLayer,
     ABC2VecEncoder,
     ABC2VecModel,
 )
-from abc2vec.model.objectives import (
+from core.model.objectives import (
     MaskedMusicModelingLoss,
     SectionContrastiveLoss,
     TranspositionInvarianceLoss,

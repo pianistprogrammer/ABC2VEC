@@ -9,8 +9,8 @@ import pandas as pd
 import torch
 from torch.utils.data import Dataset
 
-from abc2vec.tokenizer.patchifier import BarPatchifier
-from abc2vec.tokenizer.transposer import ABCTransposer
+from core.tokenizer.patchifier import BarPatchifier
+from core.tokenizer.transposer import ABCTransposer
 
 
 class ABC2VecDataset(Dataset):

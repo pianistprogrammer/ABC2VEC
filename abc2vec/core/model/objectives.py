@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from abc2vec.model.encoder import ABC2VecConfig
+from core.model.encoder import ABC2VecConfig
 
 
 class MaskedMusicModelingLoss(nn.Module):

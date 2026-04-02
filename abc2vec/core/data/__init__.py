@@ -1,6 +1,6 @@
 """Data module for ABC2Vec."""
 
-from abc2vec.data.pipeline import (
+from core.data.pipeline import (
     download_and_process_dataset,
     normalize_abc,
     deduplicate_tunes,
@@ -8,7 +8,7 @@ from abc2vec.data.pipeline import (
     parse_key_signature,
     infer_tune_type,
 )
-from abc2vec.data.dataset import (
+from core.data.dataset import (
     ABC2VecDataset,
     SectionPairDataset,
     VariantDataset,

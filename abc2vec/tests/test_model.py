@@ -3,13 +3,13 @@
 import pytest
 import torch
 
-from abc2vec.model import (
+from core.model import (
     ABC2VecConfig,
     ABC2VecModel,
     PatchEmbedding,
     TransformerEncoderLayer,
 )
-from abc2vec.tokenizer import ABCVocabulary
+from core.tokenizer import ABCVocabulary
 
 
 class TestPatchEmbedding:

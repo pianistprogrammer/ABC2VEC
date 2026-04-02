@@ -1,5 +1,5 @@
 """Utility functions for ABC2Vec."""
 
-from abc2vec.utils.config import ConfigManager
+from core.utils.config import ConfigManager
 
 __all__ = ["ConfigManager"]

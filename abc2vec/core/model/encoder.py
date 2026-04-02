@@ -8,7 +8,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from abc2vec.model.embedding import PatchEmbedding
+from core.model.embedding import PatchEmbedding
 
 
 @dataclass

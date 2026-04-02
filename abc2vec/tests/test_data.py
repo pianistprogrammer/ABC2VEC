@@ -3,7 +3,7 @@
 import pytest
 import pandas as pd
 
-from abc2vec.data.pipeline import (
+from core.data.pipeline import (
     normalize_abc,
     deduplicate_tunes,
     extract_sections,
