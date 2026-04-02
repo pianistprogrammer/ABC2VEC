@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.18)  27 MAR 2026 15:16
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.18)  2 APR 2026 12:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -378,68 +378,66 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 <dataset_statistics.pdf, id=38, 1020.54303pt x 872.1456pt>
 File: dataset_statistics.pdf Graphic file (type pdf)
 <use dataset_statistics.pdf>
-Package pdftex.def Info: dataset_statistics.pdf  used on input line 152.
+Package pdftex.def Info: dataset_statistics.pdf  used on input line 147.
 (pdftex.def)             Requested size: 408.0pt x 348.66576pt.
- [8 <./dataset_statistics.pdf>]
-<key_mode_distribution.pdf, id=141, 824.42012pt x 1078.66673pt>
+<key_mode_distribution.pdf, id=39, 824.42012pt x 1078.66673pt>
 File: key_mode_distribution.pdf Graphic file (type pdf)
 <use key_mode_distribution.pdf>
-Package pdftex.def Info: key_mode_distribution.pdf  used on input line 161.
+Package pdftex.def Info: key_mode_distribution.pdf  used on input line 156.
 (pdftex.def)             Requested size: 408.0pt x 533.81825pt.
- [9] [10{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./key_mode_distribution.pdf>] [11]
-<bar_patching_stats.pdf, id=233, 886.81625pt x 654.03723pt>
+ [8 <./dataset_statistics.pdf>] [9{/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <./key_mode_distribution.pdf>] [10]
+<bar_patching_stats.pdf, id=230, 886.81625pt x 654.03723pt>
 File: bar_patching_stats.pdf Graphic file (type pdf)
 <use bar_patching_stats.pdf>
-Package pdftex.def Info: bar_patching_stats.pdf  used on input line 200.
+Package pdftex.def Info: bar_patching_stats.pdf  used on input line 194.
 (pdftex.def)             Requested size: 408.0pt x 300.9007pt.
- [12]
+ [11]
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 225.
+(Font)              size <5> substituted on input line 219.
 
-[13 <./bar_patching_stats.pdf>]
-<architecture_diagram.png, id=321, 3613.5pt x 2032.59375pt>
+[12 <./bar_patching_stats.pdf>]
+<architecture_diagram.png, id=317, 3613.5pt x 2032.59375pt>
 File: architecture_diagram.png Graphic file (type png)
 <use architecture_diagram.png>
-Package pdftex.def Info: architecture_diagram.png  used on input line 235.
+Package pdftex.def Info: architecture_diagram.png  used on input line 229.
 (pdftex.def)             Requested size: 408.0pt x 229.47882pt.
- [14 <./architecture_diagram.png (PNG copy)>] [15] [16] [17]
-<training_curves_hq.pdf, id=341, 737.09999pt x 550.03429pt>
+ [13 <./architecture_diagram.png (PNG copy)>] [14] [15] [16]
+<training_curves_hq.pdf, id=338, 737.09999pt x 550.03429pt>
 File: training_curves_hq.pdf Graphic file (type pdf)
 <use training_curves_hq.pdf>
-Package pdftex.def Info: training_curves_hq.pdf  used on input line 392.
+Package pdftex.def Info: training_curves_hq.pdf  used on input line 390.
 (pdftex.def)             Requested size: 408.0pt x 304.45015pt.
- [18] [19 <./training_curves_hq.pdf>] [20]
-<tune_type_confusion.pdf, id=413, 671.3336pt x 570.9684pt>
+ [17] [18 <./training_curves_hq.pdf>] [19]
+<tune_type_confusion.pdf, id=410, 671.3336pt x 570.9684pt>
 File: tune_type_confusion.pdf Graphic file (type pdf)
 <use tune_type_confusion.pdf>
-Package pdftex.def Info: tune_type_confusion.pdf  used on input line 431.
+Package pdftex.def Info: tune_type_confusion.pdf  used on input line 429.
 (pdftex.def)             Requested size: 285.59875pt x 242.90665pt.
- [21 <./tune_type_confusion.pdf>] [22] [23] [24]
-<umap_combined.pdf, id=470, 1289.25096pt x 494.19507pt>
+ [20 <./tune_type_confusion.pdf>] [21] [22] [23]
+<umap_combined.pdf, id=467, 1289.25096pt x 494.19507pt>
 File: umap_combined.pdf Graphic file (type pdf)
 <use umap_combined.pdf>
-Package pdftex.def Info: umap_combined.pdf  used on input line 541.
+Package pdftex.def Info: umap_combined.pdf  used on input line 539.
 (pdftex.def)             Requested size: 408.0pt x 156.39618pt.
- [25 <./umap_combined.pdf>]
-<ablation_objectives.pdf, id=551, 972.57347pt x 756.03554pt>
+ [24 <./umap_combined.pdf>]
+<ablation_objectives.pdf, id=547, 972.57347pt x 756.03554pt>
 File: ablation_objectives.pdf Graphic file (type pdf)
 <use ablation_objectives.pdf>
-Package pdftex.def Info: ablation_objectives.pdf  used on input line 593.
+Package pdftex.def Info: ablation_objectives.pdf  used on input line 591.
 (pdftex.def)             Requested size: 408.0pt x 317.1636pt.
- [26] [27 <./ablation_objectives.pdf>]
-<ablation_architecture.pdf, id=649, 1007.07437pt x 581.67061pt>
+ [25] [26 <./ablation_objectives.pdf>]
+<ablation_architecture.pdf, id=646, 1007.07437pt x 581.67061pt>
 File: ablation_architecture.pdf Graphic file (type pdf)
 <use ablation_architecture.pdf>
-Package pdftex.def Info: ablation_architecture.pdf  used on input line 654.
+Package pdftex.def Info: ablation_architecture.pdf  used on input line 617.
 (pdftex.def)             Requested size: 408.0pt x 235.65518pt.
- [28]
-<ablation_interaction.pdf, id=653, 941.67691pt x 426.92574pt>
+<ablation_interaction.pdf, id=647, 941.67691pt x 426.92574pt>
 File: ablation_interaction.pdf Graphic file (type pdf)
 <use ablation_interaction.pdf>
-Package pdftex.def Info: ablation_interaction.pdf  used on input line 669.
+Package pdftex.def Info: ablation_interaction.pdf  used on input line 632.
 (pdftex.def)             Requested size: 408.0pt x 184.97507pt.
- [29 <./ablation_architecture.pdf>] [30 <./ablation_interaction.pdf>] [31] [32] [33] (./abc2vec_paper.bbl [34] [35]) [36] (./abc2vec_paper.aux)
+ [27 <./ablation_architecture.pdf>] [28 <./ablation_interaction.pdf>] [29] [30] [31] (./abc2vec_paper.bbl [32] [33]) [34] (./abc2vec_paper.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -451,18 +449,18 @@ LaTeX Font Warning: Size substitutions with differences
 
  ) 
 Here is how much of TeX's memory you used:
- 5362 strings out of 467525
- 82857 string characters out of 5418982
- 495500 words of memory out of 5000000
- 34170 multiletter control sequences out of 15000+600000
+ 5361 strings out of 467525
+ 82838 string characters out of 5418982
+ 494475 words of memory out of 5000000
+ 34169 multiletter control sequences out of 15000+600000
  640915 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,12n,93p,2026b,398s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,12n,93p,2026b,392s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb>
-Output written on abc2vec_paper.pdf (36 pages, 1035942 bytes).
+Output written on abc2vec_paper.pdf (34 pages, 1034157 bytes).
 PDF statistics:
- 971 PDF objects out of 1000 (max. 8388607)
- 237 compressed objects within 3 object streams
+ 965 PDF objects out of 1000 (max. 8388607)
+ 233 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

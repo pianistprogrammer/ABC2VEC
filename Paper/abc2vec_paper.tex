@@ -74,7 +74,7 @@ However, a critical gap remains in the landscape of music representation researc
 Folk music exhibits several unique characteristics that distinguish it from the corpora dominating current MIR datasets and that necessitate specialized modeling approaches:
 
 \begin{itemize}
-\item \textbf{Oral transmission and melodic variation:} Unlike notated classical music or commercially recorded popular music, folk tunes evolve through oral tradition. A single tune such as the Irish jig ``The Kesh''---exists not as a canonical score but as a \textit{family} of melodic variants or ``settings.'' Each performer, region, and performance context introduces subtle variations: ornamentations are added or removed, phrases are reordered, melodic contours shift within modal constraints. This fluidity presents both a challenge and an opportunity: a robust folk music embedding must recognize that seemingly different notations may represent the same underlying tune, a task requiring semantic understanding beyond surface-level pattern matching.
+\item \textbf{Oral transmission and melodic variation:} Unlike notated classical music or commercially recorded popular music, folk tunes evolve through oral tradition. A single tune such as the Irish jig ``The Kesh'', exists not as a canonical score but as a \textit{family} of melodic variants or ``settings.'' Each performer, region, and performance context introduces subtle variations: ornamentations are added or removed, phrases are reordered, melodic contours shift within modal constraints. This fluidity presents both a challenge and an opportunity: a robust folk music embedding must recognize that seemingly different notations may represent the same underlying tune, a task requiring semantic understanding beyond surface-level pattern matching.
 
 \item \textbf{Modal diversity and non-standard tonality:} Western art music and popular music predominantly employ major and minor scales within common-practice tonality\cite{pfleiderer2019beyond}. Folk music traditions, by contrast, frequently utilize modal scales such as Dorian, Mixolydian, Aeolian, and others\cite{tan2017perception}, inherited from medieval church modes and pre-tonal musical practice. Irish traditional music, for instance, exhibits rich modal diversity, with many tunes defying classification into major/minor categories. This modal complexity demands embeddings that capture tonal structure beyond simple key detection, encoding subtle scale degrees and harmonic implications.
 
@@ -128,19 +128,14 @@ MelodyT5 \cite{wu2024melodyt5} represents another recent effort in symbolic musi
 
 Self-supervised learning frameworks developed in computer vision and natural language processing offer promising foundations for symbolic music representation. Masked Language Modeling \cite{BERT2019}, introduced by BERT and subsequently adopted across numerous domains, has proven remarkably effective for learning contextualized representations by predicting randomly masked tokens from surrounding context. The main idea is that when a model is trained to fill in missing parts, it learns deeper patterns in the data. Applied to music, predicting masked bars would require a model to internalize melodic patterns, harmonic context, and rhythmic structure—making masked reconstruction a natural pre-training signal for symbolic music encoders.
 
-Contrastive learning, exemplified by SimCLR \cite{jiang2020speech} and MoCo \cite{he2020momentum} in computer vision, offers another relevant paradigm. Contrastive learning forms positive pairs by applying data augmentations that preserve semantic meaning while changing surface form \cite{zhang2024data}, training models to place similar pairs close together in the embedding space while pushing apart unrelated samples. In music, natural augmentations include transposition (shifting all pitches by a constant interval), tempo variation (scaling note durations), and structural reordering (swapping sections in multi-part tunes). Transposition is particularly relevant for folk music, where the same tune may be played in different keys depending on instrument range, ensemble configuration, or performer preference—yet no existing music representation model explicitly enforces pitch-invariance as a training objective.
+Contrastive learning, exemplified by SimCLR \cite{jiang2020speech} and MoCo \cite{he2020momentum} in computer vision, offers another relevant paradigm. Contrastive learning forms positive pairs by applying data augmentations that preserve semantic meaning while changing surface form \cite{zhang2024data}, training models to place similar pairs close together in the embedding space while pushing apart unrelated samples. In music, natural augmentations include transposition (shifting all pitches by a constant interval), tempo variation (scaling note durations), and structural reordering (swapping sections in multi-part tunes). Transposition is particularly relevant for folk music, where the same tune may be played in different keys depending on instrument range, ensemble configuration, or performer preference, yet no existing music representation model explicitly enforces pitch-invariance as a training objective.
 
-Evaluation methodologies for symbolic music embeddings have traditionally emphasized either generation quality metrics (perplexity, note accuracy, expert human evaluation of generated samples) or cross-modal retrieval performance (recall@k for music-text matching) \cite{zhang2023symbolic,ji2023survey}. Linear probing\cite{pagh2007linear}, which involves training simple linear classifiers on fixed (frozen) embeddings to predict specific properties, has become a standard way to evaluate representation quality in self-supervised learning. Originally used in computer vision and later adopted in language and audio tasks, it tests whether a property is encoded in a linearly separable manner within the embedding space, providing insights into the geometric organization of learned representations\cite{levy2023probing}. Clustering evaluation metrics such as silhouette scores\cite{shahapure2020cluster} (measuring within-cluster cohesion versus between-cluster separation), normalized mutual information (quantifying agreement between cluster assignments and ground-truth labels), and adjusted Rand index\cite{santos2009use} (measuring clustering quality after chance correction) complement probing by assessing unsupervised structure. Dimensionality reduction visualization via UMAP and t-SNE enables qualitative assessment of embedding geometry, revealing whether musical categories form visually coherent groups in low-dimensional projections. However, these evaluation protocols have been applied primarily to classical and popular music embeddings; their adaptation to folk music—where categories are fluid and variation is the norm—remains largely unexplored.
+Evaluation methodologies for symbolic music embeddings have traditionally emphasized either generation quality metrics (perplexity, note accuracy, expert human evaluation of generated samples) or cross-modal retrieval performance (recall@k for music-text matching) \cite{zhang2023symbolic,ji2023survey}. Linear probing\cite{pagh2007linear}, which involves training simple linear classifiers on fixed (frozen) embeddings to predict specific properties, has become a standard way to evaluate representation quality in self-supervised learning. Originally used in computer vision and later adopted in language and audio tasks, it tests whether a property is encoded in a linearly separable manner within the embedding space, providing insights into the geometric organization of learned representations\cite{levy2023probing}. Clustering evaluation metrics such as silhouette scores\cite{shahapure2020cluster} (measuring within-cluster cohesion versus between-cluster separation), normalized mutual information (quantifying agreement between cluster assignments and ground-truth labels), and adjusted Rand index\cite{santos2009use} (measuring clustering quality after chance correction) complement probing by assessing unsupervised structure. Dimensionality reduction techniques such as UMAP and t-SNE provide a means of qualitatively inspecting embedding geometry by projecting high-dimensional representations into a low-dimensional space, where the extent to which musical categories form coherent clusters can be visually assessed. However, these approaches have been predominantly applied to embeddings of classical and popular music. Their application to folk music remains underexplored, particularly given that folk traditions are characterised by fluid category boundaries and inherent variation rather than rigid genre definitions.
 
 In folk music research, earlier computational approaches have mostly used symbolic comparison methods. For example, edit distance techniques\cite{blumenthal2019new,tremblay2007marking} treat ABC notation as text and measure similarity by aligning characters or tokens. Other methods use predefined similarity functions based on features like melodic contour \cite{schmuckler1999testing,poladian1951melodic} (how the melody rises and falls), rhythm (patterns of note durations), and structure (such as repeats or sections). While these approaches capture clear musical features and often match human judgments, they depend heavily on expert-designed rules, may not generalize well across different styles, and struggle with the natural variation found in folk traditions, where a tune can exist in many slightly different forms. Learned embeddings offer a promising alternative: by training directly on large music corpora, they can automatically discover patterns of similarity, potentially capturing subtler relationships while remaining efficient for large-scale retrieval. Yet, to date, no dedicated embedding model has been developed for folk music that addresses its specific challenges—transposition equivalence, variant proliferation, modal tonality, and the absence of text annotations—motivating the approach we describe in the following sections.
 
-
-
 \section{Dataset}\label{sec:dataset}
 
-This section describes the IrishMAN dataset used for training and evaluation, including data sources, preprocessing steps, statistics, and data quality considerations.
-
-\subsection{Data Sources}
 We train ABC2Vec on the \textbf{IrishMAN} (Irish Music ABC Notation) dataset~\cite{IrishMAN2023}, a large-scale corpus of Irish traditional music transcriptions in ABC notation. IrishMAN aggregates tunes from two primary community-maintained archives: \textbf{The Session} (thesession.org), a collaborative platform for Irish traditional musicians that hosts user-contributed ABC transcriptions alongside discussions, recordings, and rich tune metadata; and \textbf{ABCnotation.com}, a long-standing repository of ABC transcriptions spanning multiple folk traditions, including Irish, Scottish, English, and American repertoires, maintained since the 1990s.
 
 Both sources provide tunes in standardized ABC notation with metadata fields including title (T:), key signature (K:), meter (M:), and optionally rhythm type (R:). The crowdsourced nature of these archives means that data quality varies: some tunes are professionally transcribed from published tunebooks, while others are informal transcriptions from sessions or recordings. This diversity reflects the living, oral tradition of folk music.
@@ -186,10 +181,9 @@ We also extract structural statistics by counting the number of bars (delimited 
 Crowdsourced archives inevitably contain duplicate transcriptions of the same tune, often arising when multiple contributors independently transcribe identical melodies with minor variations in formatting or header metadata. To ensure dataset quality and prevent train-test leakage, we implement a robust deduplication strategy based on content hashing. Specifically, we compute MD5 hashes of the normalized ABC body (excluding header fields such as title, reference number, and transcriber annotations) and retain only the first occurrence of each unique hash. This approach removes exact tunes that are musically identical despite cosmetic differences in presentation while carefully preserving melodic variants that represent genuine musical diversity. Different settings or regional variations of the same tune, which share a title but differ in ornamentation, phrasing, or structural details, are correctly retained as distinct entries.
 
 \subsubsection{Train/Validation/Test Split}
-
 The IrishMAN dataset is distributed on HuggingFace with two pre-defined splits: a training partition of 214,122 tunes and a held-out validation partition of 2,162 tunes. Following CLaMP~\cite{CLaMP2023} and MelodyT5~\cite{MelodyT5_2024}, we adopt the official held-out partition as our \textbf{test set}, ensuring strict comparability with prior work on this benchmark. The small size of this partition (1.0\% of the corpus) reflects the dataset's original design for generative pre-training and is consistent with how it has been used in the literature.
 
-From the remaining 214,122 training tunes, we reserve 5\% (10,469 tunes) as a \textbf{validation set} for hyperparameter tuning, training monitoring, and checkpoint selection, using stratified sampling to preserve the tune-type distribution. The remaining 95\% (198,893 tunes) forms the \textbf{training set} used exclusively for self-supervised pre-training. After deduplication across all three partitions, the final corpus totals 211,524 unique Irish traditional tunes.
+From the remaining 214,122 training tunes, we reserve 5\% (10,469 tunes) as a \textbf{validation set} for hyperparameter tuning, training monitoring, and checkpoint selection, using stratified sampling to preserve the tune-type distribution. The remaining 95\% (198,893 tunes) forms the \textbf{training set} used exclusively for self-supervised pre-training. After deduplication across all three partitions, the final corpus totals 211,524 unique Irish traditional tunes.(push to hugging face the dataset here and ref the link)
 
 \subsection{Bar Patchification Statistics}
 
@@ -241,33 +235,40 @@ ABC notation represents music as a sequence of characters encoding notes, rests,
 \begin{verbatim}
 |:EDE G2E|EDE GED|
 \end{verbatim}
-where uppercase letters denote notes (E, D, G), numbers indicate duration (G2 = half note), and `|' marks bar lines. A typical Irish jig contains 16--32 bars, yielding sequences of 200--400 characters. Direct character-level tokenization would result in impractically long sequences for Transformer processing.
+where uppercase letters denote notes (E, D, G), numbers indicate duration (G2 = half note), and $|$ marks bar lines. A typical Irish jig contains 16--32 bars, yielding sequences of 200--400 characters. Direct character-level tokenization would result in impractically long sequences for Transformer processing.
 
-Following CLaMP~\cite{CLaMP2023} and MelodyT5~\cite{MelodyT5_2024}, we adopt \textbf{bar-level patchification}: each bar (delimited by `|') is treated as a single token. Formally, given an ABC string $x = c_1 c_2 \ldots c_L$ where $c_i \in \mathcal{V}$ (character vocabulary), we split it into bars:
+Following CLaMP~\cite{CLaMP2023} and MelodyT5~\cite{MelodyT5_2024}, we adopt \textbf{bar-level patchification}, where each musical bar is treated as a single token. 
+
+Let an ABC sequence be represented as a sequence of characters
 \begin{equation}
-x = b_1 | b_2 | \cdots | b_K
+x = c_1 c_2 \ldots c_N, \quad c_i \in \mathcal{V},
 \end{equation}
-where $b_j = c_{s_j} \ldots c_{e_j}$ represents the $j$-th bar spanning characters $s_j$ to $e_j$.
+where $\mathcal{V} \subseteq$ ASCII denotes the set of characters observed in the dataset. We segment $x$ into $K$ bars based on the bar delimiter (\texttt{|}) in ABC notation. Let $\{s_j, e_j\}_{j=1}^K$ denote the start and end indices of each bar. The $j$-th bar is then defined as
+\begin{equation}
+b_j = c_{s_j} \ldots c_{e_j}.
+\end{equation}
+This defines a partition of the sequence into bar-level units:
+\begin{equation}
+x = \operatorname{concat}(b_1, b_2, \ldots, b_K).
+\end{equation}
 
 Each bar is independently embedded via a character-level encoder:
 \begin{align}
-\mathbf{p}_j &= \text{MeanPool}\left(\text{CharEmbed}(b_j)\right) \in \mathbb{R}^{d_\text{model}} \\
-\mathbf{h}_j &= \text{Linear}(\mathbf{p}_j) + \text{PosEmbed}(j)
+\mathbf{p}_j &= \text{MeanPool}\left(\text{CharEmbed}(b_j)\right) \in \mathbb{R}^{d_c} \\
+\mathbf{h}_j &= \text{Linear}(\mathbf{p}_j) + \text{PosEmbed}(j), \quad \mathbf{h}_j \in \mathbb{R}^{d_\text{model}}
 \end{align}
-where $\text{CharEmbed}$ is a learnable embedding matrix for the character vocabulary (size $|\mathcal{V}| = 128$ covering standard ASCII), and $\text{PosEmbed}(j)$ encodes bar position. This reduces sequence length from $L \approx 300$ to $K \approx 24$, enabling efficient attention.
-
-\subsubsection{Transformer Encoder}
+where $\text{CharEmbed}$ is a learnable embedding matrix for the character vocabulary (size $|\mathcal{V}| = 128$, corresponding to the standard ASCII set), $\text{MeanPool}$ computes the average over the character embeddings within $b_j$, and $\text{PosEmbed}(j)$ encodes bar position. This reduces sequence length from $N \approx 300$ to $K \approx 24$, enabling efficient attention.
 
 The bar-level representations $\{\mathbf{h}_1, \ldots, \mathbf{h}_K\}$ are processed by a standard Transformer encoder~\cite{Transformer2017}:
 \begin{align}
 \mathbf{H}^{(0)} &= [\mathbf{h}_1, \ldots, \mathbf{h}_K] \\
-\mathbf{H}^{(\ell)} &= \text{TransformerLayer}^{(\ell)}(\mathbf{H}^{(\ell-1)}) \quad \text{for } \ell = 1, \ldots, L
+\mathbf{H}^{(\ell)} &= \text{TransformerLayer}^{(\ell)}(\mathbf{H}^{(\ell-1)}), \quad \ell = 1, \ldots, L_\text{enc}
 \end{align}
 where each layer consists of multi-head self-attention and feed-forward sublayers with residual connections and layer normalization.
 
-We use $L=6$ layers with hidden dimension $d_\text{model} = 128$, 8 attention heads, and feed-forward dimension $d_\text{ff} = 512$. The final tune embedding is obtained via mean pooling over bar representations:
+We use $L_\text{enc} = 6$ layers with hidden dimension $d_\text{model} = 128$, 8 attention heads, and feed-forward dimension $d_\text{ff} = 512$. The final tune embedding is obtained via mean pooling over bar representations:
 \begin{equation}
-\mathbf{z} = \frac{1}{K} \sum_{j=1}^K \mathbf{H}^{(L)}_j
+\mathbf{z} = \frac{1}{K} \sum_{j=1}^K \mathbf{H}^{(L_\text{enc})}_j.
 \end{equation}
 
 We experimented with CLS-token and max-pooling but found mean pooling most effective for folk music (details in Section~\ref{sec:ablation}).
@@ -316,7 +317,7 @@ We set $\lambda_{\text{MMM}} = 1.0$ and $\lambda_{\text{TI}} = 0.5$ based on val
 
 \subsection{Implementation Details}
 
-Our training procedure employs the AdamW optimizer with a constant learning rate of $3 \times 10^{-4}$ and weight decay of 0.01, training for 20 epochs (approximately 30,000 steps) with batch size 128. Gradient clipping at norm 1.0 prevents explosion during early training when the randomly initialized decoder produces unstable reconstructions. Table~\ref{tab:hyperparameters} summarizes all model architecture, training, and optimization parameters for full reproducibility. Training is conducted on a single Apple M4 Mac with 48GB unified memory, completing in 18 hours. We save checkpoints every 5,000 steps and select the best model by validation loss, with the final model typically corresponding to step 15,000--17,000 where validation loss reaches its minimum before mild overfitting onset.
+Our training procedure employs the AdamW optimizer with a constant learning rate of $3 \times 10^{-4}$ and weight decay of 0.01, training for 20 epochs (approximately 30,000 steps) with batch size 128. Gradient clipping at norm 1.0 prevents explosion during early training when the randomly initialized decoder produces unstable reconstructions. Training is conducted on a single Apple M4 Mac with 48GB unified memory, completing in 18 hours. We save checkpoints every 5,000 steps and select the best model by validation loss, with the final model typically corresponding to step 15,000--17,000 where validation loss reaches its minimum before mild overfitting onset.
 
 
 \begin{table}[!htb]
@@ -368,7 +369,7 @@ Our training procedure employs the AdamW optimizer with a constant learning rate
 \end{table}
 
 
-The model architecture uses an embedding dimension of 128, 6 Transformer layers, 8 attention heads, and a feedforward dimension of 512. These choices are motivated by the relatively simple harmonic structure of folk melodies, which are typically single-voice, span only 1--2 octaves, and exhibit repetitive patterns, requiring less representational capacity than polyphonic classical music or natural language. The maximum sequence length is set to 64 bars, which covers 96.8\% of tunes without truncation. Tunes exceeding this length are either truncated to the first 64 bars or, during training, randomly cropped to provide diverse examples across epochs.
+The model architecture uses an embedding dimension of 128, 6 Transformer layers, 8 attention heads, and a feedforward dimension of 512. These choices are motivated by the relatively simple harmonic structure of folk melodies, which are typically single-voice, span only 1--2 octaves, and exhibit repetitive patterns, requiring less representational capacity than polyphonic classical music or natural language. The maximum sequence length is set to 64 bars, which covers 96.8\% of tunes without truncation. Tunes exceeding this length are either truncated to the first 64 bars or, during training, randomly cropped to provide diverse examples across epochs. Table~\ref{tab:hyperparameters} summarizes all model architecture, training, and optimization parameters for full reproducibility. 
 
 Beyond the transposition augmentation inherent to the Transposition Invariance objective, we apply tempo variation ($\pm$10\% note duration scaling), bar reordering (randomly swapping A and B sections in AABB-form tunes with 50\% probability), and random cropping for long tunes. These augmentations increase effective corpus size while biasing learned representations toward musical invariances—pitch transposition, tempo flexibility, and structural reordering, that align with oral tradition's natural variation.
 
@@ -379,10 +380,7 @@ Beyond the transposition augmentation inherent to the Transposition Invariance o
 We evaluate ABC2Vec on four tasks: tune type classification, mode classification, variant detection, and linear probing for property disentanglement.
 
 \subsection{Training Convergence}
-
-Figure~\ref{fig:training} presents comprehensive training dynamics across all loss components over 20 epochs (30,000 optimization steps). The training curves reveal several important patterns that validate our architectural choices and training objectives.
-
-The total combined loss (top left panel) exhibits smooth, monotonic convergence from an initial value of 2.95 to a final value of 2.65, with no significant oscillations or instability. Critically, the validation loss (shown in red) tracks the training loss (shown in blue) closely throughout training, with only a minimal gap emerging after approximately 15,000 steps. This tight coupling between training and validation curves indicates that the model generalizes well to unseen tunes and is not merely memorizing the training set. The small divergence after step 15,000 where validation loss plateaus at 2.67 while training loss continues to decrease slightly to 2.65, suggests the onset of mild overfitting, motivating our selection of the checkpoint at step 15,000 as the final model. The absence of severe overfitting despite training on 211,524 tunes for 20 epochs demonstrates the effectiveness of our regularization strategy (dropout, weight decay) and the robustness of self-supervised objectives to dataset size.
+The total combined loss as seen in Figure~\ref{fig:training} (top left panel) exhibits smooth, monotonic convergence from an initial value of 2.95 to a final value of 2.65, with no significant oscillations or instability. Critically, the validation loss (shown in red) tracks the training loss (shown in blue) closely throughout training, with only a minimal gap emerging after approximately 15,000 steps. This tight coupling between training and validation curves indicates that the model generalizes well to unseen tunes and is not merely memorizing the training set. The small divergence after step 15,000 where validation loss plateaus at 2.67 while training loss continues to decrease slightly to 2.65, suggests the onset of mild overfitting, motivating our selection of the checkpoint at step 15,000 as the final model. The absence of severe overfitting despite training on 211,524 tunes for 20 epochs demonstrates the effectiveness of our regularization strategy (dropout, weight decay) and the robustness of self-supervised objectives to dataset size. 
 
 The Masked Music Modeling loss (top right panel) decreases substantially from 3.2 to 2.4 over the course of training, representing a 25\% reduction that indicates the model is learning effective bar-level representations. The loss decreases rapidly in the first 5,000 steps as the model learns basic melodic patterns (common note sequences, rhythmic motifs, cadential figures), then continues to decrease more gradually as it captures subtler musical relationships. The final MMM loss of 2.4 corresponds to reasonably accurate bar reconstruction: qualitative inspection of reconstructed bars shows that the model correctly predicts note pitches and durations for approximately 60--70\% of masked positions, with errors typically involving confusions between melodically plausible alternatives (e.g., predicting A instead of G in a descending scale passage) rather than nonsensical outputs. This level of reconstruction accuracy, while not perfect, is sufficient to learn semantically meaningful embeddings, as evidenced by downstream task performance.
 
@@ -398,19 +396,16 @@ The Transposition Invariance loss (bottom left panel) exhibits different dynamic
 
 The Section Contrastive Loss (bottom right panel), while not included in our final model configuration (we use MMM+TI only, as justified by ablation studies in Section~\ref{sec:ablation}), is shown for completeness. SCL decreases from 0.9 to 0.75, capturing section-level structural patterns in AABB-form tunes. However, the marginal improvement provided by SCL (+0.8\% accuracy when added to MMM+TI) does not justify its additional computational cost, leading to its exclusion from the default model. The curves demonstrate that while SCL captures meaningful signal, its contribution is largely redundant with MMM's bar-level reconstruction.
 
-Overall, the training curves validate several key design decisions. First, the smooth convergence without catastrophic loss spikes confirms that our combination of MMM and TI objectives is stable and does not suffer from conflicting gradient signals. Second, the tight train-validation gap demonstrates effective generalization despite the model's capacity (2.4M parameters) being sufficient to potentially overfit. Third, the distinct dynamics of MMM (steady decrease) and TI (rapid plateau) suggest that these objectives capture complementary aspects of musical structure, supporting our decision to combine them. The checkpoint at step 15,000, where validation loss reaches its minimum, represents the optimal balance between underfitting (earlier steps) and overfitting (later steps), and all subsequent evaluation results are reported using this checkpoint.
+Overall, the training curves validate several key design decisions. First, the smooth convergence without catastrophic loss spikes confirms that our combination of MMM and TI objectives is stable and does not suffer from conflicting gradient signals. Second, the tight train-validation gap demonstrates effective generalization despite the model's capacity (2.4M parameters) being sufficient to potentially overfit. Third, the distinct dynamics of MMM (steady decrease) and TI suggest that these objectives capture complementary aspects of musical structure, supporting our decision to combine them. The checkpoint at step 15,000, where validation loss reaches its minimum, represents the optimal balance between underfitting (earlier steps) and overfitting (later steps), and all subsequent evaluation results are reported using this checkpoint.
 
 
 
 \subsection{Tune Type Classification} \label{tune-type}
-
 We evaluate the model's capacity to encode rhythmic information by training a supervised classifier to predict tune type from frozen embeddings. Given a test tune $x$ and its embedding $\mathbf{z} = f_\theta(x) \in \mathbb{R}^{128}$, we predict one of six tune types: jig, polka, reel, slide, slip jig, or waltz. These categories represent distinct rhythmic genres in Irish traditional music, characterized by different time signatures (6/8 for jigs, 4/4 for reels, 3/4 for waltzes) and rhythmic feels (lilting compound meter vs. driving straight rhythm). Successful classification demonstrates that ABC2Vec captures bar-level rhythmic patterns through self-supervised pre-training alone, without explicit supervision on tune type labels.
 
 We extract embeddings for all 2,162 test tunes using the pre-trained ABC2Vec encoder. To assess the linear separability of tune types in embedding space, we train a multinomial logistic regression classifier with L2 regularization ($\lambda = 0.01$) on the frozen embeddings. Model performance is evaluated via stratified 5-fold cross-validation to account for class imbalance (reels comprise 44.9\% of the test set, while slip jigs represent only 2.1\%). We report mean accuracy, standard deviation across folds, macro-averaged F1 score, and improvement over chance baseline (16.7\% for uniform 6-class prediction).
 
-Table~\ref{tab:tune_type} presents classification results. ABC2Vec achieves a mean accuracy of 78.3\% $\pm$ 0.8\%, substantially exceeding the random baseline and demonstrating strong encoding of rhythmic structure. The low standard deviation (0.8\%) across cross-validation folds indicates stable performance independent of train-test partitioning. The macro-averaged F1 score of 78.4\% confirms balanced performance across classes, despite significant class imbalance. The 61.6 percentage point improvement over chance ($78.3 - 16.7 = 61.6$) validates that learned embeddings capture musically meaningful rhythmic distinctions rather than spurious dataset artifacts.
-
-Figure~\ref{fig:confusion} presents the confusion matrix, revealing fine-grained patterns of success and failure. The model achieves strongest performance on the two dominant classes: reels (85\% precision) and jigs (78\% precision). These classes are rhythmically distinctive---reels employ 4/4 meter with straight eighth notes creating a propulsive drive, while jigs use 6/8 compound meter with dotted rhythms producing a lilting bounce. The clear diagonal separation between these categories confirms that ABC2Vec successfully discriminates fundamental rhythmic differences. Notable confusion occurs between rhythmically similar categories: polkas (2/4 meter, 14.5\% of dataset) are misclassified as slides (also 2/4 meter, 5.0\% of dataset) in approximately 12\% of cases. This confusion is musicologically understandable, as both genres share the same time signature and differ primarily in regional stylistic conventions (ornamentation, phrasing) rather than metrical structure. Similarly, slip jigs (9/8 meter) are occasionally confused with standard jigs (6/8 meter), reflecting their shared compound meter structure where both subdivide beats into triplet groupings. The confusion patterns thus align with musical similarity: errors occur between genres with overlapping rhythmic features rather than randomly across all categories.
+ABC2Vec achieves a mean accuracy of 78.3\% $\pm$ 0.8\%, substantially exceeding the random baseline and demonstrating strong encoding of rhythmic structure. The low standard deviation (0.8\%) across cross-validation folds indicates stable performance independent of train-test partitioning. The macro-averaged F1 score of 78.4\% confirms balanced performance across classes, despite significant class imbalance. The 61.6 percentage point improvement over chance ($78.3 - 16.7 = 61.6$) validates that learned embeddings capture musically meaningful rhythmic distinctions rather than spurious dataset artifacts. Table~\ref{tab:tune_type} presents classification results. 
 
 \begin{table}[!htb]
 \centering
@@ -426,10 +421,13 @@ Random Baseline & 16.7\% & $\pm$ 1.2\% & --- & --- \\
 \end{tabular}
 \end{table}
 
-\begin{figure}[!htb]
+The model achieves its strongest performance on the dominant classes: reels (85\% precision) and jigs (78\% precision), which are rhythmically distinctive. Reels use 4/4 meter with straight eighth-note patterns, while jigs employ 6/8 compound meter with characteristic triplet groupings. The clear separation between these classes indicates that ABC2Vec effectively captures fundamental rhythmic structure. Confusion arises primarily between rhythmically similar categories. Polkas (2/4) are misclassified as slides (2/4) in approximately 12\% of cases, reflecting their shared meter and differences mainly in stylistic conventions such as phrasing and ornamentation. Similarly, slip jigs (9/8) are occasionally confused with standard jigs (6/8), consistent with their shared compound rhythmic structure. 
+Overall, misclassifications align with musicological similarity, occurring between genres with overlapping rhythmic features rather than arbitrarily. Figure~\ref{fig:confusion} presents the confusion matrix illustrating these patterns.
+
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{tune_type_confusion.pdf}
-\caption{Confusion matrix for tune type classification on the test set. The matrix reveals strong diagonal performance, with reels (44.9\% of test set) achieving 85\% precision and jigs (21.3\%) achieving 78\% precision. Notable confusion occurs between rhythmically similar categories: polkas (2/4 meter) are confused with slides (also 2/4) in 12\% of cases, and slip jigs (9/8 meter) are occasionally misclassified as jigs (6/8 meter) due to their shared compound meter structure. The clear separation between jigs and reels---which differ fundamentally in meter (6/8 vs 4/4) and rhythmic feel---demonstrates that ABC2Vec successfully captures rhythmic patterns at the bar level.}
+\caption{Confusion matrix for tune type classification on the test set. The matrix reveals strong diagonal performance, with reels (44.9\% of test set) achieving 85\% precision and jigs (21.3\%) achieving 78\% precision. Notable confusion occurs between rhythmically similar categories: polkas (2/4 meter) are confused with slides (also 2/4) in 12\% of cases, and slip jigs (9/8 meter) are occasionally misclassified as jigs (6/8 meter) due to their shared compound meter structure.}
 \label{fig:confusion}
 \end{figure}
 
@@ -484,7 +482,7 @@ Transposed (D $\rightarrow$ G) & Similar & 0.482 \\
 
 To systematically evaluate which musical properties are captured by the learned embeddings and whether these representations exhibit disentanglement, we perform linear probing experiments. Linear probing, the process of training simple linear classifiers on frozen embeddings, has become a standard method for assessing representation quality in self-supervised learning~\cite{LinearProbing2020}. This approach tests whether a property can be decoded using a linear decision boundary in embedding space. High linear probing accuracy indicates that the property is encoded in a linearly separable manner, whereas low linear accuracy despite strong nonlinear performance suggests that the property relies on complex interactions across embedding dimensions.
 
-We probe four musical properties: tune type (5 classes: jig, polka, reel, slide, slip jig, waltz), mode (4 classes: major, minor, dorian, mixolydian), key root (8 most common roots in Irish music), and tune length (3 classes: short, medium, long, binned by bar count). For each property, we train a single-layer linear classifier on the frozen 128-dimensional embeddings using ridge regression with L2 regularization ($\lambda = 0.01$). Performance is measured via stratified 5-fold cross-validation, reporting mean accuracy and standard deviation. Chance baselines are computed from class distributions (e.g., 20\% for 5-class tune type prediction), and improvements over chance are reported for context.
+We probe four musical properties: tune type (6 classes: jig, polka, reel, slide, slip jig, waltz), mode (4 classes: major, minor, dorian, mixolydian), key root (8 most common roots in Irish music), and tune length (3 classes: short, medium, long, binned by bar count). For each property, we train a single-layer linear classifier on the frozen 128-dimensional embeddings using ridge regression with L2 regularization ($\lambda = 0.01$). Performance is measured via stratified 5-fold cross-validation, reporting mean accuracy and standard deviation. Chance baselines are computed from class distributions (e.g., 20\% for 6-class tune type prediction), and improvements over chance are reported for context.
 
 Tune type achieves 77.4\% $\pm$ 1.2\% accuracy, nearly matching the logistic regression result (78.3\%) in Section \ref{tune-type}. This 0.9-point gap demonstrates that tune type is encoded in a linearly separable manner, with rhythmic categories occupying distinct regions of embedding space. The 57.4-point improvement over chance confirms strong rhythmic encoding. Tune length also attains high linear accuracy (73.6\% $\pm$ 1.2\%), suggesting that embeddings capture structural extent through aggregated information about bar count, phrase structure, and repetition patterns. Table~\ref{tab:probing} summarizes the results. 
 
@@ -611,43 +609,8 @@ TI+SCL & 62.1 (+45.4) & 55.3 (+30.3) & 0.350 (+0.30) \\
 
 \subsubsection{Architectural Ablation}
 
-We systematically evaluate key architectural design choices while keeping the self-supervised objectives (MMM+TI) fixed. Table~\ref{tab:ablation_arch} and Figure~\ref{fig:ablation_arch} summarize the results across model depth, embedding dimension, pooling strategy, attention heads, and tokenization strategy.
+We systematically evaluate key architectural design choices while keeping the self-supervised objectives (MMM+TI) fixed. Figure~\ref{fig:ablation_arch} summarize the results across model depth, embedding dimension, pooling strategy, attention heads, and tokenization strategy.
 
-\begin{table}[!htb]
-\centering
-\caption{Architectural ablation: tune type classification accuracy for varied model configurations. Bold indicates best performance, underline denotes our selected configuration balancing accuracy and efficiency.}
-\label{tab:ablation_arch}
-\begin{tabular}{lcc}
-\toprule
-\textbf{Component} & \textbf{Variants Tested} & \textbf{Tune Type Acc (\%)} \\
-\midrule
-\multirow{5}{*}{Number of Layers} & 2 layers & 72.3 \\
- & 4 layers & 76.1 \\
- & \underline{6 layers (ours)} & \underline{78.3} \\
- & 8 layers & \textbf{78.9} \\
- & 12 layers & 78.7 \\
-\midrule
-\multirow{4}{*}{Embedding Dimension} & 64-dim & 74.8 \\
- & \underline{128-dim (ours)} & \underline{78.3} \\
- & 256-dim & 79.2 \\
- & 512-dim & \textbf{79.4} \\
-\midrule
-\multirow{4}{*}{Pooling Strategy} & Max pooling & 75.2 \\
- & \underline{Mean pooling (ours)} & \underline{\textbf{78.3}} \\
- & CLS token & 76.8 \\
- & Attention pooling & 77.9 \\
-\midrule
-\multirow{4}{*}{Attention Heads} & 1 head & 76.1 \\
- & 4 heads & 77.8 \\
- & \underline{8 heads (ours)} & \underline{\textbf{78.3}} \\
- & 16 heads & 78.0 \\
-\midrule
-\multirow{3}{*}{Tokenization} & Character-level & 68.4 \\
- & Bar patches (no pos) & 76.2 \\
- & \underline{Bar patches + pos (ours)} & \underline{\textbf{78.3}} \\
-\bottomrule
-\end{tabular}
-\end{table}
 
 \begin{figure}[H]
 \centering
@@ -684,15 +647,9 @@ We define \textbf{synergy} as the excess performance beyond independent additive
 
 \subsubsection{Statistical Significance}
 
-We report 95\% confidence intervals via bootstrap resampling (1000 iterations) on the test set. Key comparisons:
+Stability of all classification results is assessed through the variance across stratified 5-fold cross-validation folds (described in Section~\ref{sec:results}). The standard deviations reported in Tables~\ref{tab:tune_type} and~\ref{tab:mode} reflect fold-to-fold variability: $\pm$0.8\% for tune type classification and $\pm$0.4\% for mode classification. All improvements over the random baseline substantially exceed this variance---the minimum improvement is 55.4 percentage points against a standard deviation of at most 0.8\%---indicating that the results are stable across different train-test splits and unlikely to reflect sampling artefacts.
 
-\begin{itemize}
-\item \textbf{Full vs MMM-only}: 79.1\% [78.3, 79.8] vs 72.1\% [71.2, 72.9], $p < 0.001$ (two-tailed t-test)
-\item \textbf{MMM+TI vs MMM-only}: 78.3\% [77.5, 79.1] vs 72.1\%, $p < 0.001$
-\item \textbf{Full vs MMM+TI}: 79.1\% vs 78.3\% [77.5, 79.1], $p = 0.18$ (not significant)
-\end{itemize}
-
-The full model (MMM+TI+SCL) does not significantly outperform MMM+TI, justifying our choice of MMM+TI as the default configuration.
+For the ablation comparisons in Table~\ref{tab:ablation_objectives}, the difference between the full model (MMM+TI+SCL: 79.1\%) and our default configuration (MMM+TI: 78.3\%) is 0.8 percentage points, which falls within the cross-validation fold variance. This overlap in variability supports our choice of MMM+TI as the default configuration, as the marginal gain from adding SCL does not exceed the measurement noise of the evaluation procedure.
 
 \subsubsection{Computational Efficiency}
 
