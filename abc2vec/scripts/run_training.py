@@ -47,7 +47,7 @@ def make_lr_lambda(warmup_steps: int, total_steps: int):
 # ---------------------------------------------------------------------------
 
 @torch.no_grad()
-def validate(model, val_loader, loss_fn, device):
+def validate(model, val_loader, loss_fn, device, amp_ctx=None):
     """Run one pass over val_loader; return per-component loss dict."""
     model.eval()
     accum = {"mmm": 0.0, "ti": 0.0, "total": 0.0}
@@ -58,24 +58,26 @@ def validate(model, val_loader, loss_fn, device):
         char_mask   = batch["char_mask"].to(device)
         bar_mask    = batch["bar_mask"].to(device)
 
-        mmm_out = model.forward_mmm(bar_indices, char_mask, bar_mask)
+        ctx = amp_ctx() if amp_ctx is not None else torch.autocast("cpu", enabled=False)
+        with ctx:
+            mmm_out = model.forward_mmm(bar_indices, char_mask, bar_mask)
 
-        ti_orig = ti_trans = None
-        if "trans_bar_indices" in batch:
-            ti_orig, ti_trans = model.forward_contrastive(
-                bar_indices, char_mask, bar_mask,
-                batch["trans_bar_indices"].to(device),
-                batch["trans_char_mask"].to(device),
-                batch["trans_bar_mask"].to(device),
+            ti_orig = ti_trans = None
+            if "trans_bar_indices" in batch:
+                ti_orig, ti_trans = model.forward_contrastive(
+                    bar_indices, char_mask, bar_mask,
+                    batch["trans_bar_indices"].to(device),
+                    batch["trans_char_mask"].to(device),
+                    batch["trans_bar_mask"].to(device),
+                )
+
+            loss, losses = loss_fn(
+                mmm_logits=mmm_out["mmm_logits"],
+                mmm_targets=mmm_out["mmm_targets"],
+                mmm_mask=mmm_out["mmm_mask"],
+                ti_emb_orig=ti_orig,
+                ti_emb_trans=ti_trans,
             )
-
-        loss, losses = loss_fn(
-            mmm_logits=mmm_out["mmm_logits"],
-            mmm_targets=mmm_out["mmm_targets"],
-            mmm_mask=mmm_out["mmm_mask"],
-            ti_emb_orig=ti_orig,
-            ti_emb_trans=ti_trans,
-        )
 
         accum["total"] += loss.item()
         accum["mmm"]   += losses.get("mmm", 0.0)
@@ -118,7 +120,7 @@ def main():
     parser.add_argument("--grad_accum",   type=int,   default=4,
                         help="Gradient accumulation steps "
                              "(effective batch = batch_size x grad_accum)")
-    parser.add_argument("--epochs",       type=int,   default=30)
+    parser.add_argument("--epochs",       type=int,   default=40)
     parser.add_argument("--lr",           type=float, default=1e-4)
     parser.add_argument("--weight_decay", type=float, default=0.01)
     parser.add_argument("--warmup_steps", type=int,   default=1000)
@@ -131,6 +133,12 @@ def main():
                         help="Run validation every N optimizer steps")
     parser.add_argument("--save_interval", type=int, default=5000,
                         help="Save step checkpoint every N optimizer steps")
+    parser.add_argument("--num_workers",  type=int, default=8,
+                        help="DataLoader worker processes (default: 8)")
+    parser.add_argument("--compile",      action="store_true",
+                        help="torch.compile the model (faster after warm-up)")
+    parser.add_argument("--amp",          action="store_true",
+                        help="Mixed-precision autocast with bfloat16")
     parser.add_argument("--device", type=str,
                         default="cuda" if torch.cuda.is_available() else
                                 "mps"  if torch.backends.mps.is_available() else "cpu")
@@ -162,11 +170,13 @@ def main():
 
     train_loader = DataLoader(
         train_dataset, batch_size=args.batch_size,
-        shuffle=True, num_workers=4, pin_memory=True, drop_last=True,
+        shuffle=True, num_workers=args.num_workers, pin_memory=True,
+        drop_last=True, persistent_workers=True, prefetch_factor=2,
     )
     val_loader = DataLoader(
         val_dataset, batch_size=args.batch_size,
-        shuffle=False, num_workers=4, pin_memory=True,
+        shuffle=False, num_workers=args.num_workers, pin_memory=True,
+        persistent_workers=True, prefetch_factor=2,
     )
 
     # SCL: section pairs loader cycling indefinitely to keep pace with main loop
@@ -176,7 +186,8 @@ def main():
         scl_dataset = SectionPairDataset(str(scl_path), patchifier)
         scl_loader  = DataLoader(
             scl_dataset, batch_size=args.batch_size,
-            shuffle=True, num_workers=4, pin_memory=True, drop_last=True,
+            shuffle=True, num_workers=args.num_workers, pin_memory=True,
+            drop_last=True, persistent_workers=True, prefetch_factor=2,
         )
         scl_iter = itertools.cycle(scl_loader)
         print(f"  Section pairs: {len(scl_dataset):,} (SCL enabled)")
@@ -194,6 +205,16 @@ def main():
     )
     model = ABC2VecModel(config).to(args.device)
     print(f"  Parameters: {sum(p.numel() for p in model.parameters()):,}")
+
+    # AMP context: bfloat16 autocast on CUDA only; MPS doesn't support it
+    _amp_device = args.device.split(":")[0]
+    _amp_enabled = args.amp and _amp_device == "cuda"
+    if args.amp and not _amp_enabled:
+        print("  Note: --amp ignored on MPS (only supported on CUDA)")
+    def amp_context():
+        if _amp_enabled:
+            return torch.autocast(device_type="cuda", dtype=torch.bfloat16)
+        return torch.autocast(device_type="cpu", enabled=False)
 
     loss_fn = ABC2VecLoss(
         config,
@@ -255,7 +276,11 @@ def main():
         resume_path = Path(args.resume)
         print(f"\nResuming from {resume_path}...")
         ckpt = torch.load(resume_path, map_location=args.device)
-        model.load_state_dict(ckpt["model_state_dict"])
+        raw_sd = ckpt["model_state_dict"]
+        # Strip "_orig_mod." prefix if checkpoint was saved from a compiled model
+        if any(k.startswith("_orig_mod.") for k in raw_sd):
+            raw_sd = {k.removeprefix("_orig_mod."): v for k, v in raw_sd.items()}
+        model.load_state_dict(raw_sd)
         optimizer.load_state_dict(ckpt["optimizer_state_dict"])
         global_step   = ckpt.get("step", 0)
         start_epoch   = ckpt.get("epoch", global_step // max(steps_per_epoch, 1)) + 1
@@ -267,6 +292,12 @@ def main():
                 history = json.load(f)
             history["best_val_loss"] = best_val_loss
         print(f"  Resumed at step {global_step:,}, starting from epoch {start_epoch}")
+
+    # Compile after loading weights so checkpoint keys always match
+    if args.compile:
+        print("  Compiling model with torch.compile (reduce-overhead)...")
+        model = torch.compile(model, mode="reduce-overhead")
+        print("  Compilation scheduled (JIT happens on first forward pass)")
 
     # ── Training loop ────────────────────────────────────────────────────────
     # log_accum: averaged across log_interval optimizer steps before writing
@@ -283,6 +314,7 @@ def main():
           f"effective_batch={args.batch_size * args.grad_accum}")
     print(f"  lr={args.lr}  warmup={args.warmup_steps} steps  "
           f"total={total_steps:,} steps")
+    print(f"  num_workers={args.num_workers}  compile={args.compile}  amp={args.amp}")
     print(f"  log_interval={args.log_interval}  "
           f"eval_interval={args.eval_interval}  "
           f"save_interval={args.save_interval}\n")
@@ -296,44 +328,45 @@ def main():
             char_mask   = batch["char_mask"].to(args.device)
             bar_mask    = batch["bar_mask"].to(args.device)
 
-            # ── MMM forward ──────────────────────────────────────────────
-            mmm_out = model.forward_mmm(bar_indices, char_mask, bar_mask)
+            # ── Forward passes (all inside AMP context) ───────────────────
+            with amp_context():
+                mmm_out = model.forward_mmm(bar_indices, char_mask, bar_mask)
 
-            # ── TI forward ───────────────────────────────────────────────
-            ti_orig = ti_trans = None
-            if "trans_bar_indices" in batch:
-                ti_orig, ti_trans = model.forward_contrastive(
-                    bar_indices, char_mask, bar_mask,
-                    batch["trans_bar_indices"].to(args.device),
-                    batch["trans_char_mask"].to(args.device),
-                    batch["trans_bar_mask"].to(args.device),
-                )
+                # ── TI forward ───────────────────────────────────────────
+                ti_orig = ti_trans = None
+                if "trans_bar_indices" in batch:
+                    ti_orig, ti_trans = model.forward_contrastive(
+                        bar_indices, char_mask, bar_mask,
+                        batch["trans_bar_indices"].to(args.device),
+                        batch["trans_char_mask"].to(args.device),
+                        batch["trans_bar_mask"].to(args.device),
+                    )
 
-            # ── SCL forward ──────────────────────────────────────────────
-            scl_emb_a = scl_emb_b = None
-            if scl_iter is not None:
-                scl_batch = next(scl_iter)
-                scl_emb_a = model.get_embedding(
-                    scl_batch["a_bar_indices"].to(args.device),
-                    scl_batch["a_char_mask"].to(args.device),
-                    scl_batch["a_bar_mask"].to(args.device),
-                )
-                scl_emb_b = model.get_embedding(
-                    scl_batch["b_bar_indices"].to(args.device),
-                    scl_batch["b_char_mask"].to(args.device),
-                    scl_batch["b_bar_mask"].to(args.device),
-                )
+                # ── SCL forward ──────────────────────────────────────────
+                scl_emb_a = scl_emb_b = None
+                if scl_iter is not None:
+                    scl_batch = next(scl_iter)
+                    scl_emb_a = model.get_embedding(
+                        scl_batch["a_bar_indices"].to(args.device),
+                        scl_batch["a_char_mask"].to(args.device),
+                        scl_batch["a_bar_mask"].to(args.device),
+                    )
+                    scl_emb_b = model.get_embedding(
+                        scl_batch["b_bar_indices"].to(args.device),
+                        scl_batch["b_char_mask"].to(args.device),
+                        scl_batch["b_bar_mask"].to(args.device),
+                    )
 
-            # ── Combined loss ─────────────────────────────────────────────
-            loss, losses = loss_fn(
-                mmm_logits=mmm_out["mmm_logits"],
-                mmm_targets=mmm_out["mmm_targets"],
-                mmm_mask=mmm_out["mmm_mask"],
-                ti_emb_orig=ti_orig,
-                ti_emb_trans=ti_trans,
-                scl_emb_a=scl_emb_a,
-                scl_emb_b=scl_emb_b,
-            )
+                # ── Combined loss ─────────────────────────────────────────
+                loss, losses = loss_fn(
+                    mmm_logits=mmm_out["mmm_logits"],
+                    mmm_targets=mmm_out["mmm_targets"],
+                    mmm_mask=mmm_out["mmm_mask"],
+                    ti_emb_orig=ti_orig,
+                    ti_emb_trans=ti_trans,
+                    scl_emb_a=scl_emb_a,
+                    scl_emb_b=scl_emb_b,
+                )
 
             # Scale loss for gradient accumulation before backprop
             (loss / args.grad_accum).backward()
@@ -384,7 +417,7 @@ def main():
 
                 # ── Validation ────────────────────────────────────────────
                 if global_step % args.eval_interval == 0:
-                    val_metrics = validate(model, val_loader, loss_fn, args.device)
+                    val_metrics = validate(model, val_loader, loss_fn, args.device, amp_context)
                     val_entry = {
                         "step":  global_step,
                         "total": val_metrics["total"],

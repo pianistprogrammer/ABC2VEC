@@ -115,7 +115,14 @@ class TransformerEncoderLayer(nn.Module):
             Output tensor (batch, seq_len, d_model)
         """
         # Convert mask for MultiheadAttention: True = ignore, False = attend
-        key_padding_mask = ~mask if mask is not None else None
+        key_padding_mask = None
+        if mask is not None:
+            inverted = ~mask  # True = masked-out position
+            # If every position in a sample is masked, MultiheadAttention gets
+            # all-True key_padding_mask → softmax over all -inf → NaN.
+            # For those samples, unmask everything so attention is well-defined.
+            all_masked = inverted.all(dim=1, keepdim=True)  # (batch, 1)
+            key_padding_mask = inverted & ~all_masked
 
         # Pre-norm self-attention
         residual = x
@@ -394,8 +401,13 @@ class ABC2VecModel(nn.Module):
 
         # Determine number of bars to mask per sample
         num_real_bars = bar_mask.sum(dim=1).long()
-        num_to_mask = (num_real_bars.float() * mask_ratio).long().clamp(min=1)
-        max_masked = num_to_mask.max().item()
+        # Only mask samples that have at least one real bar
+        num_to_mask = torch.where(
+            num_real_bars > 0,
+            (num_real_bars.float() * mask_ratio).long().clamp(min=1),
+            torch.zeros_like(num_real_bars),
+        )
+        max_masked = max(num_to_mask.max().item(), 1)
 
         # Initialize output tensors
         masked_positions = torch.zeros(
@@ -413,6 +425,9 @@ class ABC2VecModel(nn.Module):
         for b in range(batch_size):
             n_real = num_real_bars[b].item()
             n_mask = num_to_mask[b].item()
+
+            if n_real == 0 or n_mask == 0:
+                continue  # leave this sample unmasked
 
             # Random selection
             perm = torch.randperm(n_real, device=device)[:n_mask]
