@@ -86,12 +86,22 @@ COLORS = {
 }
 
 
-def _style_ax(ax, title: str):
+def _style_ax(ax, title: str, y_data=None):
     ax.set_xlabel("Step")
     ax.set_ylabel("Loss")
     ax.set_title(title)
     ax.grid(True, alpha=0.3, linestyle="--", linewidth=0.5)
     ax.xaxis.set_major_locator(MaxNLocator(6))
+
+    # Set y-axis limits to show convergence (start slightly below min)
+    if y_data is not None:
+        valid_data = [y for y in y_data if y == y]  # Filter NaN
+        if valid_data:
+            y_min = min(valid_data)
+            y_max = max(valid_data)
+            y_range = y_max - y_min
+            # Start 10% below minimum to show convergence clearly
+            ax.set_ylim(max(0, y_min - y_range * 0.1), y_max + y_range * 0.15)
 
 
 def plot_standard(d: dict, output_dir: Path):
@@ -106,7 +116,7 @@ def plot_standard(d: dict, output_dir: Path):
     ax1.plot(d["val_steps"], d["val_total"], color=COLORS["val"],   lw=1.5,
              label="Val",   alpha=0.95, marker="o", markersize=3)
     ax1.legend(loc="upper right", frameon=True)
-    _style_ax(ax1, "Total Loss")
+    _style_ax(ax1, "Total Loss", np.concatenate([d["tr_total"], d["val_total"]]))
 
     # ── MMM loss ─────────────────────────────────────────────────────────────
     ax2 = fig.add_subplot(gs[0, 1])
@@ -115,7 +125,7 @@ def plot_standard(d: dict, output_dir: Path):
     ax2.plot(d["val_steps"], d["val_mmm"], color=COLORS["val"], lw=1.5,
              label="Val MMM",   alpha=0.95, marker="o", markersize=3)
     ax2.legend(loc="upper right", frameon=True)
-    _style_ax(ax2, "Masked Music Modeling Loss")
+    _style_ax(ax2, "Masked Music Modeling Loss", np.concatenate([d["tr_mmm"], d["val_mmm"]]))
 
     # ── TI loss ──────────────────────────────────────────────────────────────
     ax3 = fig.add_subplot(gs[1, 0])
@@ -124,14 +134,14 @@ def plot_standard(d: dict, output_dir: Path):
     ax3.plot(d["val_steps"], d["val_ti"], color=COLORS["val"], lw=1.5,
              label="Val TI",   alpha=0.95, marker="o", markersize=3)
     ax3.legend(loc="upper right", frameon=True)
-    _style_ax(ax3, "Transposition Invariance Loss")
+    _style_ax(ax3, "Transposition Invariance Loss", np.concatenate([d["tr_ti"], d["val_ti"]]))
 
     # ── SCL loss (train only — not logged at eval) ───────────────────────────
     ax4 = fig.add_subplot(gs[1, 1])
     ax4.plot(d["tr_steps"], d["tr_scl"], color=COLORS["scl"], lw=1.2,
              label="Train SCL", alpha=0.85)
     ax4.legend(loc="upper right", frameon=True)
-    _style_ax(ax4, "Section Contrastive Loss")
+    _style_ax(ax4, "Section Contrastive Loss", d["tr_scl"])
 
     total_steps = d["total_steps"] or int(d["tr_steps"][-1])
     fig.suptitle(f"ABC2Vec Training Curves  ({total_steps:,} steps)",
@@ -164,6 +174,10 @@ def plot_smoothed(d: dict, output_dir: Path, window: int = 30):
         # Smoothed train
         ax.plot(tx, smooth(ty, window), color=COLORS[tc], lw=2.0,
                 alpha=0.9, label="Train (smoothed)")
+
+        # Collect all y data for axis scaling
+        all_y = list(ty)
+
         if vx is not None:
             # Val points + smoothed (only if enough points)
             ax.plot(vx, vy, color=COLORS[vc], lw=0, marker="o",
@@ -174,8 +188,10 @@ def plot_smoothed(d: dict, output_dir: Path, window: int = 30):
             else:
                 ax.plot(vx, vy, color=COLORS[vc], lw=1.5,
                         alpha=0.9, label="Val")
+            all_y.extend(vy)
+
         ax.legend(loc="upper right", fontsize=8)
-        _style_ax(ax, f"{title} (Smoothed)")
+        _style_ax(ax, f"{title} (Smoothed)", all_y)
 
     total_steps = d["total_steps"] or int(d["tr_steps"][-1])
     fig.suptitle(f"ABC2Vec Training Curves — Smoothed  ({total_steps:,} steps)",

@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex abc2vec_paper"] 1775125370.45024 "abc2vec_paper.aux" "abc2vec_paper.bbl" "abc2vec_paper" 1775126435.55377 0
+["bibtex abc2vec_paper"] 1775125370.45024 "abc2vec_paper.aux" "abc2vec_paper.bbl" "abc2vec_paper" 1776323287.94483 0
   "./abc2vec.bib" 1774613138.74433 16736 24d9cc9a2d1f8bdd47f46848fc390363 ""
   "./tfp.bst" 1773820718.95679 37649 9b6a2250fe26d149dd06f9fb1b2a9ab4 ""
-  "abc2vec_paper.aux" 1775126435.07281 9148 2397e7f8c576bb896a195b6a3610ddfe "pdflatex"
+  "abc2vec_paper.aux" 1776323287.66744 9148 2397e7f8c576bb896a195b6a3610ddfe "pdflatex"
   (generated)
   "abc2vec_paper.bbl"
   "abc2vec_paper.blg"
   (rewritten before read)
-["pdflatex"] 1775126433.95024 "/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex" "abc2vec_paper.pdf" "abc2vec_paper" 1775126435.55403 0
-  "/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex" 1775126433.76047 94624 098247c9597a24b04808a5e0bde0623f ""
+["pdflatex"] 1776323286.65006 "/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex" "abc2vec_paper.pdf" "abc2vec_paper" 1776323287.94495 0
+  "/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex" 1776323283.57448 94644 47d3a528f361dea71ba8b892c255efad ""
   "/usr/local/texlive/2026/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/jknappen/ec/tcrm0800.tfm" 1136768653 1536 05df9db6aeccc4eea94fec15c9024f79 ""
@@ -116,9 +116,9 @@
   "/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1773831732 5541377 04880c840ca220163a28f1a3af0ee662 ""
   "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1773831718 3636762 11611dce089160af9d6104d910a89675 ""
   "/usr/local/texlive/2026/texmf.cnf" 1772409725 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "abc2vec_paper.aux" 1775126435.07281 9148 2397e7f8c576bb896a195b6a3610ddfe "pdflatex"
-  "abc2vec_paper.bbl" 1775125370.54959 9946 42bf17952876d08e3f16e50881f62a8b "bibtex abc2vec_paper"
-  "abc2vec_paper.tex" 1775126433.76047 94624 098247c9597a24b04808a5e0bde0623f ""
+  "abc2vec_paper.aux" 1776323287.66744 9148 2397e7f8c576bb896a195b6a3610ddfe "pdflatex"
+  "abc2vec_paper.bbl" 1776322354.5595 10115 cfa0f3b9f112e4e282bcb108f6d746a4 "bibtex abc2vec_paper"
+  "abc2vec_paper.tex" 1776323283.57448 94644 47d3a528f361dea71ba8b892c255efad ""
   "ablation_architecture.pdf" 1774620783.46314 37969 1c94ee61b378456d3b8b7fe7dd157b66 ""
   "ablation_interaction.pdf" 1774620784.25811 37998 dd87a04c696f3dc7a82e2614e6acb6eb ""
   "ablation_objectives.pdf" 1774620782.5539 57117 40ccb50f768216f5919b59cb678dc5be ""
@@ -127,7 +127,7 @@
   "dataset_statistics.pdf" 1774614331.40166 39979 6ab15a6b07fbf338f95d9a4b0bff0843 ""
   "interact.cls" 1773820718.9424 24426 f1d960e52a10772f5ba4ee34fbcaf0f3 ""
   "key_mode_distribution.pdf" 1774612341.66341 35523 8218e268ef05466e9caf0d70ce34ab02 ""
-  "training_curves_hq.pdf" 1773914822.87942 37456 17a0402c5528655e36da0b4849555013 ""
+  "training_curves_hq.pdf" 1776322036.90606 41441 15679dab1392acaa6cc8d0c48cb4efe2 ""
   "tune_type_confusion.pdf" 1774617841.242 17831 08de8d19cdbcb5499814a5366442a839 ""
   "umap_combined.pdf" 1774618701.19475 100107 8709e6f06f79cd0af7bbe3366490f712 ""
   (generated)
