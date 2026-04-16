@@ -1,9 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.18)  16 APR 2026 11:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.18)  16 APR 2026 11:54
 entering extended mode
  restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
-**abc2vec_paper.tex
-(./abc2vec_paper.tex
+**/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex
+(/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
 (./interact.cls
@@ -24,25 +25,21 @@ File: size11.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
 \bibindent=\dimen148
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2024/11/17 v2.01 AMS text
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks17
 \ex@=\dimen149
-))
-(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty
+)) (/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen150
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count283
@@ -92,19 +89,16 @@ LaTeX Info: Redefining \Relbar on input line 970.
 \mathdisplay@stack=\toks21
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-))
-(/usr/local/texlive/2026/texmf-dist/tex/latex/amscls/amsthm.sty
+)) (/usr/local/texlive/2026/texmf-dist/tex/latex/amscls/amsthm.sty
 Package: amsthm 2020/05/29 v2.20.6
 \thm@style=\toks22
 \thm@bodyfont=\toks23
@@ -115,8 +109,7 @@ Package: amsthm 2020/05/29 v2.20.6
 \thm@postskip=\skip55
 \thm@headsep=\skip56
 \dth@everypar=\toks27
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen158
 \lightrulewidth=\dimen159
@@ -135,29 +128,22 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisruleclass=\count297
 \@lastruleclass=\count298
 \@thisrulewidth=\dimen170
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/epsfig.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/epsfig.sty
 Package: epsfig 2024/01/14 v1.7b (e)psfig emulation (SPQR)
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks28
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 106.
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-def/pdftex.def
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics-def/pdftex.def
 File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen171
@@ -165,11 +151,9 @@ File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
 )
 \epsfxsize=\dimen173
 \epsfysize=\dimen174
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/rotating.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/rotating.sty
 Package: rotating 2025/01/14 v2.16e rotated objects in LaTeX
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/base/ifthen.sty
 Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 )
 \c@r@tfl@t=\count299
@@ -177,14 +161,11 @@ Package: ifthen 2024/03/16 v1.1e Standard LaTeX ifthen package (DPC)
 \rotFPbot=\skip58
 \rot@float@box=\box55
 \rot@mess@toks=\toks29
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/geometry/geometry.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
-
-(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/ifvtex.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
-
-(/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
 \Gm@cnth=\count300
@@ -212,48 +193,34 @@ LaTeX Font Info:    Overwriting symbol font `letters' in version `boldupright'
 \tabledim=\dimen185
 \LabelSep=\dimen186
 \TopSep=\skip59
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf.sty
 Package: epstopdf 2020-01-24 v2.11 Conversion with epstopdf on the fly (HO)
-
-(/usr/local/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/grfext/grfext.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/grfext/grfext.sty
 Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
-
-(/usr/local/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )) (/usr/local/texlive/2026/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
-
-(/usr/local/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-))
-(/usr/local/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
-)
+)) (/usr/local/texlive/2026/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
-Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
-85.
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 Package grfext Info: Graphics extension search list:
-(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
-G,.JBIG2,.JB2,.eps]
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 504.
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
-e
-)))
-(/usr/local/texlive/2026/texmf-dist/tex/latex/subfigure/subfigure.sty
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))) (/usr/local/texlive/2026/texmf-dist/tex/latex/subfigure/subfigure.sty
 Package: subfigure 2002/03/15 v2.1.5 subfigure package
 \subfigtopskip=\skip60
 \subfigcapskip=\skip61
@@ -272,12 +239,9 @@ Package: subfigure 2002/03/15 v2.1.5 subfigure package
 (/usr/local/texlive/2026/texmf-dist/tex/latex/subfigure/subfigure.cfg)
 \subfig@top=\skip64
 \subfig@bottom=\skip65
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/algorithms/algorithm.sty
-Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
-nment
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/float/float.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/algorithms/algorithm.sty
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating environment
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count309
 \float@exts=\toks31
@@ -287,8 +251,7 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 )
 \@float@every@algorithm=\toks33
 \c@algorithm=\count310
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/algorithms/algorithmic.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/algorithms/algorithmic.sty
 Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \c@ALC@unique=\count311
 \c@ALC@line=\count312
@@ -296,15 +259,13 @@ Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
 \c@ALC@depth=\count314
 \ALC@tlm=\skip66
 \algorithmicindent=\skip67
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/multirow/multirow.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@colwidth=\skip68
 \multirow@cntb=\count315
 \multirow@dima=\skip69
 \bigstrutjot=\dimen189
-)
-(/usr/local/texlive/2026/texmf-dist/tex/latex/natbib/natbib.sty
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip70
 \bibsep=\skip71
@@ -313,12 +274,11 @@ LaTeX Info: Redefining \cite on input line 694.
 )
 \c@theorem=\count317
 \c@remark=\count318
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count319
 )
-(./abc2vec_paper.aux)
+No file abc2vec_paper.aux.
 \openout1 = `abc2vec_paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -335,7 +295,6 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
-
 (/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count320
@@ -406,34 +365,202 @@ LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <5.5> not available
 (Font)              size <5> substituted on input line 50.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 50.
-
 (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
-
-
-(/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
+ (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
+)
+
+Package natbib Warning: Citation `li2012music' on page 1 undefined on input line 62.
+
+
+Package natbib Warning: Citation `typke2021survey' on page 1 undefined on input line 62.
+
+[1
 
 
 
-{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+
+Package natbib Warning: Citation `pereira2019representation' on page 2 undefined on input line 64.
+
+
+Package natbib Warning: Citation `da2023robust' on page 2 undefined on input line 64.
+
+
+Package natbib Warning: Citation `gupta2013feature' on page 2 undefined on input line 64.
+
+
+Package natbib Warning: Citation `humphrey2012moving' on page 2 undefined on input line 64.
+
+
+Package natbib Warning: Citation `pereira2019representation' on page 2 undefined on input line 64.
+
+
+Package natbib Warning: Citation `Word2Vec2013' on page 2 undefined on input line 66.
+
+
+Package natbib Warning: Citation `BERT2019' on page 2 undefined on input line 66.
+
+
+Package natbib Warning: Citation `Transformer2017' on page 2 undefined on input line 66.
+
+
+Package natbib Warning: Citation `ABCNotation2011' on page 2 undefined on input line 68.
+
+
+Package natbib Warning: Citation `MusicBERT2022' on page 2 undefined on input line 70.
+
+
+Package natbib Warning: Citation `MidiBERT2021' on page 2 undefined on input line 70.
+
+
+Package natbib Warning: Citation `CLaMP2023' on page 2 undefined on input line 70.
+
+[2]
+
+Package natbib Warning: Citation `pfleiderer2019beyond' on page 3 undefined on input line 79.
+
+
+Package natbib Warning: Citation `tan2017perception' on page 3 undefined on input line 79.
+
+
+Package natbib Warning: Citation `FolkMusicVariation2017' on page 3 undefined on input line 85.
+
+
+Package natbib Warning: Citation `FolkMusicAnalysis2020' on page 3 undefined on input line 85.
+
+[3]
+
+Package natbib Warning: Citation `garcia2023vampnet' on page 4 undefined on input line 90.
+
+
+Package natbib Warning: Citation `muller2007transposition' on page 4 undefined on input line 90.
+
+
+Package natbib Warning: Citation `lattner2018learning' on page 4 undefined on input line 90.
+
 
 Underfull \hbox (badness 3291) in paragraph at lines 98--99
-[]\OT1/cmr/bx/n/10.95 RQ2 (Similarity-Based Re-trieval): \OT1/cmr/m/n/10.95 Do 
-learned em-bed-dings sup-port
+[]\OT1/cmr/bx/n/10.95 RQ2 (Similarity-Based Re-trieval): \OT1/cmr/m/n/10.95 Do learned em-bed-dings sup-port
  []
 
-[4] [5] [6] [7]
+[4]
+
+LaTeX Warning: Reference `sec:related' on page 5 undefined on input line 114.
+
+
+LaTeX Warning: Reference `sec:dataset' on page 5 undefined on input line 114.
+
+
+LaTeX Warning: Reference `sec:methodology' on page 5 undefined on input line 114.
+
+
+LaTeX Warning: Reference `sec:results' on page 5 undefined on input line 114.
+
+
+LaTeX Warning: Reference `sec:conclusion' on page 5 undefined on input line 114.
+
+
+Package natbib Warning: Citation `ferreira2023generating' on page 5 undefined on input line 119.
+
+
+Package natbib Warning: Citation `ji2023survey' on page 5 undefined on input line 119.
+
+
+Package natbib Warning: Citation `typke2021survey' on page 5 undefined on input line 119.
+
+
+Package natbib Warning: Citation `sturm2016music' on page 5 undefined on input line 121.
+
+
+Package natbib Warning: Citation `wu2023tunesformer' on page 5 undefined on input line 121.
+
+
+Package natbib Warning: Citation `MusicBERT2022' on page 5 undefined on input line 123.
+
+
+Package natbib Warning: Citation `MidiBERT2021' on page 5 undefined on input line 123.
+
+[5]
+
+Package natbib Warning: Citation `CLaMP2023' on page 6 undefined on input line 125.
+
+
+Package natbib Warning: Citation `wu2024melodyt5' on page 6 undefined on input line 127.
+
+
+Package natbib Warning: Citation `BERT2019' on page 6 undefined on input line 129.
+
+
+Package natbib Warning: Citation `jiang2020speech' on page 6 undefined on input line 131.
+
+
+Package natbib Warning: Citation `he2020momentum' on page 6 undefined on input line 131.
+
+
+Package natbib Warning: Citation `zhang2024data' on page 6 undefined on input line 131.
+
+[6]
+
+Package natbib Warning: Citation `zhang2023symbolic' on page 7 undefined on input line 133.
+
+
+Package natbib Warning: Citation `ji2023survey' on page 7 undefined on input line 133.
+
+
+Package natbib Warning: Citation `pagh2007linear' on page 7 undefined on input line 133.
+
+
+Package natbib Warning: Citation `levy2023probing' on page 7 undefined on input line 133.
+
+
+Package natbib Warning: Citation `shahapure2020cluster' on page 7 undefined on input line 133.
+
+
+Package natbib Warning: Citation `santos2009use' on page 7 undefined on input line 133.
+
+
+Package natbib Warning: Citation `blumenthal2019new' on page 7 undefined on input line 135.
+
+
+Package natbib Warning: Citation `tremblay2007marking' on page 7 undefined on input line 135.
+
+
+Package natbib Warning: Citation `schmuckler1999testing' on page 7 undefined on input line 135.
+
+
+Package natbib Warning: Citation `poladian1951melodic' on page 7 undefined on input line 135.
+
+
+Package natbib Warning: Citation `IrishMAN2023' on page 7 undefined on input line 139.
+
+[7]
+
+LaTeX Warning: Reference `fig:dataset_stats' on page 8 undefined on input line 143.
+
 <dataset_statistics.pdf, id=38, 1020.54303pt x 872.1456pt>
 File: dataset_statistics.pdf Graphic file (type pdf)
 <use dataset_statistics.pdf>
 Package pdftex.def Info: dataset_statistics.pdf  used on input line 147.
 (pdftex.def)             Requested size: 408.0pt x 348.66576pt.
- [8 <./dataset_statistics.pdf>] [9]
-! Undefined control sequence.
+[8 <./dataset_statistics.pdf>]
+
+LaTeX Warning: Reference `fig:bar_patching' on page 9 undefined on input line 155.
+
+
+Package natbib Warning: Citation `wu2023tunesformer' on page 9 undefined on input line 158.
+
+[9]
+
+Package natbib Warning: Citation `CLaMP2023' on page 10 undefined on input line 177.
+
+
+Package natbib Warning: Citation `MelodyT5_2024' on page 10 undefined on input line 177.
+
+/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex:179: Undefined control sequence.
 l.179 ...test splits is publicly available at \url
                                                   {https://huggingface.co/da...
 The control sequence at the end of the top line
@@ -442,6 +569,15 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
+
+Package natbib Warning: Citation `CLaMP2023' on page 10 undefined on input line 183.
+
+
+Package natbib Warning: Citation `MelodyT5_2024' on page 10 undefined on input line 183.
+
+
+LaTeX Warning: Reference `fig:bar_patching' on page 10 undefined on input line 183.
+
 <bar_patching_stats.pdf, id=144, 886.81625pt x 654.03723pt>
 File: bar_patching_stats.pdf Graphic file (type pdf)
 <use bar_patching_stats.pdf>
@@ -449,36 +585,141 @@ Package pdftex.def Info: bar_patching_stats.pdf  used on input line 187.
 (pdftex.def)             Requested size: 408.0pt x 300.9007pt.
 [10]
 
+LaTeX Warning: Reference `fig:bar_patching' on page 11 undefined on input line 207.
+
+
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <5.5> not available
 (Font)              size <5> substituted on input line 212.
 
 [11 <./bar_patching_stats.pdf>]
+
+LaTeX Warning: Reference `fig:architecture' on page 12 undefined on input line 218.
+
 <architecture_diagram.png, id=231, 3613.5pt x 2032.59375pt>
 File: architecture_diagram.png Graphic file (type png)
 <use architecture_diagram.png>
 Package pdftex.def Info: architecture_diagram.png  used on input line 222.
 (pdftex.def)             Requested size: 408.0pt x 229.47882pt.
- [12 <./architecture_diagram.png (PNG copy)>]
-[13] [14] [15]
+[12 <./architecture_diagram.png (PNG copy)>]
+
+Package natbib Warning: Citation `CLaMP2023' on page 13 undefined on input line 233.
+
+
+Package natbib Warning: Citation `MelodyT5_2024' on page 13 undefined on input line 233.
+
+
+Package natbib Warning: Citation `Transformer2017' on page 13 undefined on input line 255.
+
+
+Package natbib Warning: Citation `BERT2019' on page 13 undefined on input line 275.
+
+[13]
+
+Package natbib Warning: Citation `SimCLR2020' on page 14 undefined on input line 297.
+
+[14]
+
+LaTeX Warning: Reference `tab:hyperparameters' on page 15 undefined on input line 366.
+
+[15]
+
+LaTeX Warning: Reference `fig:training' on page 16 undefined on input line 377.
+
 <training_curves_hq.pdf, id=252, 725.76688pt x 555.8159pt>
 File: training_curves_hq.pdf Graphic file (type pdf)
 <use training_curves_hq.pdf>
 Package pdftex.def Info: training_curves_hq.pdf  used on input line 384.
 (pdftex.def)             Requested size: 408.0pt x 312.45909pt.
- [16] [17 <./training_curves_hq.pdf>] [18]
+[16]
+
+LaTeX Warning: Reference `sec:results' on page 17 undefined on input line 389.
+
+[17 <./training_curves_hq.pdf>]
+
+LaTeX Warning: Reference `tab:tune_type' on page 18 undefined on input line 402.
+
+[18]
+
+LaTeX Warning: Reference `fig:confusion' on page 19 undefined on input line 421.
+
 <tune_type_confusion.pdf, id=332, 683.94498pt x 571.36778pt>
 File: tune_type_confusion.pdf Graphic file (type pdf)
 <use tune_type_confusion.pdf>
-Package pdftex.def Info: tune_type_confusion.pdf  used on input line 422.
+Package pdftex.def Info: tune_type_confusion.pdf  used on input line 425.
 (pdftex.def)             Requested size: 285.59875pt x 238.58661pt.
- [19 <./tune_type_confusion.pdf>] [20] [21]
+[19 <./tune_type_confusion.pdf>]
+
+LaTeX Warning: Reference `tab:mode' on page 20 undefined on input line 436.
+
+
+Package natbib Warning: Citation `LinearProbing2020' on page 20 undefined on input line 454.
+
+[20]
+
+LaTeX Warning: Reference `tune-type' on page 21 undefined on input line 458.
+
+
+LaTeX Warning: Reference `tab:probing' on page 21 undefined on input line 458.
+
+
+Package natbib Warning: Citation `SilhouetteScore1987' on page 21 undefined on input line 481.
+
+
+Package natbib Warning: Citation `NMI2002' on page 21 undefined on input line 481.
+
+
+LaTeX Warning: Reference `tab:clustering' on page 21 undefined on input line 483.
+
+[21]
+
+Package natbib Warning: Citation `UMAP2018' on page 22 undefined on input line 504.
+
+
+Package natbib Warning: Citation `tSNE2008' on page 22 undefined on input line 504.
+
+
+LaTeX Warning: Reference `fig:umap_combined' on page 22 undefined on input line 504.
+
+
+LaTeX Warning: Reference `fig:umap_combined' on page 22 undefined on input line 504.
+
 <umap_combined.pdf, id=425, 1146.90985pt x 496.39453pt>
 File: umap_combined.pdf Graphic file (type pdf)
 <use umap_combined.pdf>
-Package pdftex.def Info: umap_combined.pdf  used on input line 505.
+Package pdftex.def Info: umap_combined.pdf  used on input line 508.
 (pdftex.def)             Requested size: 408.0pt x 176.58107pt.
- [22 <./umap_combined.pdf>] [23] [24] (./abc2vec_paper.bbl
-[25] [26]) [27] (./abc2vec_paper.aux)
+[22 <./umap_combined.pdf>]
+
+Package natbib Warning: Citation `FolkMusicVariation2017' on page 23 undefined on input line 518.
+
+
+LaTeX Warning: Reference `tab:clustering' on page 23 undefined on input line 520.
+
+
+Package natbib Warning: Citation `BERT2019' on page 23 undefined on input line 520.
+
+
+Package natbib Warning: Citation `MusicBERT2022' on page 23 undefined on input line 525.
+
+
+Package natbib Warning: Citation `CLaMP2023' on page 23 undefined on input line 525.
+
+
+Package natbib Warning: Citation `likhomanenko2021cape' on page 23 undefined on input line 529.
+
+
+Package natbib Warning: Citation `gajic2021fast' on page 23 undefined on input line 529.
+
+[23] [24] (./abc2vec_paper.bbl [25] [26])
+
+Package natbib Warning: There were undefined citations.
+
+[27] (./abc2vec_paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -488,39 +729,23 @@ L3 programming layer <2026-01-19>
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 5320 strings out of 467525
- 81548 string characters out of 5418982
- 494261 words of memory out of 5000000
- 34131 multiletter control sequences out of 15000+600000
+ 5318 strings out of 467525
+ 81603 string characters out of 5418982
+ 493082 words of memory out of 5000000
+ 34130 multiletter control sequences out of 15000+600000
  640578 words of font info for 90 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,12n,93p,2183b,390s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
-></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
-</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></
-usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></us
-r/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></u
-sr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
-r/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
-/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/l
-ocal/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/loc
-al/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local
-/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/t
-exlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/tex
-live/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texliv
-e/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2
-026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf
--dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-
-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-di
-st/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2026/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2026/texmf-dist/f
-onts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on abc2vec_paper.pdf (27 pages, 877972 bytes).
+ 87i,12n,93p,2224b,314s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on abc2vec_paper.pdf (27 pages, 879313 bytes).
 PDF statistics:
  610 PDF objects out of 1000 (max. 8388607)
  176 compressed objects within 2 object streams

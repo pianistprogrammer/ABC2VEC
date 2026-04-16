@@ -409,11 +409,14 @@ ABC2Vec achieves a mean accuracy of 78.4\% $\pm$ 1.2\%, substantially exceeding 
 \toprule
 \textbf{Model} & \textbf{Accuracy} & \textbf{Std Dev} & \textbf{Macro F1} & \textbf{Weighted F1} \\
 \midrule
-ABC2Vec & 78.4\% & $\pm$ 1.2\% & 62.5\% & 78.0\% \\
+ABC2Vec (Learned) & 78.4\% & $\pm$ 1.2\% & 62.5\% & 78.0\% \\
+TF-IDF + LogReg & 75.5\% & $\pm$ 2.3\% & 45.0\% & 72.4\% \\
 Random Baseline & 16.7\% & --- & --- & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+To assess whether ABC2Vec's learned representations provide meaningful improvement over simple text-based features, we compare against a TF-IDF baseline. We extract character n-grams (2-4) from raw ABC notation strings, compute TF-IDF features (max 5,000 features), and train a logistic regression classifier with identical cross-validation settings. The TF-IDF baseline achieves 75.5\% $\pm$ 2.3\% accuracy with a macro F1 of 45.0\%, demonstrating that surface-level character patterns capture some rhythmic structure. However, ABC2Vec outperforms this baseline by +2.9 percentage points in accuracy and critically by +17.5 points in macro F1 (62.5\% vs 45.0\%). The macro F1 gap reveals that ABC2Vec better handles rare classes: TF-IDF completely fails on slides (0\% recall) and slip jigs (0\% recall), whereas ABC2Vec achieves 44\% and 31\% recall respectively. This confirms that self-supervised representation learning captures musical semantics beyond character-level patterns, particularly for underrepresented rhythmic categories.
 
 The model achieves its strongest performance on the dominant classes: reels (86\% recall, 82\% precision) and jigs (86\% recall, 87\% precision), which are rhythmically distinctive. Reels use 4/4 meter with straight eighth-note patterns, while jigs employ 6/8 compound meter with characteristic triplet groupings. The clear separation between these classes indicates that ABC2Vec effectively captures fundamental rhythmic structure. Confusion arises primarily between rhythmically similar categories. Polkas (76\% recall, 77\% precision) and waltzes (46\% recall, 52\% precision) show more confusion with other classes. The rarest classes—slides (44\% recall, 54\% precision, n=16) and slip jigs (31\% recall, 38\% precision, n=39)—prove most challenging due to limited training examples. Overall, misclassifications align with musicological similarity, occurring between genres with overlapping rhythmic features rather than arbitrarily. Figure~\ref{fig:confusion} presents the confusion matrix illustrating these patterns.
 
@@ -510,7 +513,7 @@ We apply UMAP~\cite{UMAP2018} and t-SNE~\cite{tSNE2008} for 2D visualization of 
 
 \subsection{Interpretation of Results}
 
-\textbf{RQ1 (Representation Quality):} ABC2Vec successfully learns semantically meaningful embeddings, as evidenced by 77--80\% classification accuracy on tune type and mode. The model captures rhythmic patterns (6/8 jigs vs 4/4 reels) and tonal structure (major vs minor) without explicit supervision beyond masking and transposition contrastive learning.
+\textbf{RQ1 (Representation Quality):} ABC2Vec successfully learns semantically meaningful embeddings, as evidenced by 77--80\% classification accuracy on tune type and mode. The +2.9 percentage point improvement in accuracy over the TF-IDF baseline (75.5\%) and the +17.5 point improvement in macro F1 (62.5\% vs 45.0\%) demonstrate that self-supervised learning captures musical semantics beyond surface-level character patterns. The model captures rhythmic patterns (6/8 jigs vs 4/4 reels) and tonal structure (major vs minor) without explicit supervision beyond masking and transposition contrastive learning.
 
 \textbf{RQ2 (Similarity-Based Retrieval):} The learned embeddings support similarity-based retrieval, with potential applications for identifying melodic variants and tune families. This aligns with folk musicology literature on melodic ``tune families''~\cite{FolkMusicVariation2017}.
 
