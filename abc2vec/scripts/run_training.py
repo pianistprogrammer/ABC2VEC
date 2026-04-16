@@ -142,6 +142,8 @@ def main():
     parser.add_argument("--device", type=str,
                         default="cuda" if torch.cuda.is_available() else
                                 "mps"  if torch.backends.mps.is_available() else "cpu")
+    parser.add_argument("--max_steps", type=int, default=None,
+                        help="Maximum number of optimizer steps (overrides epochs if set)")
 
     args = parser.parse_args()
 
@@ -459,6 +461,15 @@ def main():
                         "optimizer_state_dict": optimizer.state_dict(),
                     }, ckpt_path)
                     tqdm.write(f"  > Saved checkpoint: {ckpt_path.name}")
+
+                # ── Check max_steps limit ─────────────────────────────────
+                if args.max_steps is not None and global_step >= args.max_steps:
+                    tqdm.write(f"\n  Reached max_steps={args.max_steps}, stopping training.")
+                    break
+
+        # Break outer epoch loop if max_steps reached
+        if args.max_steps is not None and global_step >= args.max_steps:
+            break
 
         # ── Epoch checkpoint ─────────────────────────────────────────────
         ckpt_path = output_path / f"checkpoint_epoch{epoch}.pt"
