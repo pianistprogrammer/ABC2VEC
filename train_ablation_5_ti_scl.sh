@@ -69,6 +69,7 @@ python abc2vec/scripts/run_training.py \
     --lambda_scl 0.5 \
     --num_workers $NUM_WORKERS \
     --device $DEVICE \
+    --max_steps 40000 \
     --amp
 
 echo ""
