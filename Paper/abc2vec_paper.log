@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.18)  16 APR 2026 11:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.18)  26 APR 2026 19:22
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -265,6 +265,9 @@ Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@cntb=\count315
 \multirow@dima=\skip69
 \bigstrutjot=\dimen189
+) (/usr/local/texlive/2026/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip18
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 ) (/usr/local/texlive/2026/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip70
@@ -277,8 +280,7 @@ LaTeX Info: Redefining \cite on input line 694.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count319
-)
-No file abc2vec_paper.aux.
+) (./abc2vec_paper.aux)
 \openout1 = `abc2vec_paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 36.
@@ -295,7 +297,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 36.
 LaTeX Font Info:    ... okay on input line 36.
-(/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+ (/usr/local/texlive/2026/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count320
 \scratchdimen=\dimen190
@@ -372,354 +374,65 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
  (/usr/local/texlive/2026/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
+Overfull \vbox (0.68748pt too high) has occurred while \output is active []
 
-Package natbib Warning: Citation `li2012music' on page 1 undefined on input line 62.
-
-
-Package natbib Warning: Citation `typke2021survey' on page 1 undefined on input line 62.
-
-[1
+ [1
 
 
 
-{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-
-Package natbib Warning: Citation `pereira2019representation' on page 2 undefined on input line 64.
-
-
-Package natbib Warning: Citation `da2023robust' on page 2 undefined on input line 64.
-
-
-Package natbib Warning: Citation `gupta2013feature' on page 2 undefined on input line 64.
-
-
-Package natbib Warning: Citation `humphrey2012moving' on page 2 undefined on input line 64.
-
-
-Package natbib Warning: Citation `pereira2019representation' on page 2 undefined on input line 64.
-
-
-Package natbib Warning: Citation `Word2Vec2013' on page 2 undefined on input line 66.
-
-
-Package natbib Warning: Citation `BERT2019' on page 2 undefined on input line 66.
-
-
-Package natbib Warning: Citation `Transformer2017' on page 2 undefined on input line 66.
-
-
-Package natbib Warning: Citation `ABCNotation2011' on page 2 undefined on input line 68.
-
-
-Package natbib Warning: Citation `MusicBERT2022' on page 2 undefined on input line 70.
-
-
-Package natbib Warning: Citation `MidiBERT2021' on page 2 undefined on input line 70.
-
-
-Package natbib Warning: Citation `CLaMP2023' on page 2 undefined on input line 70.
-
-[2]
-
-Package natbib Warning: Citation `pfleiderer2019beyond' on page 3 undefined on input line 79.
-
-
-Package natbib Warning: Citation `tan2017perception' on page 3 undefined on input line 79.
-
-
-Package natbib Warning: Citation `FolkMusicVariation2017' on page 3 undefined on input line 85.
-
-
-Package natbib Warning: Citation `FolkMusicAnalysis2020' on page 3 undefined on input line 85.
-
-[3]
-
-Package natbib Warning: Citation `garcia2023vampnet' on page 4 undefined on input line 90.
-
-
-Package natbib Warning: Citation `muller2007transposition' on page 4 undefined on input line 90.
-
-
-Package natbib Warning: Citation `lattner2018learning' on page 4 undefined on input line 90.
-
-
-Underfull \hbox (badness 3291) in paragraph at lines 98--99
+{/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+Underfull \hbox (badness 3291) in paragraph at lines 102--103
 []\OT1/cmr/bx/n/10.95 RQ2 (Similarity-Based Re-trieval): \OT1/cmr/m/n/10.95 Do learned em-bed-dings sup-port
  []
 
-[4]
-
-LaTeX Warning: Reference `sec:related' on page 5 undefined on input line 114.
-
-
-LaTeX Warning: Reference `sec:dataset' on page 5 undefined on input line 114.
-
-
-LaTeX Warning: Reference `sec:methodology' on page 5 undefined on input line 114.
-
-
-LaTeX Warning: Reference `sec:results' on page 5 undefined on input line 114.
-
-
-LaTeX Warning: Reference `sec:conclusion' on page 5 undefined on input line 114.
-
-
-Package natbib Warning: Citation `ferreira2023generating' on page 5 undefined on input line 119.
-
-
-Package natbib Warning: Citation `ji2023survey' on page 5 undefined on input line 119.
-
-
-Package natbib Warning: Citation `typke2021survey' on page 5 undefined on input line 119.
-
-
-Package natbib Warning: Citation `sturm2016music' on page 5 undefined on input line 121.
-
-
-Package natbib Warning: Citation `wu2023tunesformer' on page 5 undefined on input line 121.
-
-
-Package natbib Warning: Citation `MusicBERT2022' on page 5 undefined on input line 123.
-
-
-Package natbib Warning: Citation `MidiBERT2021' on page 5 undefined on input line 123.
-
-[5]
-
-Package natbib Warning: Citation `CLaMP2023' on page 6 undefined on input line 125.
-
-
-Package natbib Warning: Citation `wu2024melodyt5' on page 6 undefined on input line 127.
-
-
-Package natbib Warning: Citation `BERT2019' on page 6 undefined on input line 129.
-
-
-Package natbib Warning: Citation `jiang2020speech' on page 6 undefined on input line 131.
-
-
-Package natbib Warning: Citation `he2020momentum' on page 6 undefined on input line 131.
-
-
-Package natbib Warning: Citation `zhang2024data' on page 6 undefined on input line 131.
-
-[6]
-
-Package natbib Warning: Citation `zhang2023symbolic' on page 7 undefined on input line 133.
-
-
-Package natbib Warning: Citation `ji2023survey' on page 7 undefined on input line 133.
-
-
-Package natbib Warning: Citation `pagh2007linear' on page 7 undefined on input line 133.
-
-
-Package natbib Warning: Citation `levy2023probing' on page 7 undefined on input line 133.
-
-
-Package natbib Warning: Citation `shahapure2020cluster' on page 7 undefined on input line 133.
-
-
-Package natbib Warning: Citation `santos2009use' on page 7 undefined on input line 133.
-
-
-Package natbib Warning: Citation `blumenthal2019new' on page 7 undefined on input line 135.
-
-
-Package natbib Warning: Citation `tremblay2007marking' on page 7 undefined on input line 135.
-
-
-Package natbib Warning: Citation `schmuckler1999testing' on page 7 undefined on input line 135.
-
-
-Package natbib Warning: Citation `poladian1951melodic' on page 7 undefined on input line 135.
-
-
-Package natbib Warning: Citation `IrishMAN2023' on page 7 undefined on input line 139.
-
-[7]
-
-LaTeX Warning: Reference `fig:dataset_stats' on page 8 undefined on input line 143.
-
+[4] [5] [6] [7]
 <dataset_statistics.pdf, id=38, 1020.54303pt x 872.1456pt>
 File: dataset_statistics.pdf Graphic file (type pdf)
 <use dataset_statistics.pdf>
-Package pdftex.def Info: dataset_statistics.pdf  used on input line 147.
+Package pdftex.def Info: dataset_statistics.pdf  used on input line 151.
 (pdftex.def)             Requested size: 408.0pt x 348.66576pt.
-[8 <./dataset_statistics.pdf>]
-
-LaTeX Warning: Reference `fig:bar_patching' on page 9 undefined on input line 155.
-
-
-Package natbib Warning: Citation `wu2023tunesformer' on page 9 undefined on input line 158.
-
-[9]
-
-Package natbib Warning: Citation `CLaMP2023' on page 10 undefined on input line 177.
-
-
-Package natbib Warning: Citation `MelodyT5_2024' on page 10 undefined on input line 177.
-
-/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex:179: Undefined control sequence.
-l.179 ...test splits is publicly available at \url
-                                                  {https://huggingface.co/da...
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Package natbib Warning: Citation `CLaMP2023' on page 10 undefined on input line 183.
-
-
-Package natbib Warning: Citation `MelodyT5_2024' on page 10 undefined on input line 183.
-
-
-LaTeX Warning: Reference `fig:bar_patching' on page 10 undefined on input line 183.
-
-<bar_patching_stats.pdf, id=144, 886.81625pt x 654.03723pt>
+ [8] [9 <./dataset_statistics.pdf>] [10]
+<bar_patching_stats.pdf, id=147, 886.81625pt x 654.03723pt>
 File: bar_patching_stats.pdf Graphic file (type pdf)
 <use bar_patching_stats.pdf>
-Package pdftex.def Info: bar_patching_stats.pdf  used on input line 187.
+Package pdftex.def Info: bar_patching_stats.pdf  used on input line 206.
 (pdftex.def)             Requested size: 408.0pt x 300.9007pt.
-[10]
-
-LaTeX Warning: Reference `fig:bar_patching' on page 11 undefined on input line 207.
-
+ [11]
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <5.5> not available
-(Font)              size <5> substituted on input line 212.
+(Font)              size <5> substituted on input line 218.
 
-[11 <./bar_patching_stats.pdf>]
-
-LaTeX Warning: Reference `fig:architecture' on page 12 undefined on input line 218.
-
-<architecture_diagram.png, id=231, 3613.5pt x 2032.59375pt>
+[12 <./bar_patching_stats.pdf>]
+<architecture_diagram.png, id=235, 3613.5pt x 2032.59375pt>
 File: architecture_diagram.png Graphic file (type png)
 <use architecture_diagram.png>
-Package pdftex.def Info: architecture_diagram.png  used on input line 222.
+Package pdftex.def Info: architecture_diagram.png  used on input line 228.
 (pdftex.def)             Requested size: 408.0pt x 229.47882pt.
-[12 <./architecture_diagram.png (PNG copy)>]
-
-Package natbib Warning: Citation `CLaMP2023' on page 13 undefined on input line 233.
-
-
-Package natbib Warning: Citation `MelodyT5_2024' on page 13 undefined on input line 233.
-
-
-Package natbib Warning: Citation `Transformer2017' on page 13 undefined on input line 255.
-
-
-Package natbib Warning: Citation `BERT2019' on page 13 undefined on input line 275.
-
-[13]
-
-Package natbib Warning: Citation `SimCLR2020' on page 14 undefined on input line 297.
-
-[14]
-
-LaTeX Warning: Reference `tab:hyperparameters' on page 15 undefined on input line 366.
-
-[15]
-
-LaTeX Warning: Reference `fig:training' on page 16 undefined on input line 377.
-
-<training_curves_hq.pdf, id=252, 725.76688pt x 555.8159pt>
+ [13 <./architecture_diagram.png (PNG copy)>] [14] [15] [16]
+<training_curves_hq.pdf, id=255, 725.76688pt x 555.8159pt>
 File: training_curves_hq.pdf Graphic file (type pdf)
 <use training_curves_hq.pdf>
-Package pdftex.def Info: training_curves_hq.pdf  used on input line 384.
+Package pdftex.def Info: training_curves_hq.pdf  used on input line 386.
 (pdftex.def)             Requested size: 408.0pt x 312.45909pt.
-[16]
-
-LaTeX Warning: Reference `sec:results' on page 17 undefined on input line 389.
-
-[17 <./training_curves_hq.pdf>]
-
-LaTeX Warning: Reference `tab:tune_type' on page 18 undefined on input line 402.
-
-[18]
-
-LaTeX Warning: Reference `fig:confusion' on page 19 undefined on input line 421.
-
-<tune_type_confusion.pdf, id=332, 683.94498pt x 571.36778pt>
+ [17] [18 <./training_curves_hq.pdf>] [19]
+<tune_type_confusion.pdf, id=336, 683.94498pt x 571.36778pt>
 File: tune_type_confusion.pdf Graphic file (type pdf)
 <use tune_type_confusion.pdf>
-Package pdftex.def Info: tune_type_confusion.pdf  used on input line 425.
+Package pdftex.def Info: tune_type_confusion.pdf  used on input line 427.
 (pdftex.def)             Requested size: 285.59875pt x 238.58661pt.
-[19 <./tune_type_confusion.pdf>]
-
-LaTeX Warning: Reference `tab:mode' on page 20 undefined on input line 436.
-
-
-Package natbib Warning: Citation `LinearProbing2020' on page 20 undefined on input line 454.
-
-[20]
-
-LaTeX Warning: Reference `tune-type' on page 21 undefined on input line 458.
-
-
-LaTeX Warning: Reference `tab:probing' on page 21 undefined on input line 458.
-
-
-Package natbib Warning: Citation `SilhouetteScore1987' on page 21 undefined on input line 481.
-
-
-Package natbib Warning: Citation `NMI2002' on page 21 undefined on input line 481.
-
-
-LaTeX Warning: Reference `tab:clustering' on page 21 undefined on input line 483.
-
-[21]
-
-Package natbib Warning: Citation `UMAP2018' on page 22 undefined on input line 504.
-
-
-Package natbib Warning: Citation `tSNE2008' on page 22 undefined on input line 504.
-
-
-LaTeX Warning: Reference `fig:umap_combined' on page 22 undefined on input line 504.
-
-
-LaTeX Warning: Reference `fig:umap_combined' on page 22 undefined on input line 504.
-
-<umap_combined.pdf, id=425, 1146.90985pt x 496.39453pt>
+ [20 <./tune_type_confusion.pdf>] [21] [22]
+<umap_combined.pdf, id=428, 1146.90985pt x 496.39453pt>
 File: umap_combined.pdf Graphic file (type pdf)
 <use umap_combined.pdf>
-Package pdftex.def Info: umap_combined.pdf  used on input line 508.
+Package pdftex.def Info: umap_combined.pdf  used on input line 510.
 (pdftex.def)             Requested size: 408.0pt x 176.58107pt.
-[22 <./umap_combined.pdf>]
-
-Package natbib Warning: Citation `FolkMusicVariation2017' on page 23 undefined on input line 518.
-
-
-LaTeX Warning: Reference `tab:clustering' on page 23 undefined on input line 520.
-
-
-Package natbib Warning: Citation `BERT2019' on page 23 undefined on input line 520.
-
-
-Package natbib Warning: Citation `MusicBERT2022' on page 23 undefined on input line 525.
-
-
-Package natbib Warning: Citation `CLaMP2023' on page 23 undefined on input line 525.
-
-
-Package natbib Warning: Citation `likhomanenko2021cape' on page 23 undefined on input line 529.
-
-
-Package natbib Warning: Citation `gajic2021fast' on page 23 undefined on input line 529.
-
-[23] [24] (./abc2vec_paper.bbl [25] [26])
-
-Package natbib Warning: There were undefined citations.
-
-[27] (./abc2vec_paper.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+ [23 <./umap_combined.pdf>] [24] [25] [26]
+<ablation_loss_curves.pdf, id=511, 1072.54143pt x 972.71579pt>
+File: ablation_loss_curves.pdf Graphic file (type pdf)
+<use ablation_loss_curves.pdf>
+Package pdftex.def Info: ablation_loss_curves.pdf  used on input line 635.
+(pdftex.def)             Requested size: 408.0pt x 370.02174pt.
+ [27] [28 <./ablation_loss_curves.pdf>] [29] [30] (./abc2vec_paper.bbl [31] [32]) [33] (./abc2vec_paper.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
@@ -729,26 +442,20 @@ L3 programming layer <2026-01-19>
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
 
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 5318 strings out of 467525
- 81603 string characters out of 5418982
- 493082 words of memory out of 5000000
- 34130 multiletter control sequences out of 15000+600000
- 640578 words of font info for 90 fonts, out of 8000000 for 9000
+ 5422 strings out of 467525
+ 83267 string characters out of 5418982
+ 496538 words of memory out of 5000000
+ 34227 multiletter control sequences out of 15000+600000
+ 641056 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,12n,93p,2224b,314s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,12n,93p,2299b,375s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on abc2vec_paper.pdf (27 pages, 879313 bytes).
+Output written on abc2vec_paper.pdf (33 pages, 940570 bytes).
 PDF statistics:
- 610 PDF objects out of 1000 (max. 8388607)
- 176 compressed objects within 2 object streams
+ 720 PDF objects out of 1000 (max. 8388607)
+ 198 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 36 words of extra memory for PDF output out of 10000 (max. 10000000)
 

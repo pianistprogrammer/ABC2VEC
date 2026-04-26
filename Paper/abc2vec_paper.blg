@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99e (TeX Live 2026)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: abc2vec_paper.aux
+The style file: tfp.bst
+Database file #1: abc2vec.bib
+Warning--empty pages in typke2021survey
+You've used 47 entries,
+            2892 wiz_defined-function locations,
+            1330 strings with 17912 characters,
+and the built_in function-call counts, 21325 in all, are:
+= -- 1679
+> -- 600
+< -- 9
++ -- 506
+- -- 150
+* -- 1287
+:= -- 2196
+add.period$ -- 95
+call.type$ -- 47
+change.case$ -- 1
+chr.to.int$ -- 0
+cite$ -- 48
+duplicate$ -- 2361
+empty$ -- 2117
+format.name$ -- 189
+if$ -- 4713
+int.to.chr$ -- 0
+int.to.str$ -- 47
+missing$ -- 469
+newline$ -- 146
+num.names$ -- 47
+pop$ -- 1170
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 441
+stack$ -- 0
+substring$ -- 1275
+swap$ -- 1108
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 154
+width$ -- 49
+write$ -- 410
+(There was 1 warning)

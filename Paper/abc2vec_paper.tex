@@ -13,7 +13,7 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{float}
-
+\usepackage{url}
 \usepackage[numbers,sort&compress,merge]{natbib}
 \bibpunct[, ]{(}{)}{,}{n}{,}{,}
 \renewcommand\bibfont{\fontsize{10}{12}\selectfont}
@@ -50,7 +50,7 @@ Email: jeremiah.abimbola@polsl.pl; daniel.kostrzewa@polsl.pl; pawel.benecki@pols
 \maketitle
 
 \begin{abstract}
-Folk music traditions, transmitted orally across generations, embody rich cultural heritage, yet their computational study has been hindered by the lack of suitable representation methods that respect the fluid, variation-driven nature of traditional repertoires. Existing music embedding approaches either target Western art music or rely on cross-modal alignment with text, overlooking the unique challenges of folk music such as melodic variation across performers and regions, transposition between keys, and ambiguous boundaries between tune families. We introduce \textbf{ABC2Vec}, a self-supervised Transformer encoder that learns dense, semantically meaningful embeddings directly from ABC notation---the standard symbolic format for folk tune archives worldwide. Our approach combines Masked Music Modeling with a novel Transposition Invariance contrastive objective, capturing both local melodic patterns and the key-independent similarity central to how musicians recognize and relate tunes. A bar-level patchification strategy reduces sequence lengths by 16$\times$ compared to character-level tokenization, making the model practical for large-scale archives on consumer hardware. Trained on over 211,000 Irish traditional tunes, ABC2Vec learns to distinguish rhythmic categories (jigs, reels, polkas) and tonal modes (major, Dorian, Mixolydian) without explicit labels, encoding these properties in distributed, largely non-overlapping subspaces. Systematic evaluation demonstrates strong classification performance (78\% tune type, 79\% mode) and reveals that embeddings capture musical structure through distributed representations rather than discrete clusters, aligning with folk music's continuous, variation-rich nature. These capabilities support musicologists studying tune families, archivists building searchable repositories, educators developing learning tools, and folk musicians exploring their repertoire. We release pre-trained models, training code, dataset splits, and evaluation benchmarks as open resources for the computational musicology and music information retrieval communities.
+Folk music traditions, transmitted orally across generations, embody rich cultural heritage, yet their computational study has been hindered by the lack of suitable representation methods that respect the fluid, variation-driven nature of traditional repertoires. Existing music embedding approaches either target Western art music or rely on cross-modal alignment with text, overlooking the unique challenges of folk music such as melodic variation across performers and regions, transposition between keys, and ambiguous boundaries between tune families. We introduce \textbf{ABC2Vec}, a self-supervised Transformer encoder that learns dense, semantically meaningful embeddings directly from ABC notation---a text-based symbolic format widely used for Western music without microtones, and particularly dominant in folk tune archives worldwide. Our approach combines Masked Music Modeling with a novel Transposition Invariance contrastive objective, capturing both local melodic patterns and the key-independent similarity central to how musicians recognize and relate tunes. A bar-level patchification strategy reduces sequence lengths by 16$\times$ compared to character-level tokenization, making the model practical for large-scale archives on consumer hardware. Trained on over 211,000 Irish traditional tunes, ABC2Vec learns to distinguish rhythmic categories (jigs, reels, polkas) and tonal modes (major, Dorian, Mixolydian) without explicit labels, encoding these properties in distributed, largely non-overlapping subspaces. Systematic evaluation demonstrates strong classification performance (78\% tune type, 79\% mode) and reveals that embeddings capture musical structure through distributed representations rather than discrete clusters, aligning with folk music's continuous, variation-rich nature. These capabilities support musicologists studying tune families, archivists building searchable repositories, educators developing learning tools, and folk musicians exploring their repertoire. We release pre-trained models, training code, dataset splits, and evaluation benchmarks as open resources for the computational musicology and music information retrieval communities.
 \end{abstract}
 
 \begin{keywords}
@@ -65,7 +65,11 @@ Traditional approaches to music representation in MIR have relied heavily on han
 
 In parallel, natural language processing (NLP) has undergone a paradigm shift from feature engineering to \textit{representation learning}. Word embeddings such as Word2Vec~\cite{Word2Vec2013} demonstrated that semantically meaningful vector representations could emerge from self-supervised learning on large text corpora, without explicit supervision. Subsequently, contextualized models such as BERT~\cite{BERT2019} extended this principle through Transformer architectures~\cite{Transformer2017}, achieving state-of-the-art performance across diverse language understanding tasks by pre-training on massive unlabeled datasets. The key insight is that representation learning enables models to discover rich, task-agnostic features directly from data, features that can then be adapted to downstream tasks through fine-tuning or linear probing.
 
-Among the symbolic formats used to represent music, ABC notation~\cite{ABCNotation2011} is a lightweight, text-based system originally developed for sharing folk tunes via email and online forums. It encodes melodies as plain-text strings using letters for pitch (e.g., \texttt{C D E F G A B}, with lowercase for higher octaves), digits and slashes for note duration, bar lines (\texttt{|}), and header fields for metadata such as title (\texttt{T:}), key (\texttt{K:}), and meter (\texttt{M:}). Its compactness and human readability have made it the dominant transcription format in folk music communities worldwide, with major archives hosting hundreds of thousands of tunes in this format. Because ABC notation is inherently sequential and character-based, it lends itself naturally to the same tokenization and modeling strategies that have proven effective in natural language processing.
+Among the symbolic formats used to represent music, ABC notation~\cite{ABCNotation2011} is a lightweight, text-based system originally developed for sharing folk tunes via email and online forums. It encodes melodies as plain-text strings using letters for pitch (e.g., \texttt{C D E F G A B}, with lowercase for higher octaves), digits and slashes for note duration, bar lines (\texttt{|}), and header fields for metadata such as title (\texttt{T:}), key (\texttt{K:}), and meter (\texttt{M:}). For example, a two-bar phrase from an Irish jig might be notated as:
+\begin{verbatim}
+|:EDE G2E|EDE GED|
+\end{verbatim}
+where uppercase letters denote notes (E, D, G), numbers indicate duration (G2 = half note), and $|$ marks bar lines. While suitable for representing Western music without microtones broadly, its compactness and human readability have made it the dominant transcription format in folk music communities worldwide, with major archives hosting hundreds of thousands of tunes in this format. Because ABC notation is inherently sequential and character-based, it lends itself naturally to the same tokenization and modeling strategies that have proven effective in natural language processing.
 
 This paradigm has naturally extended to symbolic music, where discrete note sequences mirror the discrete token structure of text. Recent work has adapted language model architectures to musical notation: MusicBERT~\cite{MusicBERT2022} applies BERT-style masked modeling to MIDI sequences with bar-level masking; MidiBERT-Piano~\cite{MidiBERT2021} similarly pre-trains on piano MIDI with specialized tokenization; CLaMP~\cite{CLaMP2023} introduces contrastive language-music pre-training for cross-modal retrieval between symbolic music and text descriptions. These models have demonstrated impressive results on tasks such as melody completion, music-text retrieval, and accompaniment generation, validating the efficacy of representation learning for symbolic music.
 
@@ -140,7 +144,7 @@ We train ABC2Vec on the \textbf{IrishMAN} (Irish Music ABC Notation) dataset~\ci
 
 Both sources provide tunes in standardized ABC notation with metadata fields including title (T:), key signature (K:), meter (M:), and optionally rhythm type (R:). The crowdsourced nature of these archives means that data quality varies: some tunes are professionally transcribed from published tunebooks, while others are informal transcriptions from sessions or recordings. This diversity reflects the living, oral tradition of folk music.
 
-As shown in Figure~\ref{fig:dataset_stats}, the dataset exhibits characteristics typical of Irish traditional music. Structurally, the median tune contains 18 bars (287 characters), well within our 64-bar maximum context window, with only 3.2\% requiring truncation. Rhythmically, reels dominate at 44.9\%, followed by jigs (21.3\%), polkas (14.5\%), and waltzes (12.2\%), reflecting authentic session repertoire distributions. Tonally, major mode predominates (80.2\%), with substantial modal diversity including minor (11.3\%), Dorian (5.4\%), and Mixolydian (3.0\%), underscoring folk music's departure from classical major-minor tonality. Key roots cluster heavily in sharp keys---G (30.5\%), D (26.8\%), and A (13.9\%), reflecting the instrumental constraints of fiddle, flute, and whistle playing. Meter signatures strongly correlate with tune types ($\rho = 0.87$): 4/4 for reels, 6/8 for jigs, 3/4 for waltzes. 
+As shown in Figure~\ref{fig:dataset_stats}, the dataset exhibits characteristics typical of Irish traditional music. Structurally, the median tune contains 18 bars (287 characters), well within our 64-bar maximum context window, with only 3.2\% requiring truncation. Rhythmically, reels dominate at 44.9\%, followed by jigs (21.3\%), polkas (14.5\%), and waltzes (12.2\%), reflecting authentic session repertoire distributions. Tonally, major mode predominates (80.2\%), with substantial modal diversity including minor (11.3\%), Dorian (5.4\%), and Mixolydian (3.0\%), underscoring folk music's departure from classical major-minor tonality. Key roots cluster heavily in sharp keys---G (30.5\%), D (26.8\%), and A (13.9\%)---reflecting the instrumental constraints of fiddle, flute, and whistle playing, with remaining keys including C, F, E, B$\flat$, B, E$\flat$, and a small proportion (N) with unspecified or ambiguous key signatures. Meter signatures strongly correlate with tune types ($\rho = 0.87$): 4/4 for reels, 6/8 for jigs, 3/4 for waltzes. 
 
 \begin{figure}[H]
 \centering
@@ -176,18 +180,7 @@ Crowdsourced archives inevitably contain duplicate transcriptions of the same tu
 \subsubsection{Train/Validation/Test Split}
 The IrishMAN dataset is distributed on HuggingFace with two pre-defined splits: a training partition of 214,122 tunes and a held-out validation partition of 2,162 tunes. Following CLaMP~\cite{CLaMP2023} and MelodyT5~\cite{MelodyT5_2024}, we adopt the official held-out partition as our \textbf{test set}, ensuring strict comparability with prior work on this benchmark. The small size of this partition (1.0\% of the corpus) reflects the dataset's original design for generative pre-training and is consistent with how it has been used in the literature.
 
-From the 214,122 training tunes, we reserve 5\% (10,469 tunes) as a \textbf{validation set} for hyperparameter tuning, training monitoring, and checkpoint selection, using stratified sampling to preserve the tune-type distribution. The remaining 95\% (198,893 tunes) forms the \textbf{training set} used exclusively for self-supervised pre-training. After deduplication across all three partitions, the final corpus totals 211,524 unique Irish traditional tunes. The complete processed dataset with train/validation/test splits is publicly available at \url{https://huggingface.co/datasets/pianistprogrammer/abc2vec-irish-folk-dataset}.
-
-\subsection{Bar Patchification Statistics}
-
-Following CLaMP~\cite{CLaMP2023} and MelodyT5~\cite{MelodyT5_2024}, we adopt bar-level patchification to reduce sequence length and enable efficient Transformer processing. Each bar (delimited by $|$) is treated as a single token and mapped to a fixed-dimensional vector using character-level embeddings followed by pooling. Figure~\ref{fig:bar_patching} summarizes key statistics supporting this design choice.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=\textwidth]{bar_patching_stats.pdf}
-\caption{Bar patchification statistics: (a) Distribution of bars per tune with most tunes in the 12--28 bar range. (b) Sections per tune distribution consistent with AABB phrase structures. (c) Scatter plot of bars vs.\ character length showing strong linear correlation ($r = 0.91$) (d) Tune length category distribution showing that 89.4\% of tunes fall under 48 bars, well within the 64-bar context window.}
-\label{fig:bar_patching}
-\end{figure}
+From the 214,122 training tunes, we reserve 5\% (10,469 tunes) as a \textbf{validation set} for hyperparameter tuning, training monitoring, and checkpoint selection, using stratified sampling to preserve the tune-type distribution. The remaining 95\% (198,893 tunes) forms the \textbf{training set} used exclusively for self-supervised pre-training. After deduplication across all three partitions, the final corpus totals 211,524 unique Irish traditional tunes. Table~\ref{tab:preprocessing_stats} presents key preprocessing statistics across the complete dataset. The complete processed dataset with train/validation/test splits is publicly available at \url{https://huggingface.co/datasets/pianistprogrammer/abc2vec-irish-folk-dataset}.
 
 \begin{table}[h]
 \centering
@@ -203,6 +196,19 @@ Char Length      & 287  & 287 & 135 & 10  & 4096 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Bar Patchification Statistics}
+
+Following CLaMP~\cite{CLaMP2023} and MelodyT5~\cite{MelodyT5_2024}, we adopt bar-level patchification to reduce sequence length and enable efficient Transformer processing. Each bar (delimited by $|$) is treated as a single token and mapped to a fixed-dimensional vector using character-level embeddings followed by pooling. Figure~\ref{fig:bar_patching} summarizes key statistics supporting this design choice.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{bar_patching_stats.pdf}
+\caption{Bar patchification statistics: (a) Distribution of bars per tune with most tunes in the 12--28 bar range. (b) Sections per tune distribution consistent with AABB phrase structures. (c) Scatter plot of bars vs.\ character length showing strong linear correlation ($r = 0.91$) (d) Tune length category distribution showing that 89.4\% of tunes fall under 48 bars, well within the 64-bar context window.}
+\label{fig:bar_patching}
+\end{figure}
+
+
 
 Bar patchification reduces the median sequence length from 287 characters to 18 bar tokens (a 16$\times$ reduction), enabling the use of a 64-token context window instead of much longer character sequences. The strong correlation (0.91) between bar count and character length (Figure~\ref{fig:bar_patching}c) further supports bars as an effective unit of representation. With a maximum length of 64 bars, the model can represent 96.8\% of tunes without truncation, while only 3.2\% exceed this limit and are truncated to the first 64 bars during training and evaluation. Compared to character-level tokenization, bar-level patches better preserve musical structure, as each token represents a short melodic phrase capturing rhythm, contour, and implied harmony. This aligns with how musicians typically conceptualize and organize music, where bars serve as natural building blocks.
 
@@ -224,11 +230,7 @@ Musical similarity is multifaceted, encompassing melodic contour, rhythmic patte
 \label{fig:architecture}
 \end{figure}
 
-ABC notation represents music as a sequence of characters encoding notes, rests, bar lines, and metadata. For example, a two-bar phrase from an Irish jig might be notated as:
-\begin{verbatim}
-|:EDE G2E|EDE GED|
-\end{verbatim}
-where uppercase letters denote notes (E, D, G), numbers indicate duration (G2 = half note), and $|$ marks bar lines. A typical Irish jig contains 16--32 bars, yielding sequences of 200--400 characters. Direct character-level tokenization would result in impractically long sequences for Transformer processing.
+A typical Irish jig contains 16--32 bars, yielding sequences of 200--400 characters. Direct character-level tokenization would result in impractically long sequences for Transformer processing.
 
 Following CLaMP~\cite{CLaMP2023} and MelodyT5~\cite{MelodyT5_2024}, we adopt \textbf{bar-level patchification}, where each musical bar is treated as a single token. 
 
@@ -522,9 +524,135 @@ We apply UMAP~\cite{UMAP2018} and t-SNE~\cite{tSNE2008} for 2D visualization of 
 \textbf{RQ4 (Transposition Invariance):} While the TI objective encourages pitch-invariant representations, complete transposition invariance was not achieved. Stronger augmentation strategies (e.g., harder negatives, larger transposition ranges) may improve invariance in future work.
 
 
-ABC2Vec's 78.3\% tune type accuracy is competitive with MusicBERT's 76.4\% on genre classification~\cite{MusicBERT2022}, despite our smaller model (6 layers, 256-dim vs 12 layers, 768-dim). The folk music domain may benefit from structural simplicity (AABB form, limited harmony) that reduces representation requirements. Unlike CLaMP~\cite{CLaMP2023}, which focuses on cross-modal retrieval (music-text), ABC2Vec specializes in music-only embeddings. CLaMP reports 82.1\% classification on WikiMT (a classical/jazz corpus), but WikiMT tunes are longer and harmonically richer than folk melodies. Direct comparison is difficult due to dataset differences.
+While direct cross-dataset comparison is inherently limited, we contextualize our results against related music representation models to situate ABC2Vec within the broader landscape. ABC2Vec achieves 78.3\% tune type accuracy on Irish folk music, which is numerically similar to MusicBERT's 76.4\% genre classification accuracy~\cite{MusicBERT2022}, though the latter was evaluated on a different corpus and task. Notably, ABC2Vec uses a considerably smaller model architecture (6 layers, 256-dim vs 12 layers, 768-dim), suggesting that the structural regularities of folk music (AABB form, limited harmony, modal scales) may require less representational capacity than the diverse repertoires targeted by general-purpose music models. CLaMP~\cite{CLaMP2023} reports 82.1\% classification accuracy on WikiMT, a classical and jazz corpus with longer, harmonically richer compositions than folk melodies; however, CLaMP focuses on cross-modal music-text retrieval rather than music-only embeddings. These comparisons should be interpreted cautiously due to differences in datasets (Irish folk vs. classical/jazz/pop), tasks (tune type vs. genre), label granularity, and musical characteristics, but they suggest that ABC2Vec's performance is reasonable for a domain-specific model operating on a structurally constrained musical tradition.
 
-\subsection{Limitations}
+
+\section{Ablation Study}\label{sec:ablation}
+
+To understand the contribution of each pre-training objective, we conduct a systematic ablation study by training six model variants with different objective combinations. All variants use identical architecture (6 layers, 256-dimensional, 8 attention heads) and training hyperparameters, differing only in which loss functions are active during training. This controlled setup allows us to isolate the contribution of each objective and assess whether objectives exhibit synergistic effects when combined.
+
+\subsection{Experimental Setup}
+
+We train the following six variants:
+
+\begin{enumerate}
+    \item \textbf{MMM-only}: Masked Music Modeling alone ($\lambda_{\text{MMM}}=1.0$, others $=0$)
+    \item \textbf{TI-only}: Transposition Invariance alone ($\lambda_{\text{TI}}=1.0$, others $=0$)
+    \item \textbf{SCL-only}: Section Contrastive Learning alone ($\lambda_{\text{SCL}}=1.0$, others $=0$)
+    \item \textbf{MMM+SCL}: Combines reconstruction and section structure ($\lambda_{\text{MMM}}=1.0$, $\lambda_{\text{SCL}}=0.5$)
+    \item \textbf{TI+SCL}: Combines transposition invariance and section structure ($\lambda_{\text{TI}}=1.0$, $\lambda_{\text{SCL}}=0.5$)
+    \item \textbf{MMM+TI+SCL} (Full model): All three objectives ($\lambda_{\text{MMM}}=1.0$, $\lambda_{\text{TI}}=0.5$, $\lambda_{\text{SCL}}=0.5$)
+\end{enumerate}
+
+Each variant is trained for 40 epochs on the same 198,893 training tunes, using identical optimization settings (AdamW, $\text{lr}=10^{-4}$, batch size 128, warmup 1000 steps). We evaluate all variants on the test set using the same downstream tasks: tune type classification, mode classification, linear probing on multiple properties, and clustering quality metrics. This ensures fair comparison across all model configurations.
+
+\subsection{Results}
+
+\subsubsection{Classification Performance}
+
+All six model variants achieve nearly identical performance on both tune type and mode classification tasks. Tune type accuracy ranges narrowly from 46.0\% to 46.9\% and mode accuracy remains consistently at 80.7\% across all variants. The full model (MMM+TI+SCL) achieves 46.7\% tune type accuracy and 80.7\% mode accuracy, statistically indistinguishable from single-objective models. This suggests that the pre-training objectives primarily shape the embedding space structure rather than directly improving downstream classification accuracy. The detailed results are shown in Table~\ref{tab:ablation_classification}.
+
+\begin{table}[H]
+\centering
+\caption{Ablation study: Tune type and mode classification performance (5-fold CV). All models show comparable accuracy, indicating that objectives affect embedding structure more than classification performance.}
+\label{tab:ablation_classification}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \multicolumn{2}{c}{\textbf{Tune Type}} & \multicolumn{2}{c}{\textbf{Mode}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & Accuracy & Std Dev & Accuracy & Std Dev \\
+\midrule
+MMM-only & 0.466 & 0.010 & 0.807 & 0.001 \\
+TI-only & 0.462 & 0.007 & 0.806 & 0.002 \\
+SCL-only & 0.460 & 0.009 & 0.807 & 0.001 \\
+MMM+SCL & 0.469 & 0.008 & 0.807 & 0.001 \\
+TI+SCL & 0.463 & 0.008 & 0.807 & 0.001 \\
+MMM+TI+SCL (Full) & 0.467 & 0.007 & 0.807 & 0.001 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The remarkably consistent mode classification accuracy (80.7\% $\pm$ 0.001) across all variants indicates that mode information is preserved regardless of the pre-training objective. This likely reflects the fact that mode is strongly correlated with surface-level statistical patterns (scale degree distributions, cadence patterns) that are captured even by single-objective models. The modest tune type performance across all variants (46-47\% vs. 16.7\% chance baseline) suggests that rhythm recognition from symbolic notation is inherently challenging, requiring nuanced understanding of temporal patterns that none of the objectives fully capture.
+
+\subsubsection{Linear Probing and Multi-Task Learning}
+
+Linear probing uses a single-layer ridge classifier trained on frozen embeddings, providing a stricter test of embedding quality than full fine-tuning. Across four properties—tune type, mode, key root, and tune length—all variants perform comparably, with tune type at 46.1-46.8\%, mode at 80.6-80.7\%, key root at 31.4-32.2\%, and tune length at 93.2-93.8\%. These results mirror the classification findings and are detailed in Table~\ref{tab:ablation_linear_probing}.
+
+\begin{table}[H]
+\centering
+\caption{Ablation study: Linear probing accuracy on multiple properties. Consistent performance across variants suggests that all objectives induce comparable linear separability.}
+\label{tab:ablation_linear_probing}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Tune Type} & \textbf{Mode} & \textbf{Key Root} & \textbf{Tune Length} \\
+\midrule
+MMM-only & 0.463 & 0.807 & 0.322 & 0.934 \\
+TI-only & 0.462 & 0.806 & 0.320 & 0.933 \\
+SCL-only & 0.461 & 0.807 & 0.317 & 0.933 \\
+MMM+SCL & 0.468 & 0.807 & 0.317 & 0.938 \\
+TI+SCL & 0.462 & 0.807 & 0.319 & 0.932 \\
+MMM+TI+SCL (Full) & 0.468 & 0.807 & 0.314 & 0.934 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The high tune length accuracy (93+\%) across all variants indicates that sequence length information is strongly preserved in embeddings regardless of pre-training objective. Key root performance remains modest (31-32\%), consistent with earlier findings that pitch encoding is only partially removed despite the Transposition Invariance objective. Notably, TI-only does not significantly outperform other variants on key root classification, suggesting that transposition invariance alone is insufficient to fully disentangle pitch from other musical properties.
+
+\subsubsection{Clustering Quality}
+
+Unsupervised clustering metrics reveal that all variants produce embeddings with some internal structure, though clusters are not sharply separated. Silhouette scores range from 0.491 to 0.575, with the full model (MMM+TI+SCL) achieving the highest tune type silhouette score (0.575), suggesting that combining objectives may yield slightly more structured embeddings compared to single-objective models, though the difference is modest (+8.4\% vs. MMM-only). These results are summarized in Table~\ref{tab:ablation_clustering}.
+
+\begin{table}[H]
+\centering
+\caption{Ablation study: Clustering quality metrics. Higher silhouette scores indicate better-separated clusters in embedding space.}
+\label{tab:ablation_clustering}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \multicolumn{2}{c}{\textbf{Tune Type}} & \multicolumn{2}{c}{\textbf{Mode}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+ & Silhouette & NMI & Silhouette & NMI \\
+\midrule
+MMM-only & 0.491 & 0.036 & 0.571 & 0.004 \\
+TI-only & 0.553 & 0.032 & 0.554 & 0.005 \\
+SCL-only & 0.566 & 0.038 & 0.565 & 0.005 \\
+MMM+SCL & 0.536 & 0.041 & 0.553 & 0.006 \\
+TI+SCL & 0.549 & 0.038 & 0.551 & 0.005 \\
+MMM+TI+SCL (Full) & 0.575 & 0.035 & 0.572 & 0.004 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Normalized Mutual Information (NMI) scores remain low across all variants (0.032-0.041 for tune type, 0.004-0.006 for mode), indicating weak alignment between K-means clusters and ground-truth labels. This confirms that embeddings do not form discrete, label-aligned clusters, consistent with our earlier finding that folk music similarity is continuous rather than categorical. The modest silhouette scores combined with low NMI suggest that embeddings capture gradual variation and family resemblance rather than crisp category boundaries.
+
+\subsubsection{Training Convergence}
+
+All models converge smoothly without overfitting, with validation losses closely tracking training losses throughout the 40-epoch training period. Final validation losses range from 2.32 to 2.45, with no clear winner among the variants. The full model (MMM+TI+SCL) achieves a final validation loss of 2.36, comparable to single-objective models (MMM-only: 2.36, TI-only: 2.37, SCL-only: 2.33). The loss curves comparing all six variants are shown in Figure~\ref{fig:ablation_loss_curves}.
+
+Convergence speed is also similar across variants, with all models reaching a validation loss below 2.5 by approximately 10,000-15,000 steps. This indicates that no single objective provides a substantial training efficiency advantage. The smooth convergence and lack of overfitting across all configurations suggest that the model capacity (6 layers, 256-dimensional) is well-matched to the task complexity, and that all objectives provide sufficient learning signal for effective representation learning.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{ablation_loss_curves.pdf}
+\caption{Ablation study: Training and validation loss curves for all six model variants. All models converge smoothly with similar final losses, indicating comparable optimization dynamics across objectives.}
+\label{fig:ablation_loss_curves}
+\end{figure}
+
+\subsection{Analysis and Discussion}
+
+The ablation study reveals several key findings about the role of pre-training objectives in ABC2Vec. The remarkably consistent performance across all six variants suggests that the three objectives (MMM, TI, SCL) capture overlapping aspects of musical structure rather than complementary information. Each objective alone is sufficient to learn embeddings that perform comparably on downstream tasks. This redundancy may stem from the fact that all objectives operate on the same bar-level representations and optimize for similarity relationships within the folk music domain.
+
+Combining multiple objectives (MMM+SCL, TI+SCL, or MMM+TI+SCL) does not yield substantial improvements over single-objective models. The full model's performance is statistically indistinguishable from simpler variants on most metrics. This contrasts with findings in vision (e.g., SimCLR + supervised learning) and NLP (e.g., masked LM + next sentence prediction) where multi-task objectives often provide complementary signals. The lack of synergy in ABC2Vec suggests that folk music representation may be over-determined by the limited structural diversity in traditional tune repertoire (AABB form, 16-32 bars, modal scales).
+
+While classification accuracies are nearly identical across variants, clustering quality metrics show modest variation, with the full model achieving slightly higher silhouette scores. This suggests that combining objectives affects the geometric structure of embedding space (how densely tunes cluster) without improving linear separability for classification. These structural differences may be relevant for similarity search, variant detection, or other retrieval-based tasks that depend on local neighborhood structure rather than global class boundaries.
+
+Given the comparable performance of single-objective models, practitioners may opt for simpler training pipelines (e.g., MMM-only) to reduce computational cost and hyperparameter tuning. However, the full model's slightly superior clustering quality and balanced loss convergence suggest that multi-objective training may still be preferable for applications requiring well-structured embedding spaces, such as visualization, exploratory search, or hierarchical clustering.
+
+The ablation study was conducted on 198,893 training tunes, representing a large-scale folk music corpus. It is possible that objective differences become more pronounced with smaller datasets, where each objective's inductive bias plays a stronger role. However, at the scale of our dataset, all three objectives converge to similar representations.
+
+In summary, the ablation study demonstrates that ABC2Vec's strong performance is not critically dependent on any single pre-training objective. All three objectives (MMM, TI, SCL) individually capture sufficient musical structure to yield effective embeddings, and combining them provides marginal improvements in clustering quality without enhancing classification accuracy. These findings suggest that the model's success stems from the overall architecture (bar-level Transformer with contrastive and reconstructive learning) rather than a specific objective design, and that simpler training configurations may suffice for many practical applications.
+
+
+\section{Limitations}\label{sec:limitations}
 
 Despite the promising results, ABC2Vec has several limitations that warrant discussion. From a methodological perspective, the model achieves only partial transposition invariance, indicating that the Transposition Invariance (TI) contrastive objective does not fully eliminate pitch dependence. This limits cross-key retrieval capabilities, and while the TI objective provides some benefit, it does not fully remove pitch encoding. Stronger strategies, such as pitch-relative tokenization~\cite{likhomanenko2021cape}, hard negative mining~\cite{gajic2021fast}, or post-hoc transposition normalization (computing embeddings for all transpositions and averaging), could further mitigate this limitation.
 

@@ -84,7 +84,7 @@ def plot_dataset_statistics(all_df, train_df, val_df, test_df, output_path):
     ax3 = fig.add_subplot(gs[1, 0])
     tune_type_counts = all_df[all_df['tune_type'].str.strip() != '']['tune_type'].value_counts().head(8)
     colors_tune = sns.color_palette("husl", len(tune_type_counts))
-    bars = ax3.barh(range(len(tune_type_counts)), tune_type_counts.values, color=colors_tune, alpha=0.8, edgecolor='black', linewidth=0.5)
+    bars = ax3.barh(range(len(tune_type_counts)), tune_type_counts.values, color=colors_tune, alpha=0.8)
     ax3.set_yticks(range(len(tune_type_counts)))
     ax3.set_yticklabels(tune_type_counts.index, fontsize=tick_fs)
     ax3.set_xlabel('Number of Tunes', fontsize=label_fs)
@@ -100,7 +100,7 @@ def plot_dataset_statistics(all_df, train_df, val_df, test_df, output_path):
     ax4 = fig.add_subplot(gs[1, 1])
     mode_counts = all_df['mode'].value_counts().head(4)
     colors_mode = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12'][:len(mode_counts)]
-    bars_mode = ax4.barh(range(len(mode_counts)), mode_counts.values, color=colors_mode, alpha=0.8, edgecolor='black', linewidth=0.5)
+    bars_mode = ax4.barh(range(len(mode_counts)), mode_counts.values, color=colors_mode, alpha=0.8)
     ax4.set_yticks(range(len(mode_counts)))
     ax4.set_yticklabels(mode_counts.index, fontsize=tick_fs)
     ax4.set_xlabel('Number of Tunes', fontsize=label_fs)
@@ -117,7 +117,7 @@ def plot_dataset_statistics(all_df, train_df, val_df, test_df, output_path):
     ax5 = fig.add_subplot(gs[2, 0])
     root_counts = all_df['root_note'].value_counts().head(10)
     colors_root = sns.color_palette("Spectral", len(root_counts))
-    bars = ax5.bar(range(len(root_counts)), root_counts.values, color=colors_root, alpha=0.8, edgecolor='black', linewidth=0.5)
+    bars = ax5.bar(range(len(root_counts)), root_counts.values, color=colors_root, alpha=0.8)
     ax5.set_xticks(range(len(root_counts)))
     ax5.set_xticklabels(root_counts.index, fontsize=tick_fs)
     ax5.set_ylabel('Number of Tunes', fontsize=label_fs)
@@ -137,7 +137,7 @@ def plot_dataset_statistics(all_df, train_df, val_df, test_df, output_path):
     ax6 = fig.add_subplot(gs[2, 1])
     meter_counts = all_df['meter'].value_counts().head(6)
     colors_meter = sns.color_palette("muted", len(meter_counts))
-    bars = ax6.bar(range(len(meter_counts)), meter_counts.values, color=colors_meter, alpha=0.8, edgecolor='black', linewidth=0.5)
+    bars = ax6.bar(range(len(meter_counts)), meter_counts.values, color=colors_meter, alpha=0.8)
     ax6.set_xticks(range(len(meter_counts)))
     ax6.set_xticklabels(meter_counts.index, rotation=45, ha='right', fontsize=tick_fs)
     ax6.set_ylabel('Number of Tunes', fontsize=label_fs)
@@ -246,7 +246,7 @@ def plot_bar_patching_stats(all_df, output_path):
     # (a) Bars per tune distribution
     ax1 = axes[0, 0]
     bars_clipped = all_df['num_bars'].clip(0, 64)
-    ax1.hist(bars_clipped, bins=32, color='#3498db', alpha=0.7, edgecolor='black', linewidth=0.5)
+    ax1.hist(bars_clipped, bins=32, color='#3498db', alpha=0.7)
     ax1.axvline(all_df['num_bars'].mean(), color='red', linestyle='--', linewidth=1.8,
                 label=f'Mean: {all_df["num_bars"].mean():.1f}')
     ax1.axvline(all_df['num_bars'].median(), color='orange', linestyle='--', linewidth=1.8,
@@ -261,7 +261,7 @@ def plot_bar_patching_stats(all_df, output_path):
     # (b) Sections per tune
     ax2 = axes[0, 1]
     sections_clipped = all_df['num_sections'].clip(0, 10)
-    ax2.hist(sections_clipped, bins=10, color='#2ecc71', alpha=0.7, edgecolor='black', linewidth=0.5)
+    ax2.hist(sections_clipped, bins=10, color='#2ecc71', alpha=0.7)
     mean_sec = all_df['num_sections'].mean()
     ax2.axvline(mean_sec, color='red', linestyle='--', linewidth=1.8, label=f'Mean: {mean_sec:.1f}')
     ax2.set_xlabel('Number of Sections', fontsize=label_fs)
@@ -292,7 +292,7 @@ def plot_bar_patching_stats(all_df, output_path):
     cat_counts = bar_categories.value_counts().sort_index()
     colors = sns.color_palette('rocket', len(cat_counts))
     bars_plot = ax4.bar(range(len(cat_counts)), cat_counts.values, color=colors,
-                        alpha=0.85, edgecolor='black', linewidth=0.5)
+                        alpha=0.85)
     ax4.set_xticks(range(len(cat_counts)))
     ax4.set_xticklabels(cat_counts.index, fontsize=tick_fs)
     ax4.set_ylabel('Number of Tunes', fontsize=label_fs)
