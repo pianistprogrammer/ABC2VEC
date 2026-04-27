@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex abc2vec_paper"] 1777224150.7084 "abc2vec_paper.aux" "abc2vec_paper.bbl" "abc2vec_paper" 1777224151.625 0
+["bibtex abc2vec_paper"] 1777275308.31753 "abc2vec_paper.aux" "abc2vec_paper.bbl" "abc2vec_paper" 1777275353.59155 0
   "./abc2vec.bib" 1774613138.74433 16736 24d9cc9a2d1f8bdd47f46848fc390363 ""
   "./tfp.bst" 1773820718.95679 37649 9b6a2250fe26d149dd06f9fb1b2a9ab4 ""
-  "abc2vec_paper.aux" 1777224151.31067 8990 87560e041de8bc58fc9f37402d102cdc "pdflatex"
+  "abc2vec_paper.aux" 1777275353.3096 9123 73fd4917e66ddc861a67592cf98a63b6 "pdflatex"
   (generated)
   "abc2vec_paper.bbl"
   "abc2vec_paper.blg"
   (rewritten before read)
-["pdflatex"] 1777224150.84403 "/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex" "abc2vec_paper.pdf" "abc2vec_paper" 1777224151.62515 0
-  "/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex" 1777224149.21127 93488 294e1d0c35b67ef9da8b9208e9f1594e ""
+["pdflatex"] 1777275352.89455 "/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex" "abc2vec_paper.pdf" "abc2vec_paper" 1777275353.5917 0
+  "/Volumes/LLModels/Projects/ABC2VEC/Paper/abc2vec_paper.tex" 1777275352.60649 94473 26b3e1c696f866de1d441a1dc616d320 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -115,9 +115,9 @@
   "/usr/local/texlive/2026/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1773831732 5541377 04880c840ca220163a28f1a3af0ee662 ""
   "/usr/local/texlive/2026/texmf-var/web2c/pdftex/pdflatex.fmt" 1773831718 3636762 11611dce089160af9d6104d910a89675 ""
   "/usr/local/texlive/2026/texmf.cnf" 1772409725 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "abc2vec_paper.aux" 1777224151.31067 8990 87560e041de8bc58fc9f37402d102cdc "pdflatex"
-  "abc2vec_paper.bbl" 1777224150.82487 9946 42bf17952876d08e3f16e50881f62a8b "bibtex abc2vec_paper"
-  "abc2vec_paper.tex" 1777224149.21127 93488 294e1d0c35b67ef9da8b9208e9f1594e ""
+  "abc2vec_paper.aux" 1777275353.3096 9123 73fd4917e66ddc861a67592cf98a63b6 "pdflatex"
+  "abc2vec_paper.bbl" 1777275308.40275 9946 42bf17952876d08e3f16e50881f62a8b "bibtex abc2vec_paper"
+  "abc2vec_paper.tex" 1777275352.60649 94473 26b3e1c696f866de1d441a1dc616d320 ""
   "ablation_loss_curves.pdf" 1777222484.52827 51986 6ac903e1fe40d0acf3bc96ecf03cf5c8 ""
   "architecture_diagram.png" 1776331649.85862 267396 f973009b6669343203d8fdb6fd1686dd ""
   "bar_patching_stats.pdf" 1777222797.70718 57321 6ce5a0cb1e638d730866d7f888426fc5 ""

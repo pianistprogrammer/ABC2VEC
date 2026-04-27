@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.18)  26 APR 2026 19:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.3.18)  27 APR 2026 09:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -408,29 +408,29 @@ File: architecture_diagram.png Graphic file (type png)
 <use architecture_diagram.png>
 Package pdftex.def Info: architecture_diagram.png  used on input line 228.
 (pdftex.def)             Requested size: 408.0pt x 229.47882pt.
- [13 <./architecture_diagram.png (PNG copy)>] [14] [15] [16]
-<training_curves_hq.pdf, id=255, 725.76688pt x 555.8159pt>
+ [13 <./architecture_diagram.png (PNG copy)>] [14] [15] [16] [17]
+<training_curves_hq.pdf, id=258, 725.76688pt x 555.8159pt>
 File: training_curves_hq.pdf Graphic file (type pdf)
 <use training_curves_hq.pdf>
-Package pdftex.def Info: training_curves_hq.pdf  used on input line 386.
+Package pdftex.def Info: training_curves_hq.pdf  used on input line 394.
 (pdftex.def)             Requested size: 408.0pt x 312.45909pt.
- [17] [18 <./training_curves_hq.pdf>] [19]
+ [18 <./training_curves_hq.pdf>] [19]
 <tune_type_confusion.pdf, id=336, 683.94498pt x 571.36778pt>
 File: tune_type_confusion.pdf Graphic file (type pdf)
 <use tune_type_confusion.pdf>
-Package pdftex.def Info: tune_type_confusion.pdf  used on input line 427.
+Package pdftex.def Info: tune_type_confusion.pdf  used on input line 435.
 (pdftex.def)             Requested size: 285.59875pt x 238.58661pt.
  [20 <./tune_type_confusion.pdf>] [21] [22]
 <umap_combined.pdf, id=428, 1146.90985pt x 496.39453pt>
 File: umap_combined.pdf Graphic file (type pdf)
 <use umap_combined.pdf>
-Package pdftex.def Info: umap_combined.pdf  used on input line 510.
+Package pdftex.def Info: umap_combined.pdf  used on input line 518.
 (pdftex.def)             Requested size: 408.0pt x 176.58107pt.
  [23 <./umap_combined.pdf>] [24] [25] [26]
 <ablation_loss_curves.pdf, id=511, 1072.54143pt x 972.71579pt>
 File: ablation_loss_curves.pdf Graphic file (type pdf)
 <use ablation_loss_curves.pdf>
-Package pdftex.def Info: ablation_loss_curves.pdf  used on input line 635.
+Package pdftex.def Info: ablation_loss_curves.pdf  used on input line 639.
 (pdftex.def)             Requested size: 408.0pt x 370.02174pt.
  [27] [28 <./ablation_loss_curves.pdf>] [29] [30] (./abc2vec_paper.bbl [31] [32]) [33] (./abc2vec_paper.aux)
  ***********
@@ -450,9 +450,9 @@ Here is how much of TeX's memory you used:
  34227 multiletter control sequences out of 15000+600000
  641056 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 87i,12n,93p,2299b,375s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,12n,93p,2330b,375s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on abc2vec_paper.pdf (33 pages, 940570 bytes).
+Output written on abc2vec_paper.pdf (33 pages, 940336 bytes).
 PDF statistics:
  720 PDF objects out of 1000 (max. 8388607)
  198 compressed objects within 2 object streams

@@ -50,7 +50,7 @@ Email: jeremiah.abimbola@polsl.pl; daniel.kostrzewa@polsl.pl; pawel.benecki@pols
 \maketitle
 
 \begin{abstract}
-Folk music traditions, transmitted orally across generations, embody rich cultural heritage, yet their computational study has been hindered by the lack of suitable representation methods that respect the fluid, variation-driven nature of traditional repertoires. Existing music embedding approaches either target Western art music or rely on cross-modal alignment with text, overlooking the unique challenges of folk music such as melodic variation across performers and regions, transposition between keys, and ambiguous boundaries between tune families. We introduce \textbf{ABC2Vec}, a self-supervised Transformer encoder that learns dense, semantically meaningful embeddings directly from ABC notation---a text-based symbolic format widely used for Western music without microtones, and particularly dominant in folk tune archives worldwide. Our approach combines Masked Music Modeling with a novel Transposition Invariance contrastive objective, capturing both local melodic patterns and the key-independent similarity central to how musicians recognize and relate tunes. A bar-level patchification strategy reduces sequence lengths by 16$\times$ compared to character-level tokenization, making the model practical for large-scale archives on consumer hardware. Trained on over 211,000 Irish traditional tunes, ABC2Vec learns to distinguish rhythmic categories (jigs, reels, polkas) and tonal modes (major, Dorian, Mixolydian) without explicit labels, encoding these properties in distributed, largely non-overlapping subspaces. Systematic evaluation demonstrates strong classification performance (78\% tune type, 79\% mode) and reveals that embeddings capture musical structure through distributed representations rather than discrete clusters, aligning with folk music's continuous, variation-rich nature. These capabilities support musicologists studying tune families, archivists building searchable repositories, educators developing learning tools, and folk musicians exploring their repertoire. We release pre-trained models, training code, dataset splits, and evaluation benchmarks as open resources for the computational musicology and music information retrieval communities.
+Folk music traditions, transmitted orally across generations, embody rich cultural heritage, yet their computational study has been hindered by the lack of suitable representation methods that respect the fluid, variation-driven nature of traditional repertoires. Existing music embedding approaches either target Western art music or rely on cross-modal alignment with text, overlooking the unique challenges of folk music such as melodic variation across performers and regions, transposition between keys, and ambiguous boundaries between tune families. We introduce \textbf{ABC2Vec}, a self-supervised Transformer encoder that learns dense, semantically meaningful embeddings directly from ABC notation---a text-based symbolic format widely used for Western music without microtones, and particularly dominant in folk tune archives worldwide. Our approach combines three self-supervised objectives: Masked Music Modeling (MMM) for local melodic pattern learning, Transposition Invariance (TI) for key-independent representations, and Section Contrastive Learning (SCL) for structural pattern recognition. A bar-level patchification strategy reduces sequence lengths by 16$\times$ compared to character-level tokenization, making the model practical for large-scale archives on consumer hardware. Trained on over 211,000 Irish traditional tunes, ABC2Vec learns to distinguish rhythmic categories (jigs, reels, polkas) and tonal modes (major, Dorian, Mixolydian) without explicit labels, encoding these properties in distributed, largely non-overlapping subspaces. Systematic evaluation demonstrates strong classification performance (78\% tune type, 79\% mode) and reveals that embeddings capture musical structure through distributed representations rather than discrete clusters, aligning with folk music's continuous, variation-rich nature. These capabilities support musicologists studying tune families, archivists building searchable repositories, educators developing learning tools, and folk musicians exploring their repertoire. We release pre-trained models, training code, dataset splits, and evaluation benchmarks as open resources for the computational musicology and music information retrieval communities.
 \end{abstract}
 
 \begin{keywords}
@@ -109,7 +109,7 @@ This work addresses the following research questions:
 Our contributions are:
 
 \begin{enumerate}
-\item \textbf{ABC2Vec architecture}: A 6-layer Transformer encoder with bar-level patchification trained via Masked Music Modeling (MMM) and Transposition Invariance (TI) objectives on 216K Irish folk tunes.
+\item \textbf{ABC2Vec architecture}: A 6-layer Transformer encoder with bar-level patchification trained via three self-supervised objectives—Masked Music Modeling (MMM), Transposition Invariance (TI), and Section Contrastive Learning (SCL)—on 216K Irish folk tunes.
 \item \textbf{Evaluation benchmarks}: Systematic evaluation protocols for folk music embeddings, including tune type classification, mode classification, linear probing, and clustering quality analysis.
 \item \textbf{Empirical analysis}: Comprehensive results demonstrating 77--80\% supervised classification accuracy and distributed property encoding.
 \item \textbf{Open resources}: Pre-trained models, code, and evaluation datasets released to facilitate future research.
@@ -221,12 +221,12 @@ Given a corpus of folk tunes $\mathcal{D} = \{x_1, \ldots, x_N\}$ in ABC notatio
 \label{similarity}
 \end{equation}
 
-Musical similarity is multifaceted, encompassing melodic contour, rhythmic patterns (tune type), tonality (mode/key), and structural form. A well-trained embedding should capture these relationships automatically, without requiring explicit supervision. Figure~\ref{fig:architecture} provides an overview of the ABC2Vec architecture and training pipeline, showing the flow from ABC notation input through bar-level patchification, Transformer encoding, and pooling to produce dense tune embeddings, along with the two self-supervised training objectives.
+Musical similarity is multifaceted, encompassing melodic contour, rhythmic patterns (tune type), tonality (mode/key), and structural form. A well-trained embedding should capture these relationships automatically, without requiring explicit supervision. Figure~\ref{fig:architecture} provides an overview of the ABC2Vec architecture and training pipeline, showing the flow from ABC notation input through bar-level patchification, Transformer encoding, and pooling to produce dense tune embeddings, along with the three self-supervised training objectives.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{architecture_diagram.png}
-\caption{ABC2Vec architecture and training pipeline. The model processes ABC notation through bar patchification, where individual bars are tokenized and embedded using character-level embeddings with positional encoding ($h_1, h_2, h_3, \ldots, h_K$). These bar representations are fed into a 6-layer Transformer encoder (d\_model=256) with stacked self-attention layers, followed by mean pooling to produce the final 128-dimensional tune embedding (d\_embed=128). The model is trained with two self-supervised objectives: Masked Music Modeling (MMM) reconstructs randomly masked bars from context, and Transposition Invariance (TI) learns pitch-invariant representations by maximizing similarity between transposed versions of the same tune.}
+\caption{ABC2Vec architecture and training pipeline. The model processes ABC notation through bar patchification, where individual bars are tokenized and embedded using character-level embeddings with positional encoding ($h_1, h_2, h_3, \ldots, h_K$). These bar representations are fed into a 6-layer Transformer encoder (d\_model=256) with stacked self-attention layers, followed by mean pooling to produce the final 128-dimensional tune embedding (d\_embed=128). The model is trained with three self-supervised objectives: Masked Music Modeling (MMM) reconstructs randomly masked bars from context, Transposition Invariance (TI) learns pitch-invariant representations by maximizing similarity between transposed versions of the same tune, and Section Contrastive Learning (SCL) distinguishes between different sections within a tune.}
 \label{fig:architecture}
 \end{figure}
 
@@ -270,7 +270,7 @@ We experimented with CLS-token and max-pooling but found mean pooling most effec
 
 \subsection{Training Objectives}
 
-ABC2Vec is trained via self-supervised learning using two complementary objectives:
+ABC2Vec is trained via self-supervised learning using three complementary objectives:
 
 \subsubsection{Masked Music Modeling (MMM)}
 
@@ -302,17 +302,25 @@ We use a contrastive loss (InfoNCE~\cite{SimCLR2020}):
 \end{equation}
 where $\mathbf{z}_j$ are negative samples from the same batch, and $\tau = 0.07$ is a temperature hyperparameter.
 
+\subsubsection{Section Contrastive Learning (SCL)}
+
+Folk tunes typically follow AABB sectional form, where A and B represent distinct melodic phrases. To capture structural patterns, we apply contrastive learning at the section level. For tunes with identifiable sections (detected via repeat markers or bar grouping), we compute section-level embeddings by mean pooling bar representations within each section. Positive pairs consist of different sections from the same tune, while negative pairs consist of sections from different tunes. The SCL loss encourages the model to distinguish between sections while maintaining tune-level coherence:
+\begin{equation}
+\mathcal{L}_{\text{SCL}} = -\log \frac{\exp(\text{sim}(\mathbf{z}_A, \mathbf{z}_B) / \tau)}{\sum_{j \neq i} \exp(\text{sim}(\mathbf{z}_A, \mathbf{z}_{B_j}) / \tau)}
+\end{equation}
+where $\mathbf{z}_A$ and $\mathbf{z}_B$ are section embeddings from the same tune, and $\mathbf{z}_{B_j}$ are section embeddings from other tunes in the batch.
+
 \subsubsection{Combined Objective}
 
 The final training loss is a weighted combination:
 \begin{equation}
-\mathcal{L} = \lambda_{\text{MMM}} \mathcal{L}_{\text{MMM}} + \lambda_{\text{TI}} \mathcal{L}_{\text{TI}}
+\mathcal{L} = \lambda_{\text{MMM}} \mathcal{L}_{\text{MMM}} + \lambda_{\text{TI}} \mathcal{L}_{\text{TI}} + \lambda_{\text{SCL}} \mathcal{L}_{\text{SCL}}
 \end{equation}
-We set $\lambda_{\text{MMM}} = 1.0$ and $\lambda_{\text{TI}} = 0.5$ based on validation performance. Early experiments with section contrastive learning (SCL) showed marginal gains and were omitted for simplicity.
+We set $\lambda_{\text{MMM}} = 1.0$, $\lambda_{\text{TI}} = 0.5$, and $\lambda_{\text{SCL}} = 0.5$ based on validation performance. The ablation study in Section~\ref{sec:ablation} analyzes the contribution of each objective.
 
 \subsection{Implementation Details}
 
-Our training procedure employs the AdamW optimizer with learning rate $1 \times 10^{-4}$ (1000-step linear warmup followed by cosine decay) and weight decay of 0.01, training for 40 epochs (approximately 40,000 steps) with batch size 128. Gradient clipping at norm 1.0 prevents explosion during early training when the randomly initialized decoder produces unstable reconstructions. Training is conducted on a single Apple M4 Mac with 48GB unified memory, completing in 18 hours. We save checkpoints every 5,000 steps and select the best model by validation loss, with the final model typically corresponding to step 15,000--17,000 where validation loss reaches its minimum before mild overfitting onset.
+Our training procedure employs the AdamW optimizer with learning rate $1 \times 10^{-4}$ (1000-step linear warmup followed by cosine decay) and weight decay of 0.01, training for 40 epochs (approximately 40,000 steps) with batch size 128. Gradient clipping at norm 1.0 prevents explosion during early training when the randomly initialized decoder produces unstable reconstructions. Training is conducted on a single Apple M4 Mac with 48GB unified memory, completing in 18 hours. We save checkpoints every 2,000 steps and select the best model by validation loss. The validation loss decreases monotonically with no overfitting observed, and we use the final checkpoint at step 40,000 as our best model.
 
 
 \begin{table}[!htb]
@@ -373,26 +381,26 @@ Beyond the transposition augmentation inherent to the Transposition Invariance o
 
 \section{Experimental Results and Discussion}\label{sec:results}
 
-We evaluate ABC2Vec on multiple tasks: tune type classification, mode classification, linear probing for property disentanglement, clustering quality, and visualization.
+We evaluate ABC2Vec on multiple tasks: tune type classification, mode classification, linear probing for property disentanglement, clustering quality, and visualization. To assess whether self-supervised representation learning provides meaningful improvements over simpler approaches, we compare ABC2Vec against a Term Frequency-Inverse Document Frequency (TF-IDF) baseline that represents tunes as bags of character n-grams extracted from raw ABC notation strings.
 
 \subsection{Training Convergence}
-The total combined loss as seen in Figure~\ref{fig:training} (top left panel) exhibits smooth, monotonic convergence from an initial value of 7.77 at step 100 to a final training value of 2.52 at step 40,000, with no significant oscillations or instability. The validation loss begins at 2.66 (step 2000) and decreases steadily to 2.36 (step 40,000). Critically, the validation loss (shown in red) tracks the training loss (shown in blue) closely throughout training, with a consistent gap of approximately 0.1--0.2 loss units. This tight coupling between training and validation curves indicates that the model generalizes well to unseen tunes and is not merely memorizing the training set. The validation loss continues to improve through the entire training run, reaching its minimum of 2.36 at step 40,000, which we select as our final checkpoint. The absence of severe overfitting despite training on 211,524 tunes for 40 epochs demonstrates the effectiveness of our regularization strategy (dropout, weight decay) and the robustness of self-supervised objectives to dataset size. 
+The total combined loss as seen in Figure~\ref{fig:training} (top left panel) exhibits smooth, monotonic convergence from an initial value of 7.77 at step 100 to a final training value of 2.48 at step 40,000, with no significant oscillations or instability. The validation loss begins at 2.66 (step 2000) and decreases steadily to 2.35 (step 40,000). Critically, the validation loss (shown in red) tracks the training loss (shown in blue) closely throughout training, with a consistent gap of approximately 0.1--0.2 loss units. This tight coupling between training and validation curves indicates that the model generalizes well to unseen tunes and is not merely memorizing the training set. The validation loss continues to improve through the entire training run, reaching its minimum of 2.35 at step 40,000, which we select as our final checkpoint. The absence of severe overfitting despite training on 211,524 tunes for 40 epochs demonstrates the effectiveness of our regularization strategy (dropout, weight decay) and the robustness of self-supervised objectives to dataset size.
 
-The Masked Music Modeling loss (top right panel) decreases substantially from 4.78 at step 100 to 2.40 at step 40,000 for training, representing a 50\% reduction that indicates the model is learning effective bar-level representations. For validation, MMM loss starts at 2.64 (step 2000) and decreases to 2.36 (step 40,000). The loss decreases rapidly in the first 5,000 steps as the model learns basic melodic patterns (common note sequences, rhythmic motifs, cadential figures), then continues to decrease more gradually as it captures subtler musical relationships. The final MMM loss of 2.40 corresponds to reasonably accurate bar reconstruction: qualitative inspection of reconstructed bars shows that the model correctly predicts note pitches and durations for approximately 60--70\% of masked positions, with errors typically involving confusions between melodically plausible alternatives (e.g., predicting A instead of G in a descending scale passage) rather than nonsensical outputs. This level of reconstruction accuracy, while not perfect, is sufficient to learn semantically meaningful embeddings, as evidenced by downstream task performance.
+The Masked Music Modeling loss (top right panel) decreases substantially from 4.78 at step 100 to 2.38 at step 40,000 for training, representing a 50\% reduction that indicates the model is learning effective bar-level representations. For validation, MMM loss starts at 2.64 (step 2000) and decreases to 2.35 (step 40,000). The loss decreases rapidly in the first 5,000 steps as the model learns basic melodic patterns (common note sequences, rhythmic motifs, cadential figures), then continues to decrease more gradually as it captures subtler musical relationships. The final MMM loss of 2.38 corresponds to reasonably accurate bar reconstruction: qualitative inspection of reconstructed bars shows that the model correctly predicts note pitches and durations for approximately 60--70\% of masked positions, with errors typically involving confusions between melodically plausible alternatives (e.g., predicting A instead of G in a descending scale passage) rather than nonsensical outputs. This level of reconstruction accuracy, while not perfect, is sufficient to learn semantically meaningful embeddings, as evidenced by downstream task performance.
 
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{training_curves_hq.pdf}
-\caption{Training loss curves for Masked Music Modeling (MMM), Transposition Invariance (TI), Section Contrastive Loss (SCL), and combined total loss over 40 epochs (40,000 steps). \textbf{Top left}: Total loss (train and validation) decreases from 7.77 to 2.52 (train) and 2.66 to 2.36 (validation), with validation loss tracking training closely, indicating strong generalization. \textbf{Top right}: MMM loss decreases from 4.78 to 2.40 (train) and 2.64 to 2.36 (validation), demonstrating effective bar-level reconstruction learning. \textbf{Bottom left}: TI loss decreases from 2.42 to 0.008 (train) and 0.036 to 0.005 (validation), suggesting successful contrastive alignment for transposition invariance. \textbf{Bottom right}: SCL loss decreases from 3.58 to 0.22, capturing section-level structural patterns. Best model selected at step 40,000 by validation loss (2.36).}
+\caption{Training and validation loss curves for ABC2Vec's three self-supervised objectives over 40 epochs. The model demonstrates smooth convergence without overfitting across all objectives: total combined loss (top left), Masked Music Modeling reconstruction loss (top right), Transposition Invariance contrastive loss (bottom left), and Section Contrastive Loss (bottom right). Validation loss (red) tracks training loss (blue) closely, indicating strong generalization.}
 \label{fig:training}
 \end{figure}
 
 The Transposition Invariance loss (bottom left panel) exhibits different dynamics from MMM. Starting at approximately 2.42 at step 100, the TI loss decreases rapidly to 0.16 within the first 1,000 steps, then continues to decrease more gradually, reaching 0.041 by step 3,000 and finally converging to 0.008 by step 40,000. This rapid initial decrease followed by gradual convergence is characteristic of contrastive learning: the model first learns coarse-grained clustering of transposed versions in embedding space, then refines these representations through continued training. The validation TI loss follows a similar trajectory, decreasing from 0.036 at step 2000 to 0.005 at step 40,000. The relatively low final TI loss suggests successful learning of pitch-invariant embeddings, though as discussed in Section~\ref{sec:results}, our evaluation reveals only moderate transposition invariance (0.482 similarity for transposed pairs), indicating room for improvement in future work.
 
-The Section Contrastive Loss (bottom right panel), while not included in our final model configuration (we use MMM+TI only), is shown for completeness. SCL decreases from 3.58 at step 100 to 0.22 at step 40,000, capturing section-level structural patterns in AABB-form tunes. However, the marginal improvement provided by SCL when added to MMM+TI does not justify its additional computational cost, leading to its exclusion from the default model. The curves demonstrate that while SCL captures meaningful signal, its contribution is largely redundant with MMM's bar-level reconstruction.
+The Section Contrastive Loss (bottom right panel) decreases from 3.58 at step 100 to 0.19 at step 40,000, capturing section-level structural patterns in AABB-form tunes. The smooth convergence indicates that the model successfully learns to distinguish between sections within the same tune while maintaining coherent tune-level representations. The ablation study in Section~\ref{sec:ablation} examines the contribution of SCL relative to other objectives.
 
-Overall, the training curves validate several key design decisions. First, the smooth convergence without catastrophic loss spikes confirms that our combination of MMM and TI objectives is stable and does not suffer from conflicting gradient signals. Second, the tight train-validation gap demonstrates effective generalization despite the model's capacity (4.99M parameters) being sufficient to potentially overfit. Third, the distinct dynamics of MMM (steady decrease) and TI (rapid initial drop followed by gradual convergence) suggest that these objectives capture complementary aspects of musical structure, supporting our decision to combine them. The checkpoint at step 40,000, where validation loss reaches its minimum of 2.36, is selected as our final model, and all subsequent evaluation results are reported using this checkpoint.
+Overall, the training curves validate several key design decisions. First, the smooth convergence without catastrophic loss spikes confirms that our combination of MMM, TI, and SCL objectives is stable and does not suffer from conflicting gradient signals. Second, the tight train-validation gap demonstrates effective generalization despite the model's capacity (4.99M parameters) being sufficient to potentially overfit. Third, the distinct dynamics of MMM (steady decrease), TI (rapid initial drop followed by gradual convergence), and SCL (smooth monotonic decrease) suggest that these objectives capture different aspects of musical structure. The checkpoint at step 40,000, where validation loss reaches its minimum of 2.35, is selected as our final model, and all subsequent evaluation results are reported using this checkpoint.
 
 
 
@@ -529,11 +537,11 @@ While direct cross-dataset comparison is inherently limited, we contextualize ou
 
 \section{Ablation Study}\label{sec:ablation}
 
-To understand the contribution of each pre-training objective, we conduct a systematic ablation study by training six model variants with different objective combinations. All variants use identical architecture (6 layers, 256-dimensional, 8 attention heads) and training hyperparameters, differing only in which loss functions are active during training. This controlled setup allows us to isolate the contribution of each objective and assess whether objectives exhibit synergistic effects when combined.
+To understand the contribution of each pre-training objective, we conduct a systematic ablation study by training five model variants with different objective combinations. All variants use identical architecture (6 layers, 256-dimensional, 8 attention heads) and training hyperparameters, differing only in which loss functions are active during training. This controlled setup allows us to isolate the contribution of each objective and assess whether objectives exhibit synergistic effects when combined. We compare these variants against our main model (MMM+TI+SCL) presented in Section~\ref{sec:results}.
 
 \subsection{Experimental Setup}
 
-We train the following six variants:
+We train the following five variants:
 
 \begin{enumerate}
     \item \textbf{MMM-only}: Masked Music Modeling alone ($\lambda_{\text{MMM}}=1.0$, others $=0$)
@@ -541,7 +549,6 @@ We train the following six variants:
     \item \textbf{SCL-only}: Section Contrastive Learning alone ($\lambda_{\text{SCL}}=1.0$, others $=0$)
     \item \textbf{MMM+SCL}: Combines reconstruction and section structure ($\lambda_{\text{MMM}}=1.0$, $\lambda_{\text{SCL}}=0.5$)
     \item \textbf{TI+SCL}: Combines transposition invariance and section structure ($\lambda_{\text{TI}}=1.0$, $\lambda_{\text{SCL}}=0.5$)
-    \item \textbf{MMM+TI+SCL} (Full model): All three objectives ($\lambda_{\text{MMM}}=1.0$, $\lambda_{\text{TI}}=0.5$, $\lambda_{\text{SCL}}=0.5$)
 \end{enumerate}
 
 Each variant is trained for 40 epochs on the same 198,893 training tunes, using identical optimization settings (AdamW, $\text{lr}=10^{-4}$, batch size 128, warmup 1000 steps). We evaluate all variants on the test set using the same downstream tasks: tune type classification, mode classification, linear probing on multiple properties, and clustering quality metrics. This ensures fair comparison across all model configurations.
@@ -550,11 +557,11 @@ Each variant is trained for 40 epochs on the same 198,893 training tunes, using 
 
 \subsubsection{Classification Performance}
 
-All six model variants achieve nearly identical performance on both tune type and mode classification tasks. Tune type accuracy ranges narrowly from 46.0\% to 46.9\% and mode accuracy remains consistently at 80.7\% across all variants. The full model (MMM+TI+SCL) achieves 46.7\% tune type accuracy and 80.7\% mode accuracy, statistically indistinguishable from single-objective models. This suggests that the pre-training objectives primarily shape the embedding space structure rather than directly improving downstream classification accuracy. The detailed results are shown in Table~\ref{tab:ablation_classification}.
+All five ablation variants achieve nearly identical performance on both tune type and mode classification tasks. Tune type accuracy ranges narrowly from 46.0\% to 46.9\% and mode accuracy remains consistently at 80.6-80.7\% across all variants. These results are statistically indistinguishable from each other and comparable to the full model (MMM+TI+SCL: 46.7\% tune type, 80.7\% mode). This suggests that the pre-training objectives primarily shape the embedding space structure rather than directly improving downstream classification accuracy. The detailed results are shown in Table~\ref{tab:ablation_classification}.
 
 \begin{table}[H]
 \centering
-\caption{Ablation study: Tune type and mode classification performance (5-fold CV). All models show comparable accuracy, indicating that objectives affect embedding structure more than classification performance.}
+\caption{Ablation study: Tune type and mode classification performance (5-fold CV). All ablation variants show comparable accuracy to the full model (46.7\% tune type, 80.7\% mode).}
 \label{tab:ablation_classification}
 \begin{tabular}{lcccc}
 \toprule
@@ -567,7 +574,6 @@ TI-only & 0.462 & 0.007 & 0.806 & 0.002 \\
 SCL-only & 0.460 & 0.009 & 0.807 & 0.001 \\
 MMM+SCL & 0.469 & 0.008 & 0.807 & 0.001 \\
 TI+SCL & 0.463 & 0.008 & 0.807 & 0.001 \\
-MMM+TI+SCL (Full) & 0.467 & 0.007 & 0.807 & 0.001 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -576,11 +582,11 @@ The remarkably consistent mode classification accuracy (80.7\% $\pm$ 0.001) acro
 
 \subsubsection{Linear Probing and Multi-Task Learning}
 
-Linear probing uses a single-layer ridge classifier trained on frozen embeddings, providing a stricter test of embedding quality than full fine-tuning. Across four properties—tune type, mode, key root, and tune length—all variants perform comparably, with tune type at 46.1-46.8\%, mode at 80.6-80.7\%, key root at 31.4-32.2\%, and tune length at 93.2-93.8\%. These results mirror the classification findings and are detailed in Table~\ref{tab:ablation_linear_probing}.
+Linear probing uses a single-layer ridge classifier trained on frozen embeddings, providing a stricter test of embedding quality than full fine-tuning. Across four properties—tune type, mode, key root, and tune length—all ablation variants perform comparably to the full model (46.8\% tune type, 80.7\% mode, 31.4\% key root, 93.4\% tune length), with tune type at 46.1-46.8\%, mode at 80.6-80.7\%, key root at 31.7-32.2\%, and tune length at 93.2-93.8\%. These results mirror the classification findings and are detailed in Table~\ref{tab:ablation_linear_probing}.
 
 \begin{table}[H]
 \centering
-\caption{Ablation study: Linear probing accuracy on multiple properties. Consistent performance across variants suggests that all objectives induce comparable linear separability.}
+\caption{Ablation study: Linear probing accuracy on multiple properties. All ablation variants perform comparably to the full model.}
 \label{tab:ablation_linear_probing}
 \begin{tabular}{lcccc}
 \toprule
@@ -591,7 +597,6 @@ TI-only & 0.462 & 0.806 & 0.320 & 0.933 \\
 SCL-only & 0.461 & 0.807 & 0.317 & 0.933 \\
 MMM+SCL & 0.468 & 0.807 & 0.317 & 0.938 \\
 TI+SCL & 0.462 & 0.807 & 0.319 & 0.932 \\
-MMM+TI+SCL (Full) & 0.468 & 0.807 & 0.314 & 0.934 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -600,11 +605,11 @@ The high tune length accuracy (93+\%) across all variants indicates that sequenc
 
 \subsubsection{Clustering Quality}
 
-Unsupervised clustering metrics reveal that all variants produce embeddings with some internal structure, though clusters are not sharply separated. Silhouette scores range from 0.491 to 0.575, with the full model (MMM+TI+SCL) achieving the highest tune type silhouette score (0.575), suggesting that combining objectives may yield slightly more structured embeddings compared to single-objective models, though the difference is modest (+8.4\% vs. MMM-only). These results are summarized in Table~\ref{tab:ablation_clustering}.
+Unsupervised clustering metrics reveal that all ablation variants produce embeddings with some internal structure, though clusters are not sharply separated. Silhouette scores range from 0.491 to 0.566, with SCL-only achieving 0.566 and the full model (MMM+TI+SCL) achieving 0.575, suggesting that combining objectives may yield slightly more structured embeddings, though the difference is modest. These results are summarized in Table~\ref{tab:ablation_clustering}.
 
 \begin{table}[H]
 \centering
-\caption{Ablation study: Clustering quality metrics. Higher silhouette scores indicate better-separated clusters in embedding space.}
+\caption{Ablation study: Clustering quality metrics. The full model (0.575 silhouette) shows modest improvement over ablation variants.}
 \label{tab:ablation_clustering}
 \begin{tabular}{lcccc}
 \toprule
@@ -617,7 +622,6 @@ TI-only & 0.553 & 0.032 & 0.554 & 0.005 \\
 SCL-only & 0.566 & 0.038 & 0.565 & 0.005 \\
 MMM+SCL & 0.536 & 0.041 & 0.553 & 0.006 \\
 TI+SCL & 0.549 & 0.038 & 0.551 & 0.005 \\
-MMM+TI+SCL (Full) & 0.575 & 0.035 & 0.572 & 0.004 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -626,24 +630,24 @@ Normalized Mutual Information (NMI) scores remain low across all variants (0.032
 
 \subsubsection{Training Convergence}
 
-All models converge smoothly without overfitting, with validation losses closely tracking training losses throughout the 40-epoch training period. Final validation losses range from 2.32 to 2.45, with no clear winner among the variants. The full model (MMM+TI+SCL) achieves a final validation loss of 2.36, comparable to single-objective models (MMM-only: 2.36, TI-only: 2.37, SCL-only: 2.33). The loss curves comparing all six variants are shown in Figure~\ref{fig:ablation_loss_curves}.
+All ablation variants converge smoothly without overfitting, with validation losses closely tracking training losses throughout the 40-epoch training period. Final validation losses range from 2.32 to 2.45 across the five ablation variants, with the full model (MMM+TI+SCL) achieving 2.35, comparable to the ablation models (MMM-only: 2.36, TI-only: 2.37, SCL-only: 2.33). The loss curves comparing all variants are shown in Figure~\ref{fig:ablation_loss_curves}.
 
 Convergence speed is also similar across variants, with all models reaching a validation loss below 2.5 by approximately 10,000-15,000 steps. This indicates that no single objective provides a substantial training efficiency advantage. The smooth convergence and lack of overfitting across all configurations suggest that the model capacity (6 layers, 256-dimensional) is well-matched to the task complexity, and that all objectives provide sufficient learning signal for effective representation learning.
 
 \begin{figure}[H]
 \centering
 \includegraphics[width=\textwidth]{ablation_loss_curves.pdf}
-\caption{Ablation study: Training and validation loss curves for all six model variants. All models converge smoothly with similar final losses, indicating comparable optimization dynamics across objectives.}
+\caption{Ablation study: Training and validation loss curves for five ablation variants compared to the full model. All models converge smoothly with similar final losses, indicating comparable optimization dynamics across objectives.}
 \label{fig:ablation_loss_curves}
 \end{figure}
 
 \subsection{Analysis and Discussion}
 
-The ablation study reveals several key findings about the role of pre-training objectives in ABC2Vec. The remarkably consistent performance across all six variants suggests that the three objectives (MMM, TI, SCL) capture overlapping aspects of musical structure rather than complementary information. Each objective alone is sufficient to learn embeddings that perform comparably on downstream tasks. This redundancy may stem from the fact that all objectives operate on the same bar-level representations and optimize for similarity relationships within the folk music domain.
+The ablation study reveals several key findings about the role of pre-training objectives in ABC2Vec. The remarkably consistent performance across all five ablation variants and the full model suggests that the three objectives (MMM, TI, SCL) capture overlapping aspects of musical structure rather than complementary information. Each objective alone is sufficient to learn embeddings that perform comparably on downstream tasks. This redundancy may stem from the fact that all objectives operate on the same bar-level representations and optimize for similarity relationships within the folk music domain.
 
-Combining multiple objectives (MMM+SCL, TI+SCL, or MMM+TI+SCL) does not yield substantial improvements over single-objective models. The full model's performance is statistically indistinguishable from simpler variants on most metrics. This contrasts with findings in vision (e.g., SimCLR + supervised learning) and NLP (e.g., masked LM + next sentence prediction) where multi-task objectives often provide complementary signals. The lack of synergy in ABC2Vec suggests that folk music representation may be over-determined by the limited structural diversity in traditional tune repertoire (AABB form, 16-32 bars, modal scales).
+Combining multiple objectives (MMM+SCL, TI+SCL) does not yield substantial improvements over single-objective models. Even the full model (MMM+TI+SCL) performs statistically indistinguishably from simpler variants on most metrics. This contrasts with findings in vision (e.g., SimCLR + supervised learning) and NLP (e.g., masked LM + next sentence prediction) where multi-task objectives often provide complementary signals. The lack of synergy in ABC2Vec suggests that folk music representation may be over-determined by the limited structural diversity in traditional tune repertoire (AABB form, 16-32 bars, modal scales).
 
-While classification accuracies are nearly identical across variants, clustering quality metrics show modest variation, with the full model achieving slightly higher silhouette scores. This suggests that combining objectives affects the geometric structure of embedding space (how densely tunes cluster) without improving linear separability for classification. These structural differences may be relevant for similarity search, variant detection, or other retrieval-based tasks that depend on local neighborhood structure rather than global class boundaries.
+While classification accuracies are nearly identical across all variants, clustering quality metrics show modest variation, with the full model achieving slightly higher silhouette scores (0.575) compared to the best ablation variant (SCL-only: 0.566). This suggests that combining objectives affects the geometric structure of embedding space (how densely tunes cluster) without improving linear separability for classification. These structural differences may be relevant for similarity search, variant detection, or other retrieval-based tasks that depend on local neighborhood structure rather than global class boundaries.
 
 Given the comparable performance of single-objective models, practitioners may opt for simpler training pipelines (e.g., MMM-only) to reduce computational cost and hyperparameter tuning. However, the full model's slightly superior clustering quality and balanced loss convergence suggest that multi-objective training may still be preferable for applications requiring well-structured embedding spaces, such as visualization, exploratory search, or hierarchical clustering.
 
@@ -671,7 +675,7 @@ Finally, the dataset reflects specific cultural and temporal biases that influen
 
 This study introduces ABC2Vec, the first dedicated representation learning model for folk music. Unlike prior work that focused on generation (TunesFormer, Folk-RNN) or cross-modal retrieval (CLaMP), ABC2Vec is purpose-built for folk music embeddings, addressing unique challenges of the folk tradition including transposition equivalence, modal tonality, and variant proliferation. We demonstrate that self-supervised Transformer encoders can learn dense, semantically meaningful embeddings directly from ABC notation without requiring text annotations or audio data.
 
-Trained on 211,524 Irish traditional tunes—the largest folk music representation learning effort to date—ABC2Vec effectively captures musical characteristics such as rhythm, mode, key, and structural patterns through purely self-supervised objectives. Our key technical contributions include: (1) bar-level patchification achieving 16$\times$ sequence length reduction while preserving musical structure, (2) a novel Transposition Invariance (TI) objective that explicitly enforces pitch-invariant representations through contrastive learning, the first such objective in symbolic music modeling, and (3) the combination of Masked Music Modeling (MMM) with TI, demonstrating that reconstruction and invariance objectives are complementary for folk music. Systematic evaluation shows 78.4\% tune type accuracy and 78.8\% mode accuracy, with analysis revealing largely non-overlapping embedding subspaces for rhythm, mode, and key, suggesting distributed property encoding.
+Trained on 211,524 Irish traditional tunes—the largest folk music representation learning effort to date—ABC2Vec effectively captures musical characteristics such as rhythm, mode, key, and structural patterns through purely self-supervised objectives. Our key technical contributions include: (1) bar-level patchification achieving 16$\times$ sequence length reduction while preserving musical structure, (2) a novel Transposition Invariance (TI) objective that explicitly enforces pitch-invariant representations through contrastive learning, the first such objective in symbolic music modeling, and (3) the combination of three complementary objectives—Masked Music Modeling (MMM), Transposition Invariance (TI), and Section Contrastive Learning (SCL)—demonstrating that reconstruction, invariance, and structural learning capture overlapping aspects of musical structure. Systematic evaluation shows 78.4\% tune type accuracy and 78.8\% mode accuracy, with analysis revealing largely non-overlapping embedding subspaces for rhythm, mode, and key, suggesting distributed property encoding.
 
 Beyond technical performance, ABC2Vec establishes methodological foundations for computational folk musicology by providing standardized dataset splits, preprocessing pipelines, and evaluation protocols tailored to folk music research questions. Our findings highlight the value of domain-specific models and self-supervised objectives in capturing continuous musical similarity, rather than forcing discrete clusters, which aligns with the fluid, oral nature of folk tradition. These results suggest that learned embeddings can support a range of applications, including similarity search, variant detection, and musicological analysis, while complementing rather than replacing human expertise.
 
