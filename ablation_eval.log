@@ -1,0 +1,136 @@
+
+================================================================================
+ABLATION STUDY EVALUATION
+================================================================================
+
+Found 7 ablation models:
+  - mmm_only
+  - mmm_scl
+  - mmm_ti
+  - mmm_ti_scl
+  - scl_only
+  - ti_only
+  - ti_scl
+
+Evaluating on: test split
+Device: mps
+CV folds: 5
+
+Loading data from ./data/processed...
+  Loaded 2,162 tunes
+
+================================================================================
+Evaluating: mmm_only
+================================================================================
+Loading model...
+  Evaluating tune type classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:   6%|▌         | 1/17 [00:10<02:41, 10.10s/it]Computing embeddings:  18%|█▊        | 3/17 [00:10<00:37,  2.66s/it]Computing embeddings:  29%|██▉       | 5/17 [00:10<00:15,  1.32s/it]Computing embeddings:  41%|████      | 7/17 [00:10<00:07,  1.28it/s]Computing embeddings:  53%|█████▎    | 9/17 [00:10<00:04,  1.97it/s]Computing embeddings:  65%|██████▍   | 11/17 [00:10<00:02,  2.87it/s]Computing embeddings:  76%|███████▋  | 13/17 [00:10<00:01,  3.99it/s]Computing embeddings:  88%|████████▊ | 15/17 [00:10<00:00,  5.35it/s]Computing embeddings: 100%|██████████| 17/17 [00:10<00:00,  6.86it/s]                                                                       Evaluating mode classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.84it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 19.00it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.91it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.84it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.91it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.87it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.81it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.85it/s]                                                                       Evaluating linear probing on multiple properties...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.72it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.89it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.83it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.86it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.75it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.66it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.65it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.72it/s]                                                                       Evaluating clustering quality...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 16.96it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 17.59it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.17it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.42it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.47it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.45it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.48it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.60it/s]                                                                       Saved results to checkpoints/ablation/mmm_only/ablation_results.json
+
+================================================================================
+Evaluating: mmm_scl
+================================================================================
+Loading model...
+  Evaluating tune type classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 16.27it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 17.34it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 17.86it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.23it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.44it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.50it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.57it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.69it/s]                                                                       Evaluating mode classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.56it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.82it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.66it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.42it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.54it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.62it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.65it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.77it/s]                                                                       Evaluating linear probing on multiple properties...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.76it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.88it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.77it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.66it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.74it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.82it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.82it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.86it/s]                                                                       Evaluating clustering quality...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.67it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.69it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.64it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.58it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.53it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.58it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.63it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.71it/s]                                                                       Saved results to checkpoints/ablation/mmm_scl/ablation_results.json
+
+================================================================================
+Evaluating: mmm_ti
+================================================================================
+Loading model...
+  Evaluating tune type classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 16.93it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 17.84it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.20it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.48it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.68it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.71it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.63it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.61it/s]                                                                       Evaluating mode classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.59it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.77it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.70it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.62it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.71it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.61it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.53it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.54it/s]                                                                       Evaluating linear probing on multiple properties...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.65it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.72it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.59it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.59it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.65it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.54it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.40it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.46it/s]                                                                       Evaluating clustering quality...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.65it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.78it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.63it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.63it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.60it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.52it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.59it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.63it/s]                                                                       Saved results to checkpoints/ablation/mmm_ti/ablation_results.json
+
+================================================================================
+Evaluating: mmm_ti_scl
+================================================================================
+Loading model...
+  Evaluating tune type classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 16.61it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 17.80it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.03it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.25it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.38it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.39it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.37it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.46it/s]                                                                       Evaluating mode classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.72it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.74it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.64it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.70it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.73it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.59it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.50it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.51it/s]                                                                       Evaluating linear probing on multiple properties...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.79it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.95it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.89it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.91it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.92it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.84it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.82it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.83it/s]                                                                       Evaluating clustering quality...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.88it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 19.03it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.87it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.82it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.92it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.89it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.80it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.72it/s]                                                                       Saved results to checkpoints/ablation/mmm_ti_scl/ablation_results.json
+
+================================================================================
+Evaluating: scl_only
+================================================================================
+Loading model...
+  Evaluating tune type classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 16.57it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 17.77it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.13it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.37it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.53it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.56it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.58it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.71it/s]                                                                       Evaluating mode classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.68it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.97it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.88it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.86it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.88it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.76it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.72it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.67it/s]                                                                       Evaluating linear probing on multiple properties...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.81it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.84it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.75it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.77it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.68it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.65it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.64it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.70it/s]                                                                       Evaluating clustering quality...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.15it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.27it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.28it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.37it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.47it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.48it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.36it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.39it/s]                                                                       Saved results to checkpoints/ablation/scl_only/ablation_results.json
+
+================================================================================
+Evaluating: ti_only
+================================================================================
+Loading model...
+  Evaluating tune type classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:01, 14.13it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 16.54it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 17.42it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 17.81it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.14it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.26it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.37it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.48it/s]                                                                       Evaluating mode classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.34it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.53it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.39it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.40it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.50it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.49it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.35it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.32it/s]                                                                       Evaluating linear probing on multiple properties...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.49it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.60it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.52it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.57it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.62it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.57it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.54it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.56it/s]                                                                       Evaluating clustering quality...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.72it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.83it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.59it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.59it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.68it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.68it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.63it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.63it/s]                                                                       Saved results to checkpoints/ablation/ti_only/ablation_results.json
+
+================================================================================
+Evaluating: ti_scl
+================================================================================
+Loading model...
+  Evaluating tune type classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 16.79it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 17.61it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 17.92it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.17it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.38it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.45it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.54it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.68it/s]                                                                       Evaluating mode classification...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.74it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.76it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.57it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.60it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.72it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.62it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.60it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.71it/s]                                                                       Evaluating linear probing on multiple properties...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.88it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.82it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.62it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.72it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.84it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.84it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.79it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.81it/s]                                                                       Evaluating clustering quality...
+Computing embeddings:   0%|          | 0/17 [00:00<?, ?it/s]Computing embeddings:  12%|█▏        | 2/17 [00:00<00:00, 18.47it/s]Computing embeddings:  24%|██▎       | 4/17 [00:00<00:00, 18.50it/s]Computing embeddings:  35%|███▌      | 6/17 [00:00<00:00, 18.40it/s]Computing embeddings:  47%|████▋     | 8/17 [00:00<00:00, 18.49it/s]Computing embeddings:  59%|█████▉    | 10/17 [00:00<00:00, 18.55it/s]Computing embeddings:  71%|███████   | 12/17 [00:00<00:00, 18.62it/s]Computing embeddings:  82%|████████▏ | 14/17 [00:00<00:00, 18.61it/s]Computing embeddings:  94%|█████████▍| 16/17 [00:00<00:00, 18.65it/s]                                                                       Saved results to checkpoints/ablation/ti_scl/ablation_results.json
+
+================================================================================
+AGGREGATING RESULTS
+================================================================================
+
+Saved JSON: results/ablation_study/ablation_comparison.json
+Saved CSV: results/ablation_study/ablation_comparison.csv
+
+Generating LaTeX tables...
+
+Generating comparison plots...
+
+================================================================================
+SUMMARY
+================================================================================
+
+Tune Type Classification:
+  mmm_only            : 0.4658 ± 0.0095
+  mmm_scl             : 0.4687 ± 0.0081
+  mmm_ti              : 0.4557 ± 0.0117
+  mmm_ti_scl          : 0.4668 ± 0.0075
+  scl_only            : 0.4596 ± 0.0089
+  ti_only             : 0.4625 ± 0.0075
+  ti_scl              : 0.4629 ± 0.0078
+
+Mode Classification:
+  mmm_only            : 0.8067 ± 0.0010
+  mmm_scl             : 0.8067 ± 0.0010
+  mmm_ti              : 0.8067 ± 0.0010
+  mmm_ti_scl          : 0.8067 ± 0.0010
+  scl_only            : 0.8067 ± 0.0010
+  ti_only             : 0.8057 ± 0.0024
+  ti_scl              : 0.8067 ± 0.0010
+
+================================================================================
+✓ Ablation study evaluation complete!
+================================================================================
+
+Results saved to: results/ablation_study
+
+Generated files:
+  - ablation_comparison.json
+  - ablation_comparison.csv
+  - ablation_table_*.tex
+  - *_comparison.png
+

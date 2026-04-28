@@ -1,0 +1,37 @@
+
+================================================================================
+ABLATION STUDY FIGURE GENERATION
+================================================================================
+
+Loading training histories...
+  ✓ Loaded: mmm_only
+  ✓ Loaded: mmm_scl
+  ✓ Loaded: mmm_ti
+  ✓ Loaded: mmm_ti_scl
+  ✓ Loaded: scl_only
+  ✓ Loaded: ti_only
+  ✓ Loaded: ti_scl
+
+Generating loss curve comparison...
+✓ Saved loss curves: Paper/ablation_loss_curves.pdf
+
+Loading evaluation results...
+  ✓ Loaded results for 7 models
+
+Generating performance comparison figures...
+✓ Saved radar plot: Paper/ablation_radar_plot.pdf
+✓ Saved heatmap: Paper/ablation_heatmap.pdf
+✓ Saved objective importance plot: Paper/ablation_objective_importance.pdf
+
+================================================================================
+✓ Figure generation complete!
+================================================================================
+
+Figures saved to: Paper
+
+Generated files:
+  - ablation_loss_curves.pdf (and .png)
+  - ablation_radar_plot.pdf (and .png)
+  - ablation_heatmap.pdf (and .png)
+  - ablation_objective_importance.pdf (and .png)
+

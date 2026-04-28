@@ -57,9 +57,10 @@ def plot_loss_curves(model_histories: Dict[str, Dict], output_path: Path):
         'mmm_only': '#e74c3c',
         'ti_only': '#3498db',
         'scl_only': '#2ecc71',
+        'mmm_ti': '#e67e22',
         'mmm_scl': '#f39c12',
         'ti_scl': '#9b59b6',
-        'mmm_ti_scl': '#e67e22',
+        'mmm_ti_scl': '#1abc9c',
     }
 
     # 1. Total training loss
@@ -212,9 +213,10 @@ def plot_performance_radar(results_df: pd.DataFrame, output_path: Path):
         'mmm_only': '#e74c3c',
         'ti_only': '#3498db',
         'scl_only': '#2ecc71',
+        'mmm_ti': '#e67e22',
         'mmm_scl': '#f39c12',
         'ti_scl': '#9b59b6',
-        'mmm_ti_scl': '#e67e22',
+        'mmm_ti_scl': '#1abc9c',
     }
 
     # Plot each model
@@ -266,7 +268,7 @@ def plot_objective_contribution_heatmap(results_df: pd.DataFrame, output_path: P
     matrix = results_df[['model'] + available_tasks].set_index('model')
 
     # Sort models in a logical order
-    model_order = ['mmm_only', 'ti_only', 'scl_only', 'mmm_scl', 'ti_scl', 'mmm_ti_scl']
+    model_order = ['mmm_only', 'ti_only', 'scl_only', 'mmm_ti', 'mmm_scl', 'ti_scl', 'mmm_ti_scl']
     matrix = matrix.reindex([m for m in model_order if m in matrix.index])
 
     # Create heatmap
@@ -314,11 +316,11 @@ def plot_objective_importance(results_df: pd.DataFrame, output_path: Path):
     # Define model groups
     model_groups = {
         'Single': ['mmm_only', 'ti_only', 'scl_only'],
-        'Pairs': ['mmm_scl', 'ti_scl'],
+        'Pairs': ['mmm_ti', 'mmm_scl', 'ti_scl'],
         'Full': ['mmm_ti_scl']
     }
 
-    colors = ['#e74c3c', '#3498db', '#2ecc71', '#f39c12', '#9b59b6', '#e67e22']
+    colors = ['#e74c3c', '#3498db', '#2ecc71', '#e67e22', '#f39c12', '#9b59b6', '#1abc9c']
 
     tasks = [
         ('tune_type_acc', 'Tune Type Classification'),
@@ -336,11 +338,11 @@ def plot_objective_importance(results_df: pd.DataFrame, output_path: Path):
         # Prepare data
         task_data = results_df[['model', task_col]].copy()
         task_data = task_data[task_data['model'].isin([
-            'mmm_only', 'ti_only', 'scl_only', 'mmm_scl', 'ti_scl', 'mmm_ti_scl'
+            'mmm_only', 'ti_only', 'scl_only', 'mmm_ti', 'mmm_scl', 'ti_scl', 'mmm_ti_scl'
         ])]
 
         # Sort by model order
-        model_order = ['mmm_only', 'ti_only', 'scl_only', 'mmm_scl', 'ti_scl', 'mmm_ti_scl']
+        model_order = ['mmm_only', 'ti_only', 'scl_only', 'mmm_ti', 'mmm_scl', 'ti_scl', 'mmm_ti_scl']
         task_data['model'] = pd.Categorical(task_data['model'], categories=model_order, ordered=True)
         task_data = task_data.sort_values('model')
 

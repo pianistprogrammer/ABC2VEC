@@ -76,3 +76,6 @@ Thumbs.db
 # Large data files
 data/processed/train.json
 data/processed/section_pairs.json
+
+# Paper directory (LaTeX compilation artifacts)
+Paper/
