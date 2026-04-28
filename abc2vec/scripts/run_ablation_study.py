@@ -551,7 +551,9 @@ def main():
     print(f"  Loaded {len(df):,} tunes")
 
     # Create vocabulary and patchifier (same for all models)
-    vocab = ABCVocabulary()
+    vocab_path = Path(args.data_dir) / "vocab.json"
+    vocab = ABCVocabulary.load(vocab_path)
+    print(f"  Loaded vocabulary with {vocab.size} tokens")
     patchifier = BarPatchifier(vocab, max_bars=64, max_bar_length=64)
 
     # Evaluate each model
