@@ -129,7 +129,7 @@ train_model(
 ### Data Processing
 
 ```bash
-python scripts/run_data_pipeline.py \
+python scripts/data_pipeline.py \
     --output_dir data/processed \
     --num_workers 8
 ```
@@ -138,7 +138,7 @@ python scripts/run_data_pipeline.py \
 
 ```bash
 # Full model (MMM + TI + SCL)
-python scripts/run_training.py \
+python scripts/training.py \
     --data_dir data/processed \
     --output_dir checkpoints \
     --epochs 40 \
@@ -148,34 +148,37 @@ python scripts/run_training.py \
     --lambda_ti 0.5 \
     --lambda_scl 0.5
 
-# Best ablation (MMM + SCL only)
-python scripts/run_training.py \
+# Train all 7 ablation variants
+python scripts/train_all_ablations.py \
     --data_dir data/processed \
-    --output_dir checkpoints/mmm_scl \
-    --lambda_mmm 1.0 \
-    --lambda_ti 0.0 \
-    --lambda_scl 0.5
+    --device mps \
+    --output_dir checkpoints/ablation
+
+# Train specific ablation models
+python scripts/train_all_ablations.py \
+    --models mmm_scl ti_scl \
+    --device mps
 ```
 
 ### Evaluation
 
 ```bash
 # Complete ablation study (evaluates all models)
-python scripts/run_ablation_study.py \
+python scripts/ablation_study.py \
     --data_dir data/processed \
     --output_dir results/ablation_study
 
 # Individual evaluations
-python scripts/run_evaluate_tune_type.py --checkpoint checkpoints/best_model.pt
-python scripts/run_evaluate_mode.py --checkpoint checkpoints/best_model.pt
-python scripts/run_evaluate_clustering.py --checkpoint checkpoints/best_model.pt
-python scripts/run_evaluate_linear_probing.py --checkpoint checkpoints/best_model.pt
+python scripts/evaluate_tune_type.py --checkpoint checkpoints/best_model.pt
+python scripts/evaluate_mode.py --checkpoint checkpoints/best_model.pt
+python scripts/evaluate_clustering.py --checkpoint checkpoints/best_model.pt
+python scripts/evaluate_linear_probing.py --checkpoint checkpoints/best_model.pt
 ```
 
 ### Figure Generation
 
 ```bash
-python scripts/run_generate_ablation_figures.py \
+python scripts/generate_ablation_figures.py \
     --results_dir results/ablation_study \
     --output_dir ../Paper/figures
 ```
@@ -264,14 +267,14 @@ abc2vec/
 │       ├── __init__.py
 │       └── metrics.py
 ├── scripts/                     # Executable scripts
-│   ├── run_data_pipeline.py
-│   ├── run_training.py
-│   ├── run_ablation_study.py
-│   ├── run_evaluate_tune_type.py
-│   ├── run_evaluate_mode.py
-│   ├── run_evaluate_clustering.py
-│   ├── run_evaluate_linear_probing.py
-│   └── run_generate_ablation_figures.py
+│   ├── data_pipeline.py
+│   ├── training.py
+│   ├── ablation_study.py
+│   ├── evaluate_tune_type.py
+│   ├── evaluate_mode.py
+│   ├── evaluate_clustering.py
+│   ├── evaluate_linear_probing.py
+│   └── generate_ablation_figures.py
 ├── tests/                       # Unit tests
 │   ├── test_data.py
 │   ├── test_tokenizer.py
@@ -372,4 +375,4 @@ A: Set unwanted lambdas to 0.0: `--lambda_mmm 1.0 --lambda_ti 0.0 --lambda_scl 0
 A: `results/ablation_study/ablation_comparison.csv` contains all metrics for all models
 
 **Q: How to regenerate paper figures?**
-A: `python scripts/run_generate_ablation_figures.py --results_dir results/ablation_study --output_dir ../Paper/figures`
+A: `python scripts/generate_ablation_figures.py --results_dir results/ablation_study --output_dir ../Paper/figures`

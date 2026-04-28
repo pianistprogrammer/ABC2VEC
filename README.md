@@ -57,7 +57,7 @@ with torch.no_grad():
 
 ```bash
 cd abc2vec
-python scripts/run_data_pipeline.py --output_dir data/processed
+python scripts/data_pipeline.py --output_dir data/processed
 ```
 
 This creates:
@@ -70,7 +70,7 @@ This creates:
 
 ```bash
 # Full model (MMM + TI + SCL)
-python scripts/run_training.py \
+python scripts/training.py \
     --data_dir data/processed \
     --output_dir checkpoints \
     --epochs 40 \
@@ -89,7 +89,7 @@ python scripts/run_training.py \
 #### Complete Ablation Study (Recommended)
 
 ```bash
-python scripts/run_ablation_study.py \
+python scripts/ablation_study.py \
     --data_dir data/processed \
     --device mps \
     --output_dir results/ablation_study
@@ -101,22 +101,22 @@ Evaluates all models and generates comparison tables/figures.
 
 ```bash
 # Tune type classification
-python scripts/run_evaluate_tune_type.py \
+python scripts/evaluate_tune_type.py \
     --checkpoint checkpoints/best_model.pt \
     --data_dir data/processed
 
 # Mode classification
-python scripts/run_evaluate_mode.py \
+python scripts/evaluate_mode.py \
     --checkpoint checkpoints/best_model.pt \
     --data_dir data/processed
 
 # Clustering quality
-python scripts/run_evaluate_clustering.py \
+python scripts/evaluate_clustering.py \
     --checkpoint checkpoints/best_model.pt \
     --data_dir data/processed
 
 # Linear probing (all properties)
-python scripts/run_evaluate_linear_probing.py \
+python scripts/evaluate_linear_probing.py \
     --checkpoint checkpoints/best_model.pt \
     --data_dir data/processed
 ```
@@ -159,23 +159,27 @@ python scripts/run_evaluate_linear_probing.py \
 ## Training Ablation Models
 
 ```bash
-# MMM+SCL (best for tune type)
-bash train_ablation_4_mmm_scl.sh
+cd abc2vec
 
-# TI+SCL (best for key-invariance)
-bash train_ablation_5_ti_scl.sh
+# Train all 7 ablation variants at once
+python scripts/train_all_ablations.py \
+    --data_dir data/processed \
+    --device mps \
+    --output_dir ../checkpoints/ablation
 
-# Full model
-bash train_ablation_3_mmm_ti_scl.sh
+# Or train specific models only
+python scripts/train_all_ablations.py \
+    --models mmm_scl ti_scl mmm_ti_scl \
+    --device mps
 
-# Individual objectives
-bash train_ablation_1_mmm_only.sh
-bash train_ablation_2_ti_only.sh
-bash train_ablation_6_scl_only.sh
-bash train_ablation_7_mmm_ti.sh
+# Or train individual models with training.py
+python scripts/training.py \
+    --data_dir data/processed \
+    --output_dir ../checkpoints/ablation/mmm_scl \
+    --lambda_mmm 1.0 --lambda_ti 0.0 --lambda_scl 0.5
 ```
 
-All scripts use identical hyperparameters (40 epochs, max 40,000 steps).
+All ablations use identical hyperparameters (40 epochs, max 40,000 steps) for fair comparison.
 
 ## ⚠️ Critical: Vocabulary Loading
 
@@ -218,13 +222,13 @@ ABC2VEC/
 │   │   ├── tokenizer/         # ABC tokenization
 │   │   └── training/          # Training loop
 │   ├── scripts/
-│   │   ├── run_training.py              # Model training
-│   │   ├── run_ablation_study.py        # Complete ablation evaluation
-│   │   ├── run_evaluate_tune_type.py    # Tune type eval
-│   │   ├── run_evaluate_mode.py         # Mode eval
-│   │   ├── run_evaluate_clustering.py   # Clustering eval
-│   │   ├── run_evaluate_linear_probing.py  # Multi-property eval
-│   │   └── run_generate_ablation_figures.py  # Figure generation
+│   │   ├── training.py              # Model training
+│   │   ├── ablation_study.py        # Complete ablation evaluation
+│   │   ├── evaluate_tune_type.py    # Tune type eval
+│   │   ├── evaluate_mode.py         # Mode eval
+│   │   ├── evaluate_clustering.py   # Clustering eval
+│   │   ├── evaluate_linear_probing.py  # Multi-property eval
+│   │   └── generate_ablation_figures.py  # Figure generation
 │   └── pyproject.toml
 ├── checkpoints/
 │   ├── best_model.pt          # Original full model (78.4% tune type)
@@ -245,10 +249,9 @@ ABC2VEC/
 ├── results/ablation_study/
 │   ├── ablation_comparison.csv
 │   └── ablation_comparison.json
-├── Paper/
-│   ├── abc2vec_paper.tex
-│   └── figures/
-└── train_ablation_*.sh       # Training scripts for each variant
+└── Paper/
+    ├── abc2vec_paper.tex
+    └── figures/
 ```
 
 ## Reproducing Paper Results
@@ -257,15 +260,15 @@ ABC2VEC/
 
 ```bash
 # Train original model
-python abc2vec/scripts/run_training.py \
+python abc2vec/scripts/training.py \
     --data_dir data/processed \
     --output_dir checkpoints \
     --epochs 40 \
     --lambda_mmm 1.0 --lambda_ti 0.5 --lambda_scl 0.5
 
 # Evaluate
-python abc2vec/scripts/run_evaluate_tune_type.py --checkpoint checkpoints/best_model.pt
-python abc2vec/scripts/run_evaluate_clustering.py --checkpoint checkpoints/best_model.pt
+python abc2vec/scripts/evaluate_tune_type.py --checkpoint checkpoints/best_model.pt
+python abc2vec/scripts/evaluate_clustering.py --checkpoint checkpoints/best_model.pt
 ```
 
 **Expected Results:**
@@ -276,25 +279,24 @@ python abc2vec/scripts/run_evaluate_clustering.py --checkpoint checkpoints/best_
 ### Section 5: Ablation Study
 
 ```bash
-# Train all 7 variants
-bash train_ablation_1_mmm_only.sh
-bash train_ablation_2_ti_only.sh
-bash train_ablation_3_mmm_ti_scl.sh
-bash train_ablation_4_mmm_scl.sh
-bash train_ablation_5_ti_scl.sh
-bash train_ablation_6_scl_only.sh
-bash train_ablation_7_mmm_ti.sh
+cd abc2vec
 
-# Evaluate all variants + generate figures
-python abc2vec/scripts/run_ablation_study.py \
+# Train all 7 variants
+python scripts/train_all_ablations.py \
     --data_dir data/processed \
     --device mps \
-    --output_dir results/ablation_study
+    --output_dir ../checkpoints/ablation
+
+# Evaluate all variants + generate figures
+python scripts/ablation_study.py \
+    --data_dir data/processed \
+    --device mps \
+    --output_dir ../results/ablation_study
 
 # Regenerate paper figures
-python abc2vec/scripts/run_generate_ablation_figures.py \
-    --results_dir results/ablation_study \
-    --output_dir Paper/figures
+python scripts/generate_ablation_figures.py \
+    --results_dir ../results/ablation_study \
+    --output_dir ../Paper/figures
 ```
 
 ## Citation
@@ -334,7 +336,7 @@ A: You're using the wrong vocabulary. Use `ABCVocabulary.load("data/processed/vo
 A: For tune type classification, use `checkpoints/ablation/mmm_scl/best_model.pt` (80.8%). For general use, use `checkpoints/best_model.pt` (78.4%).
 
 **Q: How do I train only MMM+SCL?**
-A: Run `bash train_ablation_4_mmm_scl.sh` or use `--lambda_mmm 1.0 --lambda_ti 0.0 --lambda_scl 0.5`
+A: `cd abc2vec && python scripts/train_all_ablations.py --models mmm_scl` or use `python scripts/training.py` with `--lambda_mmm 1.0 --lambda_ti 0.0 --lambda_scl 0.5`
 
 **Q: Can I use different hyperparameters?**
 A: Yes, but results may differ. Our ablation study uses standardized hyperparameters for fair comparison.
